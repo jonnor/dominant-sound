@@ -1,3 +1,10 @@
+
+"""
+Soundlevel computation from audio
+
+Copyright Soundsensing AS 2023
+Licensed under MIT
+"""
 import sys
 import time
 import math
@@ -9,13 +16,10 @@ import pandas
 import acoustics
 import soundfile
 import structlog
-import joblib
 import scipy.signal
 from scipy.signal import zpk2tf
 from scipy.signal import lfilter, bilinear
 
-from ..utils import fileutils
-#from ..utils.parallel import ProgressParallel
 
 log = structlog.get_logger()
 
@@ -28,7 +32,7 @@ time_weightings = {
 def time_filter_coefficients(sr : int,
         time : float = 0.125,
         method : str = 'standard-digital'
-        ): -> tuple[numpy.array, numpy.array]
+        ) -> tuple[numpy.array, numpy.array]:
     """
     Build filter for time integration
 
@@ -58,8 +62,7 @@ def time_filter_coefficients(sr : int,
 
     return b, a
     
-# ref https://erlend-viggen.no/acoustic-quantities-3/
-def time_filter(y : numpy.array,
+def time_integrated_levels(y : numpy.array,
         sr : int,
         time : float = 0.125,
         oversample : int = 10,
@@ -67,9 +70,9 @@ def time_filter(y : numpy.array,
         ref : float = 1.0,
         db_offset : float = 0.0,
         passthrough : bool = False,
-        ) -> tuple(numpy.array, numpy.array):
+        ) -> tuple[numpy.array, numpy.array]:
     """
-    Apply time integration
+    Apply time integration and compute levels
     """
 
     b, a = time_filter_coefficients(sr=sr, time=time, method=method)
@@ -105,14 +108,18 @@ def compute_soundlevel(audio : numpy.array, sr : int,
         time = 'fast',
         weighting : str = 'A',
         oversample : int = 4,
-        ):
+        ) -> pandas.DataFrame:
 
     if isinstance(time, str):
         time = time_weightings[time]
     
     s = acoustics.Signal(audio, sr)
+
+    # Apply frequency weigthing
     s = s.weigh(weighting)
 
+    # Apply time integration
+    # Convert to decibels
     times, levels = time_filter(s, sr=sr, time=time, oversample=oversample)
 
     df = pandas.DataFrame({
@@ -125,7 +132,7 @@ def compute_soundlevel(audio : numpy.array, sr : int,
 
 def soundlevel_for_file(path : str,
     channels : Optional[tuple] = None,
-    **kwargs): -> pandas.DataFrame
+    **kwargs) -> pandas.DataFrame:
 
     load_start = time.time()
     audio, sr = soundfile.read(path, samplerate=None, always_2d=True)
@@ -164,25 +171,6 @@ def soundlevel_for_file(path : str,
     return df, meta
 
 
-def to_single_channel(df : pandas.DataFrame):
-    """
-    Convert multi-channel soundlevels to a single channel
-    """
-    total_channels = df.channels.sum()
-    
-    # expand number of channels into list of channel indices
-    def channel_list(n_channels):
-        return list(range(n_channels))
-    channel = pandas.Series(df.channels.apply(channel_list), name='channel')
-    
-    # make rows in dataframe for each channel 
-    streams = df.join(channel)
-    streams = streams.explode('channel')
-    
-    assert streams.shape[1] == df.shape[1] + 1
-    assert len(streams) == total_channels, (len(streams), total_channels)
-    return streams
-    
     
 def compute_leq(decibels : numpy.array):
     """
