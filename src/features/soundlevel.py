@@ -120,7 +120,7 @@ def compute_soundlevel(audio : numpy.array, sr : int,
 
     # Apply time integration
     # Convert to decibels
-    times, levels = time_filter(s, sr=sr, time=time, oversample=oversample)
+    times, levels = time_integrated_levels(s, sr=sr, time=time, oversample=oversample)
 
     df = pandas.DataFrame({
         'level': levels,
@@ -132,7 +132,7 @@ def compute_soundlevel(audio : numpy.array, sr : int,
 
 def soundlevel_for_file(path : str,
     channels : Optional[tuple] = None,
-    **kwargs) -> pandas.DataFrame:
+    **kwargs) -> (pandas.DataFrame, dict):
 
     load_start = time.time()
     audio, sr = soundfile.read(path, samplerate=None, always_2d=True)
@@ -171,7 +171,6 @@ def soundlevel_for_file(path : str,
     return df, meta
 
 
-    
 def compute_leq(decibels : numpy.array):
     """
     Compute Leq indicators from soundlevels
