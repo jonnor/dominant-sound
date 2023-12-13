@@ -98,7 +98,12 @@ mark periods of single dominant, multiple contributions
 
 #### Large scale analysis
 
-If one had captured a mixture of these things, how would one analyse the data to answer this question?
+If one can get/produce sufficient labeled data,
+then can go straight for a Sound Event Detection problem.
+
+
+If one had captured a mixture of these things, but without a lot of labels.
+Might need to do a statistical and/or generative analysis.
 
 statistical analysis
 each source modelled as a soundlevel generating process
@@ -113,6 +118,39 @@ b. emission probabilities
 Measure in terms of dB. Ground truth computed from labels.
 Requires a labeled dataset with suitable labels.
 
+Purpose is to demonstrate this methodology and its usefulness,
+so performance does not need to be super high.
+Hopefully able to stay with simple and well-understood deep learning baselines.
+
+#### Using Sound Event Detection
+
+Supervised learning.
+Need strong labels. Both for training of SED model.
+But especially for evaluation of dB attribution.
+
+#### Evaluation
+
+How much of the "dB" can the model (correctly) explain?
+What would it be assuming perfect detection (upper boundary of performance).
+In only the intrusive events (Leq contribution, percentage of LAFmax), and overall (contribution to Leq).
+
+
+#### Feature representation
+
+Using a time-frequency (spectrogram) representation as the input.
+Maybe try to A-weight the spectrogram.
+
+Using off-the-shelf detection models.
+As vanilla training setup as possible.
+
+
+
+Candidates
+
+* CRNN like SEDNet a good baseline. https://github.com/sharathadavanne/sed-crnn
+* CRNN also described in Sound Event Detection: A Tutorial, https://arxiv.org/abs/2107.05463
+
+ 
 
 
 # Open questions
@@ -182,11 +220,14 @@ Target for a follow-up paper.
 
 ## Generative modelling
 
-Might be possible to have source activity as a binary
+Might be possible to have source activity as a binary ON/OFF.
 Maybe the activation patterns of sources can be Poisson
 
 Could we formulate a generative model,
 and fit it to real-world mixtures?
 could test it on synthetic mixtures first,
-to check if model is able to fit properly
+to check if model is able to fit properly.
+
+Target for follow-up paper.
+Unless critical to answer the hypothesis above.
 
