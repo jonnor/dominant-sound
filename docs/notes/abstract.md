@@ -5,6 +5,38 @@ Abstracts of up to 200 words
 ## Submission
 www.icsv30.org
 
+## Title
+
+The Dominant Noise Event method for automatic classification in noise monitoring
+
+## Theme
+
+T10 - Signal processing and nonlinear methods
+T10 RS03 - Signal processing in acoustics and vibration
+
+## Keywords
+Noise Monitoring, Machine Learning, Sound Event Detection
+
+## Abstract
+
+https://docs.google.com/document/d/1P2qKccu7TSv8tBmP852gNEoVkeueLZHOTu-1mcGc9yQ/edit
+
+We propose a method for noise monitoring that can automatically classify noise events
+and determine the soundlevel contribution from different noise sources.
+We observe that in some noise monitoring scenarios the main phenomena of interest are intrusive noise events,
+which are considerably louder than the background.
+When the noise events dominate the background level,
+it is possible to assign the soundlevel contribution at each time-period to a single event class.
+
+Our contributions are 
+A) a formalization of two Machine Learning tasks designed to consider the soundlevel contribution during classification, 
+tenatively called: Dominant Sound Classification and Dominant Sound Event Detection.
+B) an analysis of to which degree the dominant sound simplification holds in noise monitoring scenarios
+C) a demonstration of a complete system that attributes soundlevel contributions to noise source classes
+
+The method is evaluated quantitatively using representative real-world datasets.
+
+
 ## Summarized
 Linear, starting with background, building up the case step by step.
 A bit boring. Long time until the contribution the paper comes in.
@@ -33,28 +65,14 @@ and how much of the overall noise impact can be quantified using this method.
 Evaluation is done on real-world datasets that are representative of noise monitoring scenarios.
 
 
-## Straight
 
-Propose a method for noise monitoring that can automatically determine the soundlevel contribution
-of noise events coming from different noise sources.
-This stems from the observation that in some monitoring cases t
-This enables a simplified approach to attributing soundlevel contributions to,
-where at each single time-instant it can be assigned to a single event class.
-
-Our contribution is 
-A) formalization of two Machine Learning tasks designed to consider the soundlevel contribution during classification, 
-called: Dominant Sound Classification and Dominant Sound Event Detection.
-B) Evaluation of to which degree the dominant sound simplification holds in noise monitoring scenarios
-C) Demonstration of a complete system to attribute soundlevel contributions to noise sources, and evaluation of its performance
-
-
-## Keywords
+## Notes
 
 Dominant Sound Event Detection
 
 Tools to automate analysis of noise
 
-## Music
+## Misc
 
 Our aim is to use machine learning to categorize the audio stream,
 and to automatically determine the contribution that each class has to the soundlevel.
