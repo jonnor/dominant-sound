@@ -36,3 +36,9 @@ Road Traffic Noise RTN vs Anomalous Noise Event (ANE).
 > - nearly 80% of works
 > - and more than 60% of people talking
 
+### Environmental noise monitoring using source classification in sensors
+
+https://trepo.tuni.fi/bitstream/handle/10024/126273/Environmental_noise_monitoring_using_source_classification_in_sensors.pdf
+2018
+
+Tested at rock crusher site
