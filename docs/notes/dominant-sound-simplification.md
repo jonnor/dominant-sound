@@ -83,6 +83,6 @@ OUTPUT: Txt file with Sound Event timestamps and manually labelled timestamps.
 
 1) Rather than mix down the two channels of levels returned by *soundlevel_for_file()*, I only used channel 0 for the rest of the steps. Should I first be combining the two channels? If so, is it simply a matter of taking the mean at each step?
 2) For step 2, I feel like we're calculating L90 from the future rather than the past. Eg, at step 0, I'm calculating L90 over step 0 to step0+window. I know we shift it over to account for that... but I just want to double check with you???
-3) LAF and LAS; I know these are "fast" and "slow" levels, however I'm wondering where and how I should be incorporating these into my analysis?
+3) ~~LAF and LAS; I know these are "fast" and "slow" levels, however I'm wondering where and how I should be incorporating these into my analysis?~~
 4) When labelling sound events, is it strictly necessary to label "what" the sound is (eg, car), or is it enough to simply label "single" or "mixed"?
-5) Identifying "Sound Events"... Is a one-frame spike over +5dB sufficient to class as a "sound event"? If not, should I be looking for "x consecutive frames over +5dB"? Is x related to the "fast" and "slow" resolutions?
+5) ~~Identifying "Sound Events"... Is a one-frame spike over +5dB sufficient to class as a "sound event"? If not, should I be looking for "x consecutive frames over +5dB"? Is x related to the "fast" and "slow" resolutions?~~
