@@ -12,15 +12,16 @@ def maestro():
     base_url = 'https://zenodo.org/records/7244360/files'
 
     # Target URLs for the dataset files on Zenodo
-    audio_zip = os.path.join(base_url, 'development_audio.zip')
-    annotation_zip = os.path.join(base_url, 'development_annotation.zip')
-    license_txt = os.path.join(base_url, 'LICENSE.txt')
-    readme_md = os.path.join(base_url, 'README.md')
+    audio_zip = base_url + '/development_audio.zip'
+    annotation_zip = base_url + '/development_annotation.zip'
+    license_txt = base_url + '/LICENSE.txt'
+    readme_md = base_url + '/README.md'
 
     # Specify and create the target directory for the dataset
     target_path = os.path.join(download_path, 'maestro_ds')
 
     if not os.path.exists(target_path):
+        print('Downloading "MAESTRO Real" dataset...')
         os.makedirs(target_path)
 
         # download the zip files
@@ -49,15 +50,16 @@ def tut():
     base_url = 'https://zenodo.org/records/814831/files'
 
     # Target URLs for the dataset files on Zenodo
-    audio_1_zip = os.path.join(base_url, 'TUT-sound-events-2017-development.audio.1.zip')
-    audio_2_zip = os.path.join(base_url, 'TUT-sound-events-2017-development.audio.2.zip')
-    dev_meta = os.path.join(base_url, 'TUT-sound-events-2017-development.meta.zip')
-    dev_doc = os.path.join(base_url, 'TUT-sound-events-2017-development.doc.zip')
+    audio_1_zip = base_url + '/TUT-sound-events-2017-development.audio.1.zip'
+    audio_2_zip = base_url + '/TUT-sound-events-2017-development.audio.2.zip'
+    dev_meta = base_url + '/TUT-sound-events-2017-development.meta.zip'
+    dev_doc = base_url + '/TUT-sound-events-2017-development.doc.zip'
 
     # Specify and create the target directory for the dataset
     target_path = os.path.join(download_path, 'tut_ds')
 
     if not os.path.exists(target_path):
+        print('Downloading "TUT Sound Events 2017" dataset...')
         os.makedirs(target_path)
 
         # download the zip files
@@ -82,3 +84,7 @@ def fetch_all():
     maestro()
     tut()
     print('Datasets downloaded: see "data/raw/..."')
+
+
+if __name__ == "__main__":
+    fetch_all()
