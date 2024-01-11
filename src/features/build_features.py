@@ -69,7 +69,7 @@ def generate_sed_timestamps(audio_path: str, moving_window: int, sed_db_thresh: 
 
     ensure_dir(os.path.join(output_root, dataset_name, 'SED_timestamps'))
 
-    output_path = os.path.join(output_root, dataset_name, 'SED_timestamps', audio_id.replace('.wav', '_SED.txt'))
+    output_path = os.path.join(output_root, dataset_name, 'SED_timestamps', audio_id.replace('.wav', f'_SED_{sed_db_thresh}.txt'))
     # print(output_path)
 
     # Compute A-weighted soundlevels for file
@@ -98,13 +98,20 @@ def generate_sed_timestamps(audio_path: str, moving_window: int, sed_db_thresh: 
     for result in results:
         idx = result[0]
         steps = result[1]
-        f_idx = idx + steps - 1
-        # if steps >= 4:
-
-        start = df.index[idx].total_seconds()
-        stop = df.index[f_idx].total_seconds()
-
-        sed_stamps.append((start, stop))
+        
+        if sed_db_thresh == 5:
+            if steps >= 4:
+                f_idx = idx + steps
+                start = df.index[idx].total_seconds()
+                stop = df.index[f_idx].total_seconds()
+                sed_stamps.append((start, stop))
+        
+        elif sed_db_thresh > 5:
+            f_idx = idx + steps
+            start = df.index[idx].total_seconds()
+            stop = df.index[f_idx].total_seconds()
+            sed_stamps.append((start, stop))
+        
 
     seds = pd.DataFrame(sed_stamps)
     seds[3] = f'SED_{sed_db_thresh}'
