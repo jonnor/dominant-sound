@@ -1,0 +1,32 @@
+40.210369	41.111202	Wind noise (microphone)
+57.428104	63.480576	Traffic noise, roadway noise
+58.202000	58.442000	Chirp, tweet
+58.575000	58.808000	Chirp, tweet
+59.955000	60.166000	Chirp, tweet
+61.566000	61.806000	Chirp, tweet
+119.163000	119.360000	Chirp, tweet
+119.220000	124.449000	Bicycle
+120.141000	120.366000	Chirp, tweet
+121.176000	121.338000	Chirp, tweet
+122.055000	122.238000	Chirp, tweet
+122.460000	128.836000	Traffic noise, roadway noise
+122.992000	123.302000	Chirp, tweet
+123.569000	124.125000	Bird vocalization, bird call, bird song
+125.378000	125.568000	Chirp, tweet
+126.497000	126.708000	Chirp, tweet
+127.369000	127.538000	Chirp, tweet
+144.724000	157.055000	Car passing by
+164.655000	165.556000	Male speech, man speaking
+169.131000	174.199000	Traffic noise, roadway noise
+171.707000	171.820000	Chirp, tweet
+219.916000	229.965777	Car passing by
+230.916000	231.099000	Whack, thwack
+231.542000	240.072000	Car passing by
+237.918000	240.526000	Clatter
+240.910000	241.888000	Clatter
+243.408000	243.617000	Chip, tweet
+244.583000	244.791000	Chirp, tweet
+244.977000	247.898000	Traffic noise, roadway noise
+245.005000	245.171000	Chirp, tweet
+245.625000	245.822000	Chirp, tweet
+246.779000	247.303000	Other sourceless

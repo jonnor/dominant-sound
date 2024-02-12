@@ -1,0 +1,130 @@
+10.565000	10.981000	Bird vocalisation, bird call, bird song
+11.056000	11.155238	Clicking
+11.209000	11.460000	Bird vocalisation, bird call, bird song
+11.533000	11.963000	Bird vocalisation, bird call, bird song
+28.112000	35.620000	Car passing by
+28.863000	29.186000	Bird vocalisation, bird call, bird song
+29.903000	30.228000	Bird vocalisation, bird call, bird song
+31.742000	32.115000	Bird vocalisation, bird call, bird song
+33.256000	33.675000	Bird vocalisation, bird call, bird song
+34.374000	34.816000	Bird vocalisation, bird call, bird song
+61.190000	61.330000	Walk, footsteps
+61.522000	61.743000	Bird vocalisation, bird call, bird song
+62.122000	62.395000	Bird vocalisation, bird call, bird song
+62.366000	62.523000	Walk, footsteps
+63.158000	63.339000	Bird vocalisation, bird call, bird song
+73.924000	74.261000	Bird vocalisation, bird call, bird song
+74.581000	74.884000	Bird vocalisation, bird call, bird song
+75.210000	75.525000	Bird vocalisation, bird call, bird song
+75.664000	76.101000	Bird vocalisation, bird call, bird song
+76.212000	76.654000	Bird vocalisation, bird call, bird song
+76.899000	77.271000	Bird vocalisation, bird call, bird song
+77.393000	77.958000	Bird vocalisation, bird call, bird song
+78.244000	78.674000	Bird vocalisation, bird call, bird song
+79.059000	79.379000	Bird vocalisation, bird call, bird song
+79.652000	80.008000	Bird vocalisation, bird call, bird song
+80.485000	80.805000	Bird vocalisation, bird call, bird song
+80.933000	81.242000	Bird vocalisation, bird call, bird song
+81.516000	82.121000	Bird vocalisation, bird call, bird song
+82.226000	82.529000	Bird vocalisation, bird call, bird song
+82.948000	83.402000	Bird vocalisation, bird call, bird song
+83.577000	83.903000	Bird vocalisation, bird call, bird song
+84.276000	84.596000	Bird vocalisation, bird call, bird song
+84.406000	95.217000	Traffic noise, road noise
+84.695000	85.062000	Bird vocalisation, bird call, bird song
+85.492000	85.807000	Bird vocalisation, bird call, bird song
+87.163000	87.489000	Bird vocalisation, bird call, bird song
+87.902000	88.298000	Bird vocalisation, bird call, bird song
+88.432000	88.700000	Bird vocalisation, bird call, bird song
+88.921000	89.439000	Bird vocalisation, bird call, bird song
+89.696000	90.290000	Bird vocalisation, bird call, bird song
+89.911000	90.220000	Shout
+90.528000	90.918000	Bird vocalisation, bird call, bird song
+90.591135	91.902000	Shout
+91.349000	91.506000	Bird vocalisation, bird call, bird song
+91.900775	92.182000	Bird vocalisation, bird call, bird song
+92.371000	92.653000	Shout
+94.551000	94.860000	Bird vocalisation, bird call, bird song
+95.003000	95.716000	Yell
+95.273000	95.657000	Bird vocalisation, bird call, bird song
+95.745000	96.146000	Bird vocalisation, bird call, bird song
+95.913000	95.972000	Clicking
+96.286000	96.641000	Bird vocalisation, bird call, bird song
+97.008000	97.404000	Bird vocalisation, bird call, bird song
+97.608000	97.922000	Bird vocalisation, bird call, bird song
+98.202000	98.522000	Bird vocalisation, bird call, bird song
+98.714000	99.095000	Female speech, woman speaking
+98.964000	99.250000	Bird vocalisation, bird call, bird song
+99.320000	99.972000	Yell
+99.716000	100.018000	Bird vocalisation, bird call, bird song
+100.749000	101.122000	Bird vocalisation, bird call, bird song
+101.576000	101.908000	Bird vocalisation, bird call, bird song
+103.188000	103.526000	Bird vocalisation, bird call, bird song
+103.369000	103.549000	Yell
+103.695000	103.991871	Bird vocalisation, bird call, bird song
+104.391000	104.696000	Bird vocalisation, bird call, bird song
+105.174000	105.465000	Bird vocalisation, bird call, bird song
+106.295000	107.284000	Yell
+106.769000	107.136000	Bird vocalisation, bird call, bird song
+107.284000	107.631000	Bird vocalisation, bird call, bird song
+107.782000	108.082000	Bird vocalisation, bird call, bird song
+108.399000	108.725000	Bird vocalisation, bird call, bird song
+109.043000	109.337000	Bird vocalisation, bird call, bird song
+109.607000	109.884000	Bird vocalisation, bird call, bird song
+110.140000	110.469000	Bird vocalisation, bird call, bird song
+110.661000	111.097774	Bird vocalisation, bird call, bird song
+111.342000	111.747000	Bird vocalisation, bird call, bird song
+114.742000	115.167000	Bird vocalisation, bird call, bird song
+115.709000	116.009000	Bird vocalisation, bird call, bird song
+116.422000	116.737000	Bird vocalisation, bird call, bird song
+116.932000	117.258000	Bird vocalisation, bird call, bird song
+117.581000	117.767000	Bird vocalisation, bird call, bird song
+129.804000	130.034000	Bird vocalisation, bird call, bird song
+130.523000	130.890000	Bird vocalisation, bird call, bird song
+131.289000	131.639000	Bird vocalisation, bird call, bird song
+132.124000	132.445000	Bird vocalisation, bird call, bird song
+133.384865	174.058225	Traffic noise, road noise
+133.644000	133.993000	Bird vocalisation, bird call, bird song
+134.800000	134.977000	Bird vocalization, bird call, bird song
+134.977153	135.350000	Gull, seagull
+139.169000	139.591000	Bird vocalization, bird call, bird song
+139.871000	140.243000	Bird vocalization, bird call, bird song
+140.488000	140.826000	Bird vocalization, bird call, bird song
+141.384000	141.943000	Bird vocalization, bird call, bird song
+142.543000	142.811000	Bird vocalization, bird call, bird song
+143.288000	143.638000	Bird vocalization, bird call, bird song
+143.812000	144.080000	Bird vocalization, bird call, bird song
+144.313000	144.825000	Bird vocalization, bird call, bird song
+144.977000	145.466000	Bird vocalization, bird call, bird song
+145.862000	146.258000	Bird vocalization, bird call, bird song
+146.467000	147.061000	Gull, seagull
+147.387000	147.795000	Gull, seagull
+147.958000	148.586000	Gull, seagull
+148.796000	149.145000	Bird vocalization, bird call, bird song
+148.900000	151.998000	Car passing by
+149.271000	149.468000	Bird vocalization, bird call, bird song
+151.643000	151.998000	Bird vocalization, bird call, bird song
+152.621000	152.959000	Bird vocalization, bird call, bird song
+153.267000	153.658000	Bird vocalization, bird call, bird song
+154.083000	154.461000	Bird vocalization, bird call, bird song
+154.921000	155.712711	Gull, seagull
+158.926000	163.592000	Car passing by
+164.359000	164.644000	Bird vocalization, bird call, bird song
+164.923000	165.145000	Bird vocalization, bird call, bird song
+165.593000	165.896000	Bird vocalization, bird call, bird song
+166.222000	166.466000	Bird vocalization, bird call, bird song
+167.118000	167.491000	Bird vocalization, bird call, bird song
+168.329000	168.632000	Bird vocalization, bird call, bird song
+170.157000	170.547000	Bird vocalization, bird call, bird song
+170.891000	171.310000	Bird vocalization, bird call, bird song
+171.764000	172.149000	Bird vocalization, bird call, bird song
+172.562000	172.876000	Bird vocalization, bird call, bird song
+173.080000	173.511000	Bird vocalization, bird call, bird song
+188.334000	188.678000	Bird vocalization, bird call, bird song
+189.143000	189.545000	Bird vocalization, bird call, bird song
+189.918000	190.366000	Bird vocalization, bird call, bird song
+190.622000	190.995000	Bird vocalization, bird call, bird song
+191.973000	192.380000	Bird vocalization, bird call, bird song
+204.543000	204.636021	Clicking
+204.962000	205.125000	Bird vocalization, bird call, bird song
+205.062000	205.118000	Clicking
