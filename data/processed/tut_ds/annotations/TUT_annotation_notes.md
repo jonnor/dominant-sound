@@ -112,7 +112,9 @@ __Road traffic noise:__ Basically the only sound source throughout the entire re
 
 #### Description:
 
-__TODO:__ THIS RECORDING MIGHT BE A DUPLICATE FROM THE MAESTRO DATASET... I WILL CHECK
+~~__TODO:__ THIS RECORDING MIGHT BE A DUPLICATE FROM THE MAESTRO DATASET... I WILL CHECK~~
+
+This IS a duplicated recording from the MAESTRO dataset, filename __"city_center_09.wav"__
 
 Outdoor recording of a street scene featuring children, people and vehicles. __[Channel, environment and background > Acoustic environment > Outside, urban or manmade]__
 
