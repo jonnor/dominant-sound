@@ -1,0 +1,125 @@
+0.000000	15.992000	Traffic noise, roadway noise
+11.501000	12.130000	Child speech, kid speaking
+21.492000	21.785079	Child speech, kid speaking
+21.761000	21.896000	Walk, footsteps
+21.896000	22.141000	Child speech, kid speaking
+22.431000	30.739000	Traffic noise, roadway noise
+22.811000	23.006000	Child speech, kid speaking
+23.407000	24.553000	Child speech, kid speaking
+24.185000	24.259000	Clicking
+24.526000	24.594000	Clicking
+24.553000	24.616000	Walk, footsteps
+25.025000	27.202002	Child speech, kid speaking
+25.749000	26.500000	Female speech, woman speaking
+26.138000	26.221000	Clicking
+27.298000	28.084198	Speech
+27.660588	27.726000	Clicking
+27.978000	28.048000	Clicking
+28.673000	29.287000	Female speech, woman speaking
+28.949000	29.021000	Clicking
+29.303000	29.389000	Clicking
+29.399756	29.465000	Whack, thwack
+29.522000	30.050000	Female speech, woman speaking
+31.193360	42.851968	Truck
+50.459000	50.590000	Walk, footsteps
+50.649000	51.468000	Engine starting
+52.193000	68.611027	Traffic noise, roadway noise
+54.075000	54.187000	Walk, footsteps
+55.286000	55.565000	Walk, footsteps
+56.740000	56.853000	Walk, footsteps
+57.903000	58.093000	Walk, footsteps
+58.688000	58.790000	Walk, footsteps
+59.269000	59.435000	Walk, footsteps
+60.516000	60.652000	Walk, footsteps
+60.812000	60.931000	Walk, footsteps
+63.027000	63.169000	Whack, thwack
+64.220000	64.439000	Walk, footsteps
+64.618000	64.766000	Walk, footsteps
+65.271000	65.407000	Walk, footsteps
+65.757000	65.870000	Walk, footsteps
+66.654000	66.850000	Walk, footsteps
+67.067000	67.827000	Female speech, woman speaking
+67.111000	67.194000	Clicking
+70.726000	70.821000	Walk, footsteps
+71.041000	71.142000	Walk, footsteps
+71.338000	72.192000	Speech
+71.670000	71.807000	Walk, footsteps
+76.265000	76.372000	Walk, footsteps
+76.372000	79.174000	Female speech, woman speaking
+76.740000	76.811000	Walk, footsteps
+77.198000	77.274000	Walk, footsteps
+77.673000	77.733000	Walk, footsteps
+78.153000	78.218000	Walk, footsteps
+78.411000	78.457000	Clicking
+78.602000	78.666000	Walk, footsteps
+80.204000	89.963000	Traffic noise, roadway noise
+81.640000	83.352000	Speech
+81.967000	82.186000	Walk, footsteps
+83.980000	84.136000	Walk, footsteps
+84.136000	84.878000	Engine
+84.495000	84.579000	Walk, footsteps
+84.878000	85.028000	Walk, footsteps
+85.381000	85.704000	Engine
+85.796000	85.950000	Walk, footsteps
+85.950000	87.344000	Car passing by
+86.300000	86.425000	Walk, footsteps
+86.757000	86.900000	Walk, footsteps
+87.707000	87.802000	Walk, footsteps
+88.152000	88.283000	Walk, footsteps
+100.044000	111.942000	Traffic noise, roadway noise
+102.364000	102.429000	Walk, footsteps
+102.563000	102.616000	Walk, footsteps
+102.848000	102.922000	Clicking
+103.103000	103.269000	Walk, footsteps
+103.554000	103.634000	Walk, footsteps
+104.062000	104.166000	Walk, footsteps
+104.341000	108.088000	Truck
+106.033000	106.199331	Walk, footsteps
+106.376000	107.034000	Male speech, man speaking
+108.223000	108.300000	Walk, footsteps
+108.631000	108.691000	Walk, footsteps
+109.411000	110.449000	Female speech, woman speaking
+113.977000	126.856000	Traffic noise, roadway noise
+114.312000	119.674000	Car passing by
+116.215000	116.406000	Walk, footsteps
+123.074000	124.606000	Car passing by
+127.870000	134.139000	Traffic noise, roadway noise
+129.663000	129.740000	Clicking
+130.137000	130.464000	Screech
+130.796000	130.986000	Walk, footsteps
+136.516000	137.294000	Screech
+136.851000	137.402000	Female speech, woman speaking
+137.797000	138.491000	Screech
+138.096000	138.850000	Female speech, woman speaking
+138.850000	139.532000	Screech
+139.956000	140.042000	Whack, thwack
+141.666000	151.390000	Traffic noise, roadway noise
+142.225000	143.434000	Female speech, woman speaking
+145.631000	145.720000	Walk, footsteps
+145.720000	146.439000	Male speech, man speaking
+146.499000	147.495000	Female speech, woman speaking
+147.822000	147.884000	Clicking
+148.604000	148.699000	Clicking
+157.837000	185.761000	Traffic noise, roadway noise
+168.225000	168.326000	Clicking
+170.570000	170.689000	Clicking
+171.419000	172.066000	Air brake
+172.324000	172.630000	Air brake
+174.651237	175.058211	Generic impact sounds
+178.985000	180.361000	Car passing by
+181.283000	181.492000	Walk, footsteps
+181.840000	182.037000	Walk, footsteps
+194.009889	210.861000	Traffic noise, roadway noise
+200.815000	200.922000	Clicking
+201.593000	201.700000	Clicking
+202.072000	202.173000	Walk, footsteps
+202.577000	202.661000	Walk, footsteps
+203.083000	203.157000	Walk, footsteps
+203.594000	203.665509	Walk, footsteps
+205.963000	207.024000	Female speech, woman speaking
+207.305000	208.593000	Male speech, man speaking
+207.661000	207.773000	Walk, footsteps
+208.735000	208.848000	Walk, footsteps
+209.239000	209.400000	Walk, footsteps
+209.741000	209.843000	Walk, footsteps
+210.298000	210.465000	Walk, footsteps

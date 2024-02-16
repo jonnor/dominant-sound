@@ -1,0 +1,94 @@
+8.085000	15.128000	Gull, seagull
+12.615000	13.022000	Bang
+16.397000	16.873000	Gull, seagull
+17.004000	17.353000	Gull, seagull
+19.413000	19.973000	Gull, seagull
+20.789000	21.288000	Gull, seagull
+20.875000	21.126000	Ratchet, pawl
+21.764000	22.217000	Gull, seagull
+22.104000	32.148000	Car passing by
+32.816000	33.631000	Cough
+34.628000	35.239000	Cough
+36.395000	41.213000	Car passing by
+52.564000	55.010000	Wind (microphone noise)
+53.234000	56.898000	Traffic noise, roadway noise
+53.646000	53.816000	Walk, footsteps
+55.276000	55.475000	Walk, footsteps
+55.526000	55.690000	Bird vocalization, bird call, bird song
+55.848000	56.052000	Walk, footsteps
+56.052000	56.179000	Wind (microphone noise)
+56.380000	56.579000	Walk, footsteps
+58.114000	58.588011	Gull, seagull
+58.439600	58.998994	Wind (microphone noise)
+59.381000	59.935000	Bird vocalization, bird call, bird song
+59.540000	60.989000	Wind (microphone noise)
+62.042000	62.549437	Cough
+62.603000	62.880000	Clickety-clack
+66.130000	86.784000	Traffic noise, roadway noise
+74.947000	76.603000	Car passing by
+76.603000	77.961000	Car passing by
+77.961000	80.062000	Car passing by
+100.045000	100.192000	Walk, footsteps
+100.645000	102.614918	Car passing by
+101.172000	101.246000	Walk, footsteps
+101.715000	101.970000	Scrape
+102.095000	102.265000	Scrape
+103.254000	103.328000	Bird vocalization, bird call, bird song
+103.328000	103.396000	Clicking
+104.982000	105.112000	Bird vocalization, bird call, bird song
+105.542000	105.633000	Walk, footsteps
+105.910000	106.023000	Walk, footsteps
+106.080000	106.165000	Clicking
+106.465000	106.556000	Walk, footsteps
+106.935000	107.025000	Walk, footsteps
+106.963000	107.229000	Bird vocalization, bird call, bird song
+107.312000	117.607000	Car passing by
+107.880000	107.965000	Walk, footsteps
+108.333000	108.441000	Walk, footsteps
+108.820000	108.905000	Walk, footsteps
+109.205000	109.352000	Walk, footsteps
+109.780000	109.825000	Walk, footsteps
+110.254000	110.340000	Walk, footsteps
+110.751000	110.798000	Walk, footsteps
+111.215000	111.269000	Walk, footsteps
+111.688000	111.739000	Walk, footsteps
+112.154000	112.198000	Walk, footsteps
+119.125000	120.421000	Wind (microphone noise)
+119.408000	119.493000	Walk, footsteps
+119.963000	120.059000	Walk, footsteps
+120.019000	120.450000	Gull, seagull
+120.512000	120.591000	Walk, footsteps
+120.591000	120.857000	Gull, seagull
+120.982000	121.220000	Gull, seagull
+121.055000	121.152000	Walk, footsteps
+121.599000	121.707000	Walk, footsteps
+131.507000	131.909000	Bird vocalization, bird call, bird song
+132.289000	133.217083	Bird vocalization, bird call, bird song
+132.968000	133.279000	Wind (microphone noise)
+133.449000	133.710000	Bird vocalization, bird call, bird song
+136.507000	137.107000	Bird vocalization, bird call, bird song
+137.107000	137.418000	Air brake
+137.350000	138.007000	Bird vocalization, bird call, bird song
+138.256000	138.709000	Bird vocalization, bird call, bird song
+138.709000	139.145000	Air brake
+139.287000	139.462000	Bird vocalization, bird call, bird song
+139.824000	139.989000	Bird vocalization, bird call, bird song
+139.989000	140.436000	Air brake
+140.668000	140.810000	Bird vocalization, bird call, bird song
+141.234000	141.608000	Air brake
+141.857028	142.078000	Bicycle
+142.078000	142.304000	Bird vocalization, bird call, bird song
+164.776000	166.429000	Bird vocalization, bird call, bird song
+174.786000	177.006000	Gull, seagull
+175.584520	176.881000	Wind noise
+177.532000	177.985000	Gull, seagull
+186.056000	187.033000	Bicycle
+186.233000	186.461000	Gull, seagull
+186.540000	186.625000	Whack, thwack
+186.920000	187.214000	Gull, seagull
+187.214000	188.111000	Bicycle
+197.129000	199.642000	Bird vocalization, bird call, bird song
+197.518000	197.632000	Hammer
+197.858000	198.039000	Hammer
+198.232000	198.458000	Hammer
+198.594000	198.770000	Hammer
