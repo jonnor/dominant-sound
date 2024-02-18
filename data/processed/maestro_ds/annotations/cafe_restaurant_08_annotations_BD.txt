@@ -1,0 +1,144 @@
+8.685000	11.791000	Background music
+9.482000	10.139000	Door bell
+10.728000	10.991000	Slam
+15.547000	15.871000	Female speech, woman speaking
+16.065000	16.472000	Female speech, woman speaking
+17.164000	17.705000	Laughter
+17.929000	18.101000	Slam
+18.709000	19.151000	Female speech, woman speaking
+19.615000	20.543000	Female speech, woman speaking
+20.615000	21.762000	Laughter
+23.659000	23.898000	Beep, bleep
+24.094000	24.425000	Whack, thwack
+24.536000	24.936000	Beep, bleep
+26.938000	27.332000	Whack, thwack
+32.302000	32.773000	Cough
+32.773000	33.125000	Cough
+37.662000	50.042728	Background music
+39.333000	39.847000	Speech
+43.251000	45.875000	Hubbub
+45.625000	45.875000	Cutlery, silverware
+47.435000	47.808000	Male speech, man speaking
+48.898000	49.706000	Hubbub
+55.174000	55.816000	Female speech, woman speaking
+55.291000	55.346000	Clicking
+60.938000	61.366000	Hubbub
+66.820000	67.090000	Speech
+66.965000	67.234000	Doorbell
+66.965000	67.200086	Clatter
+68.367000	68.634000	Slam
+68.574000	69.120000	Doorbell
+69.480000	70.031000	Speech
+69.582000	71.384000	Hubbub
+70.031000	70.369000	Doorbell
+70.031000	70.369000	Slam
+70.401000	71.384000	Speech
+72.247000	72.557000	Speech
+72.371000	72.557000	Clatter - Whack, thwack
+72.626000	72.767000	Beep, bleep
+73.192000	73.461000	Beep, bleep
+73.379000	73.703000	Cash register
+73.986000	74.470000	Cash register
+74.311000	75.213029	Female speech, woman speaking
+74.780000	74.937000	Clicking
+74.835000	75.215000	Female speech, woman speaking
+78.439000	78.695000	Chink, clink
+79.026000	79.323000	Chink, clink
+85.717000	85.899000	Walk, footsteps
+86.661000	87.435000	Hubbub
+86.903000	87.086000	Walk, footsteps
+87.624420	88.153000	Chink, clink 
+88.092000	88.229000	Walk, footsteps
+89.036000	89.354000	Dishes, pots and pans
+89.557000	90.043000	Male speech, man speaking
+90.105000	92.809814	Female speech, woman speaking
+91.276000	91.439000	Walk, footsteps
+91.822000	91.956000	Walk, footsteps
+92.126000	92.236000	Whack, thwack
+92.409000	92.583841	Walk, footsteps
+92.961000	93.154000	Walk, footsteps
+93.054000	93.332000	Whir - Brief tone
+93.346000	93.525000	Other sourceless
+93.491156	93.631000	Walk, footsteps
+93.690000	99.304823	Female speech, woman speaking
+93.983000	94.117000	Clatter
+95.225000	95.412000	Walk, footsteps
+95.794000	95.934000	Walk, footsteps
+96.382000	96.527000	Walk, footsteps
+97.768000	98.593000	Doorbell
+106.779000	107.152000	Female speech, woman speaking
+106.851000	108.332000	Beep, bleep
+107.717000	108.297000	Female speech, woman speaking
+107.811000	107.942000	Clicking
+108.542000	108.777000	Slam
+108.928000	109.320000	Screech
+112.547000	113.793000	Female speech, woman speaking
+112.619000	113.793000	Cash register
+114.154000	114.602000	Female speech, woman speaking
+114.404000	114.676000	Slam - Cash register
+120.834000	121.128000	Laughter
+120.907000	121.054716	Clicking
+126.585000	128.366000	Crumpling, crinkling
+126.939000	127.733000	Laughter
+130.544000	131.138000	Female speech, woman speaking
+130.776000	130.990000	Cough
+130.951000	131.068000	Cutlery, silverware
+132.301000	132.688000	Dishes
+132.709000	132.995000	Chink, clink
+133.064000	133.718000	Speech
+133.447000	133.513000	Clicking
+133.757133	134.417000	Doorbell
+134.293000	135.001000	Female speech, woman speaking
+134.539000	134.697000	Dishes
+135.698000	135.870000	Slam
+136.061000	137.136000	Female speech, woman speaking
+138.149000	138.435000	Female speech, woman speaking
+145.708000	146.046000	Female speech, woman speaking
+146.350000	146.796000	Female speech, woman speaking
+149.053000	149.793000	Doorbell
+149.878000	150.472000	Male speech, man speaking
+154.314000	155.760000	Female speech, woman speaking
+154.604000	154.749000	Clatter
+154.749000	154.928000	Cutlery, silverware
+154.956000	155.228000	Clatter
+155.308000	155.524000	Clatter
+157.815000	158.780000	Male speech, man speaking
+159.243000	159.650000	Female speech, woman speaking
+160.537000	160.790000	Whack, thwack
+160.748000	160.910000	Dishes, 
+161.090000	161.759176	Female speech, woman speaking
+161.272000	161.545000	Chink, clink
+164.710000	165.069000	Female speech, woman speaking
+173.340000	173.699000	Female speech, woman speaking
+174.710000	175.145000	Female speech, woman speaking
+176.419000	176.553000	Chink, clink
+176.509000	176.788000	Female speech, woman speaking
+179.536000	179.778000	Chink, clink
+186.091000	186.340000	Clatter
+188.103000	188.469000	Female speech, woman speaking
+189.995000	190.337000	Whack, thwack
+193.026000	193.326000	Clatter
+193.537000	193.991000	Dishes, 
+194.044000	194.576000	Doorbell
+195.086000	195.604000	Dishes, 
+195.477000	195.977000	Female speech, woman speaking
+196.340000	196.605000	Chink, clink
+196.550211	197.712602	Female speech, woman speaking
+199.885000	200.186000	Speech
+208.711000	208.984000	Female speech, woman speaking
+208.852000	209.028000	Chink, clink
+213.084000	213.529000	Cough
+214.825000	216.260000	Hubbub
+215.649000	215.751000	Generic impact sounds
+217.361000	217.813000	Laughter
+222.029000	222.642000	Male speech, man speaking
+222.083000	222.263000	Slam
+222.347000	222.611000	Doorbell
+224.786000	225.680000	Hubbub
+225.994000	226.702188	Female speech, woman speaking
+226.826000	228.386000	Hubbub
+228.386000	228.504000	Whack, thwack
+228.504000	228.845000	Hubbub
+229.177000	229.491000	Male speech, man speaking
+234.553000	234.978000	Male speech, man speaking
+235.745000	237.212000	Female speech, woman speaking
