@@ -39,4 +39,3 @@
 224.446000	226.324000	Car passing by
 226.705000	229.537000	Car passing by
 233.456636	239.909677	Accelerating, revving, vrooming
-233.457272	241.761000	Car

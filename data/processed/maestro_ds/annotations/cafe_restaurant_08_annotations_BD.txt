@@ -1,5 +1,5 @@
 8.685000	11.791000	Background music
-9.482000	10.139000	Door bell
+9.482000	10.139000	Doorbell
 10.728000	10.991000	Slam
 15.547000	15.871000	Female speech, woman speaking
 16.065000	16.472000	Female speech, woman speaking
@@ -83,13 +83,13 @@
 130.544000	131.138000	Female speech, woman speaking
 130.776000	130.990000	Cough
 130.951000	131.068000	Cutlery, silverware
-132.301000	132.688000	Dishes
+132.301000	132.688000	Dishes, pots and pans
 132.709000	132.995000	Chink, clink
 133.064000	133.718000	Speech
 133.447000	133.513000	Clicking
 133.757133	134.417000	Doorbell
 134.293000	135.001000	Female speech, woman speaking
-134.539000	134.697000	Dishes
+134.539000	134.697000	Dishes, pots and pans
 135.698000	135.870000	Slam
 136.061000	137.136000	Female speech, woman speaking
 138.149000	138.435000	Female speech, woman speaking
@@ -105,7 +105,7 @@
 157.815000	158.780000	Male speech, man speaking
 159.243000	159.650000	Female speech, woman speaking
 160.537000	160.790000	Whack, thwack
-160.748000	160.910000	Dishes, 
+160.748000	160.910000	Dishes, pots and pans
 161.090000	161.759176	Female speech, woman speaking
 161.272000	161.545000	Chink, clink
 164.710000	165.069000	Female speech, woman speaking
@@ -118,9 +118,9 @@
 188.103000	188.469000	Female speech, woman speaking
 189.995000	190.337000	Whack, thwack
 193.026000	193.326000	Clatter
-193.537000	193.991000	Dishes, 
+193.537000	193.991000	Dishes, pots and pans
 194.044000	194.576000	Doorbell
-195.086000	195.604000	Dishes, 
+195.086000	195.604000	Dishes, pots and pans
 195.477000	195.977000	Female speech, woman speaking
 196.340000	196.605000	Chink, clink
 196.550211	197.712602	Female speech, woman speaking

@@ -1,10 +1,10 @@
 8.085000	15.128000	Gull, seagull
-12.615000	13.022000	Bang
+12.376000	13.022000	Bang
 16.397000	16.873000	Gull, seagull
 17.004000	17.353000	Gull, seagull
 19.413000	19.973000	Gull, seagull
 20.789000	21.288000	Gull, seagull
-20.875000	21.126000	Ratchet, pawl
+20.875000	21.126000	Clickety-clack
 21.764000	22.217000	Gull, seagull
 22.104000	32.148000	Car passing by
 32.816000	33.631000	Cough
@@ -80,7 +80,7 @@
 142.078000	142.304000	Bird vocalization, bird call, bird song
 164.776000	166.429000	Bird vocalization, bird call, bird song
 174.786000	177.006000	Gull, seagull
-175.584520	176.881000	Wind noise
+175.584520	176.881000	Wind (microphone noise)
 177.532000	177.985000	Gull, seagull
 186.056000	187.033000	Bicycle
 186.233000	186.461000	Gull, seagull

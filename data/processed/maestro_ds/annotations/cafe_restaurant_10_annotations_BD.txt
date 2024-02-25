@@ -1,0 +1,167 @@
+9.002000	11.885000	Crumpling, crinkling
+10.485000	10.961000	Female speech, woman speaking 
+12.416000	13.735000	Crumpling, crinkling
+12.650000	12.888000	Female speech, woman speaking
+18.208000	19.126393	Female speech, woman speaking
+18.344000	18.429000	Clicking
+23.370000	23.771000	Female speech, woman speaking
+23.995000	24.349000	Female speech, woman speaking
+26.300000	26.769000	Female speech, woman speaking
+27.198000	29.863195	Female speech, woman speaking
+27.769000	28.089000	Crumpling, crinkling
+28.966000	29.360000	Crumpling, crinkling
+29.469000	29.734000	Whack, thwack
+29.734000	30.020000	Whack, thwack
+30.108000	32.209000	Female speech, woman speaking
+31.672000	31.910000	Whack, thwack
+33.141000	35.044000	Female speech, woman speaking
+33.616000	33.766000	Whack, thwack
+36.404000	37.458000	Female speech, woman speaking
+40.484000	41.075000	Whack, thwack
+41.337000	41.619000	Female speech, woman speaking
+41.970000	42.707000	Female speech, woman speaking
+43.380000	43.659000	Female speech, woman speaking
+51.907000	52.216000	Female speech, woman speaking
+56.806000	58.095000	Chatter
+59.216000	59.611000	Female speech, woman speaking
+62.715000	64.493000	Female speech, woman speaking
+63.210000	63.622000	Crumpling, crinkling
+71.782000	72.707000	Chatter
+72.183000	72.435000	Whack, thwack
+72.866000	73.438000	Female speech, woman speaking
+72.921000	73.098000	Whack, thwack
+73.706000	74.440000	Whack, thwack
+74.647891	75.512000	Female speech, woman speaking
+74.668000	75.117000	Clatter
+75.494000	75.773000	Whack, thwack
+76.130000	76.388000	Whack, thwack
+78.598000	79.033000	Female speech, woman speaking
+79.693000	79.948000	Whack, thwack
+79.989000	80.268000	Whack, thwack
+80.115000	80.499000	Female speech, woman speaking
+83.589000	83.926000	Whack, thwack
+84.096000	84.347000	Whack, thwack
+89.610000	92.498400	Chatter
+91.643000	91.786000	Whack, thwack
+92.204000	92.502000	Crumpling, crinkling
+92.560000	92.827000	Crumpling, crinkling
+92.590942	94.723000	Chatter
+93.616000	94.184738	Crumpling, crinkling
+95.333000	96.042000	Female speech, woman speaking
+97.899000	98.374000	Female speech, woman speaking
+101.530000	102.712000	Female speech, woman speaking
+104.382000	104.916000	Female speech, woman speaking
+106.250000	107.322000	Female speech, woman speaking
+110.953000	111.429000	Crumpling, crinkling
+111.001000	111.599000	Female speech, woman speaking
+112.171000	115.217000	Chatter
+113.374000	113.877000	Crumpling, crinkling
+114.149000	114.707000	Crumpling, crinkling
+115.801000	117.303000	Female speech, woman speaking
+119.228000	122.200000	Chatter
+120.806000	121.098000	Crumpling, crinkling
+128.136000	129.434000	Chatter
+129.060000	129.514000	Beep, bleep
+129.951000	131.359000	Chatter
+134.480000	135.425000	Chatter
+134.752000	134.935000	Generic impact sounds
+135.037000	135.234000	Whack, thwack
+135.234000	135.425000	Whack, thwack
+136.921000	137.675000	Female speech, woman speaking
+139.205000	139.606000	Other sourceless
+139.484000	140.527685	Chatter
+139.606000	139.967000	Crumpling, crinkling
+140.171000	140.504000	Crumpling, crinkling
+141.310000	142.901000	Chatter
+141.748000	142.170000	Crumpling, crinkling
+142.323000	142.710000	Crumpling, crinkling
+142.384000	142.495000	Beep, bleep
+145.318000	145.882000	Female speech, woman speaking
+146.277000	146.991000	Female speech, woman speaking
+146.482000	146.657000	Screech
+148.157000	148.660000	Other sourceless
+148.633000	148.915000	Whack, thwack
+148.779000	149.707000	Female speech, woman speaking
+153.878000	154.409000	Female speech, woman speaking
+157.859000	158.655000	Female speech, woman speaking
+158.244000	158.406123	Whack, thwack
+158.655000	158.910000	Whack, thwack
+158.750000	160.504000	Female speech, woman speaking
+159.468000	159.592000	Clatter
+162.416000	163.342000	Female speech, woman speaking
+163.884000	164.462000	Female speech, woman speaking
+165.233000	165.720000	Female speech, woman speaking
+167.243000	167.505000	Female speech, woman speaking
+169.323000	170.006711	Whack, thwack
+169.541000	170.568000	Chatter
+170.568000	171.095000	Whack, thwack
+170.687000	172.036000	Other sourceless
+171.662000	172.036000	Female speech, woman speaking
+172.196000	172.719000	Female speech, woman speaking
+173.429000	174.385000	Chatter
+173.607000	173.978000	Other sourceless
+175.752000	176.527000	Female speech, woman speaking
+176.106000	176.421152	Cash register
+176.650000	176.922000	Cash register
+176.787000	178.333000	Female speech, woman speaking
+176.922000	177.170000	Cash register
+177.717000	178.333000	Crumpling, crinkling
+180.342000	181.083000	Female speech, woman speaking
+184.102000	184.490000	Female speech, woman speaking
+185.475000	186.672000	Chatter
+186.815000	187.753000	Female speech, woman speaking
+188.229000	188.610000	Crumpling, crinkling
+188.610000	189.440000	Female speech, woman speaking
+191.860000	192.859523	Chatter
+192.724000	193.092594	Whack, thwack
+193.159000	193.603294	Female speech, woman speaking
+194.362000	195.736000	Chatter
+194.601000	194.875000	Crumpling, crinkling
+194.947000	195.273000	Clatter
+195.790000	196.143000	Generic impact sounds
+196.769000	199.775000	Female speech, woman speaking
+196.815000	197.198000	Whack, thwack
+197.510000	198.103624	Crumpling, crinkling
+198.102000	198.442000	Squeal
+198.442000	198.796000	Whack, thwack
+200.020000	200.414000	Whack, thwack
+200.179000	201.240000	Chatter
+200.584000	200.992000	Whack, thwack
+208.509000	208.811000	Whack, thwack
+209.046000	209.406000	Female speech, woman speaking
+209.495000	209.809000	Whack, thwack
+210.661000	211.521000	Clatter
+212.768000	213.180000	Whack, thwack
+213.231000	213.506000	Whack, thwack
+214.217000	214.492000	Whack, thwack
+214.523000	215.985000	Female speech, woman speaking
+215.077000	215.318000	Whack, thwack
+216.202000	217.643676	Chatter
+216.593000	216.852000	Whack, thwack
+217.198000	217.474000	Whack, thwack
+219.809000	220.255000	Laughter
+221.914000	223.080000	Female speech, woman speaking
+222.067000	222.373000	Whack, thwack
+223.682000	224.141000	Female speech, woman speaking
+223.743000	224.001000	Whack, thwack
+226.806000	227.319000	Female singing
+226.959000	227.288699	Female speech, woman speaking
+226.959000	227.231000	Whack, thwack
+227.452000	227.690000	Clatter
+227.605000	227.877000	Female speech, woman speaking
+228.054000	228.808000	Female singing
+228.125000	228.336000	Whack, thwack
+228.735343	228.948000	Whack, thwack
+228.781000	229.723000	Female speech, woman speaking
+229.267000	229.461000	Whack, thwack
+230.926000	231.161000	Whack, thwack
+231.226000	231.562000	Generic impact sounds
+231.340000	231.623000	Female speech, woman speaking
+231.656000	232.636000	Laughter
+232.536000	236.080511	Chatter
+233.126000	233.480000	Squeal
+234.696000	235.748000	Female singing
+235.479000	235.669000	Whack, thwack
+238.511000	239.905000	Chatter
+238.524000	239.100000	Female singing
+239.213000	239.690000	Female singing

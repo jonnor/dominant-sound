@@ -14,8 +14,8 @@
 17.958144	18.982000	Laughter
 20.021000	20.786000	Laughter
 20.884000	21.153000	Male speech, man speaking
-25.527000	27.016000	Hubbub, speech noise, spe....
-29.313000	29.917000	Hubbub
+25.527000	27.016000	Hubbub, speech noise, speech babble
+29.313000	29.917000	Hubbub, speech noise, speech babble
 30.193000	30.437000	Slap, smack
 30.260000	30.533000	Male speech, man speaking
 30.759000	30.932000	Slap, smack
@@ -35,10 +35,10 @@
 39.201000	39.393000	Slap, smack
 39.781000	39.981000	Slap, smack
 46.843000	47.847000	Male speech, man speaking
-55.619000	61.382000	Chatter
-56.455000	56.719000	Clatter
+55.619000	61.382000	Hubbub, speech noise, speech babble
+56.455000	56.719000	Other sourceless
 60.051000	60.230000	Walk, footsteps
-65.609000	66.373000	Hubbub
+65.609000	66.373000	Hubbub, speech noise, speech babble
 72.536000	73.099000	Male speech, man speaking
 72.711000	72.835000	Scrape
 73.202000	73.731000	Male speech, man speaking
@@ -52,15 +52,15 @@
 76.678000	76.759000	Walk, footsteps
 77.037000	77.143000	Walk, footsteps
 77.143000	77.361000	Female speech, woman speaking
-87.624000	87.959000	Clatter
-90.064000	90.204000	Clatter
+87.624000	87.959000	Clickety-clack
+90.064000	90.204000	Clickety-clack
 95.357000	96.330000	Female speech, woman speaking
 106.687000	106.853000	Walk, footsteps
-106.947000	109.297000	Hubbub
+106.947000	109.297000	Hubbub, speech noise, speech babble
 107.297000	107.399000	Walk, footsteps
 108.111000	108.252000	Walk, footsteps
 108.670000	108.802000	Clicking
-111.912000	113.495000	Hubbub
+111.912000	113.495000	Hubbub, speech noise, speech babble
 112.607000	112.705000	Walk, footsteps
 118.908000	119.385000	Scrape
 119.876000	120.285000	Female speech, woman speaking
@@ -68,7 +68,7 @@
 130.630000	131.094000	Cough
 131.406000	131.512000	Walk, footsteps
 135.885000	136.209000	Narration, monologue
-136.294000	142.274569	Hubbub
+136.294000	142.274569	Hubbub, speech noise, speech babble
 136.431000	160.847000	Subway, metro, underground
 136.431000	142.794971	Train wheels squealing
 138.674409	138.828000	Clicking
@@ -80,13 +80,13 @@
 153.544000	154.005000	Air brake
 157.281000	157.554000	Air brake
 160.847000	161.734000	Air brake
-162.929000	163.611000	Hubbub
+162.929000	163.611000	Hubbub, speech noise, speech babble
 179.227000	179.590000	Beep, bleep
 179.718000	180.034000	Beep, bleep
 180.213000	180.533000	Beep, bleep
 180.490000	183.676409	Children shouting
 183.688000	184.265000	Clatter
-184.314000	185.888000	Hubbub
+184.314000	185.888000	Hubbub, speech noise, speech babble
 185.389000	207.836724	Subway, metro, underground
 199.664000	206.250000	Train wheels squealing
 202.496000	203.196000	Air brake
@@ -94,11 +94,11 @@
 210.302000	211.386000	Male speech, man speaking
 210.968000	211.155000	Walk, footsteps
 213.066000	214.064000	Male speech, man speaking
-214.849000	215.907000	Hubbub
+214.849000	215.907000	Hubbub, speech noise, speech babble
 215.293000	215.455000	Brief tone
-223.944000	224.165000	Clatter
-224.234000	224.891000	Hubbub
-224.891000	225.010000	Clatter
+223.944000	224.165000	Clickety-clack
+224.234000	224.891000	Hubbub, speech noise, speech babble
+224.891000	225.010000	Clickety-clack
 231.366000	231.647000	Clatter
 231.647000	231.843000	Walk, footsteps
 232.151000	232.355000	Walk, footsteps
@@ -128,15 +128,15 @@
 261.605000	261.874000	Walk, footsteps
 262.270000	262.458000	Walk, footsteps
 262.829000	263.153000	Walk, footsteps
-276.031000	278.146000	Hubbub
+276.031000	278.146000	Hubbub, speech noise, speech babble
 276.479000	276.585000	Walk, footsteps
 277.008000	277.148000	Walk, footsteps
 277.515000	277.669000	Walk, footsteps
 286.170000	286.835000	Female speech, woman speaking
 286.972000	289.945000	Female speech, woman speaking
 287.330000	287.497000	Screech
-287.834000	287.991000	Clicking
-288.303000	288.473000	Fizz
+287.834000	287.991000	Generic impact sounds
+288.303000	288.473000	Rustle
 295.563000	296.220000	Scrape
 296.638000	297.269000	Scrape
-299.709000	300.568570	Hubbub
+299.709000	300.568570	Hubbub, speech noise, speech babble

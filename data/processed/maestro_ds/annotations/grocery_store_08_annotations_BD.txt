@@ -1,23 +1,23 @@
 4.096000	4.741000	Whack, thwack
-8.786000	10.796000	Narration
+8.786000	10.796000	Narration, monologue
 10.029000	10.659000	Whack, thwack
 10.954000	11.179661	Clatter
-11.082000	12.461000	Narration
+11.082000	12.461000	Narration, monologue
 11.218000	11.679000	Whack, thwack
 11.840000	12.369000	Whack, thwack
-13.043000	14.458000	Narration
-14.111000	14.479000	Other sourceless
-15.952000	19.405000	Narration
+13.043000	14.458000	Narration, monologue
+14.111000	14.479000	Clatter
+15.952000	19.405000	Narration, monologue
 17.687000	18.129000	Whack, thwack
 19.812000	20.290000	Whack, thwack
-20.606000	23.328000	Narration
+20.606000	23.328000	Narration, monologue
 22.756000	22.998000	Whack, thwack
-24.113000	28.405000	Narration
+24.113000	28.405000	Narration, monologue
 25.228000	25.769000	Whack, thwack
-29.289000	29.800000	Narration
-29.972000	30.338000	Narration
+29.289000	29.800000	Narration, monologue
+29.972000	30.338000	Narration, monologue
 30.599000	30.822000	Whack, thwack
-30.786426	31.223000	Narration
+30.786426	31.223000	Narration, monologue
 31.310000	31.672000	Whack, thwack
 37.904000	38.146000	Whack, thwack
 38.072000	59.153219	Background music
