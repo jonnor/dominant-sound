@@ -1,7 +1,7 @@
-## TUT Dataset
+## TUT Dataset: 5 recordings, 18 minutes 24 seconds TOTAL
 
 
-### *a003.wav*
+### *a003.wav* (4 minutes, 7 seconds)
 
 
 #### Description:
@@ -29,7 +29,7 @@ __Other sourceless:__ Unknown sound - potentially attributed to co-occurring roa
 
 ---
 
-### *a008.wav* 
+### *a008.wav* (3 minutes, 25 seconds)
 
 
 #### Description:
@@ -58,28 +58,41 @@ __Shout and Yell:__ Basically interchangeable. Used to differentiate human voice
 
 ---
 
-### *b005.wav* 
+### *b005.wav* (3 minutes, 21 seconds)
 
 
 #### Description:
+
+This IS a duplicated recording from the MAESTRO dataset, filename __"residential_area_12.wav"__
+
 Outdoor recording of a street scene featuring vehicles, birds, people and bicycles. __[Channel, environment and background > Acoustic environment > Outside, urban or manmade]__
 
 #### Labels:
 - Gull, seagull __[Animal > Wild animals > Bird > ]__
-- Bang __[Source-ambiguous sounds > Generic impact sounds >]__
-- Ratchet, pawl __[Sounds of things > Mechanisms > ]__
-- Car passing by __[Sounds of things > Vehicle > Motor vehicle (road) > Car > ]__
-- Bird vocalization, bird call, bird song __[Animal > Wild animals > Bird > ]__
-- Wind noise (microphone) __[Natural sounds > Wind > ]__
-- Hammer __[Sounds of things > Tools >]__
+- Bang __[Source ambiguous sounds > Generic impact sounds > ]__
 - Clickety-clack __[Source-ambiguous sounds > Onomatopoeia > Clicking > ]__
-- Walk, footsteps __[Human sounds > Human locomotion > ]__
-- Scrape __[Source-ambiguous sounds > Surface contact > ]__
+- Cough __[Human sounds > Respiratory sounds > ]__
+- Car passing by __[Sounds of things > Vehicle > Motor vehicle (road) > Car > ]__
+- Wind (microphone noise) __[Natural sounds > Wind > ]__
 - Traffic noise, roadway noise __[Sounds of things > Vehicle > Motor vehicle (road) > ]__
+- Walk, footsteps __[Human sounds > Human locomotion > ]__
+- Bird vocalization, bird call, bird song __[Animal > Wild animals > Bird > ]__
+- Scrape __[Source ambiguous sounds > Surface contact > ]__
+- Clicking __[Source-ambiguous sounds > Onomatopoeia > ]__
+- Air brake __[Sounds of things > Vehicle > Motor vehicle (road) > Truck > ]__
+- Bicycle __[Sounds of things > Vehicle > Non-motorized land vehicle > ]__
+- Whack, thwack __[Source ambiguous sounds > Generic impact sounds > ]__
+- Hammer __[Sounds of things > Tools > ]__
 
 
 #### Notes:
 __Bang:__ More of a thuddy, wooden sound.
+
+__Scrape:__ Potentially sourced from a person walking by or a bicycle riding by.
+
+__Air brake:__ Uncertain if this originates from a vehicle.
+
+__Whack, thwack:__ Most likely sourced from the bicycle passing by.
 
 __Hammer:__ Might not actually be a hammer - but sounds like a hammer in the distance.
 
@@ -87,7 +100,7 @@ __Hammer:__ Might not actually be a hammer - but sounds like a hammer in the dis
 
 ---
 
-### *b091.wav* 
+### *b091.wav* (4 minutes, 1 second)
 
 
 #### Description:
@@ -107,7 +120,7 @@ __Road traffic noise:__ Basically the only sound source throughout the entire re
 
 ---
 
-### *b093.wav* 
+### *b093.wav* (3 minutes, 30 seconds)
 
 
 #### Description:
@@ -120,7 +133,7 @@ Outdoor recording of a street scene featuring children, people and vehicles. __[
 
 #### Labels:
 - Traffic noise, roadway noise __[Sounds of things > Vehicle > Motor vehicle (road) > ]__
-- Child speech, kid speaking __[Human sounds > Speech > ]__
+- Child speech, kid speaking __[Human sounds > Human voice > Speech > ]__
 - Walk, footsteps __[Human sounds > Human locomotion > ]__
 - Clicking __[Source-ambiguous sounds > Onomatopoeia > ]__
 - Female speech, woman speaking __[Human sounds > Human voice > Speech > ]__
@@ -128,13 +141,16 @@ Outdoor recording of a street scene featuring children, people and vehicles. __[
 - Whack, thwack __[Source ambiguous sounds > Generic impact sounds > ]__
 - Truck __[Sounds of things > Vehicle > Motor vehicle (road) > ]__
 - Engine starting __[Sounds of things > Engine > ]__
-- Male speech, man speaking __[Human sounds > Human voice > Speech > ]__
-- Air brake __[Sounds of things > Vehicle > Motor vehicle (road) > Truck > ]__
-- Generic impact sounds __[Source ambiguous sounds > ]__
+- Idling __[Sounds of things > Engine > ]__
 - Car passing by __[Sounds of things > Vehicle > Motor vehicle (road) > Car > ]__
-
+- Male speech, man speaking __[Human sounds > Human voice > Speech > ]__
+- Screech __[Sounds of things > Vehicle > Motor vehicle (road) > Car > ]__
+- Air brake __[Sounds of things > Vehicle > Motor vehicle (road) > Truck > ]__
+- Generic impact sounds __[Source-ambiguous sounds > ]__
 
 
 #### Notes:
-__Clicking / footsteps / whack:__ Potentially all the same sound/source.
+__Clicking / Walk, footsteps:__ Quite likely these are all "Walk, footsteps".
+
+__Screech:__ This sound is from the "Screeching" of a car's brakes.
 
