@@ -1,11 +1,6 @@
-% #################################################################################
-%
-% LaTeX Template LaTeX for Inter-Noise 2024
-%
-%
-% #################################################################################
+% 
+% Based on the Template LaTeX for Inter-Noise 2024
 \documentclass[a4paper,12pt]{article}
-
 
 %% Pick the one corresponding to your system
 %\usepackage[latin1]{inputenc}
@@ -26,6 +21,7 @@
 \renewcommand{\labelitemi}{\textendash}
 \renewcommand{\labelitemii}{\textendash}
 
+% Template Packages
 \usepackage{graphicx} % used to insert the figure
 \usepackage{multirow} % used for the table
 \usepackage{cite}
@@ -38,7 +34,12 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 
+% Our custom packages
+\usepackage{todonotes}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
+% Formatting
 \hyphenpenalty=10000
 \setlength{\emergencystretch}{3em}
 
@@ -48,7 +49,6 @@
 
 \titlespacing*{\subsection}{0pt}{1.5em}{0.2em}
 \titlespacing*{\section}{0pt}{1.5em}{0.2em}
-
 
 \renewcommand\eqref[1]{Equation~\ref{#1}}
 
@@ -62,7 +62,7 @@
 
 \renewcommand{\refname}{REFERENCES} 
 \setlength{\footnotesep}{12pt} 
-%Some stuff with item spacing in lists, related to enumitem package.   See individual lists. 
+% Some stuff with item spacing in lists, related to enumitem package.   See individual lists. 
 %\setlist[2]{noitemsep}
 %\setenumerate{noitemsep}
 
@@ -99,10 +99,11 @@
    \fancyfoot[C]{\scriptsize \CopyrightConf}
    \renewcommand{\headrulewidth}{0pt} % removes horizontal header line
 }
-%==============================================================================
+
+% DOCUMENT BEGIN
+%==============================================================
 \begin{document}
 \thispagestyle{firststyle}
-
 
 \begin{center}
 	\includegraphics[width=2in]{\LogoConf}
@@ -111,77 +112,121 @@
 
 \begin{flushleft}
 \fontsize{16}{20}\selectfont\bfseries
-\color{red}(The title should be written in "Utopia" or "Minion Pro", 16 point, bold font. The first letter of the first word in the title should be capitalized)  \\
-\color{black}Instructions for preparing the manuscript of the papers for Proceedings of INTER-NOISE \YearConf ~ \CityConf
+The Dominant Noise Event method for automatic classification in noise monitoring
 \end{flushleft}
 \vskip1cm
 
 \renewcommand\baselinestretch{1}
 \begin{flushleft}
-
-Given name Family Name1\footnote{mail1@example.com}\\
-Institution\\
-Full address\\
+Jon Nordby\footnote{jon@soundsensing.no}\\
+Soundsensing\\
+Oslo, Norway\\
 
 \vskip.5cm
-Given name Family Name2\footnote{mail2@example.com}\\
-Institution\\
-Full address\\
+Blake Downward\footnote{blake@foxlimbry.com}\\
+Fox Limbry\\
+Adelaide, Australia\\
 
 \end{flushleft}
 \textbf{\centerline{ABSTRACT}}\\
-\textit{The manuscript of every INTER-NOISE \YearConf ~paper should be submitted as a “pdf” file. The abstract must be written in 12-point "Utopia" or "Minion Pro" and italic font and its length ought to be at least 150 words and at most 200 words. Hyperlinks, special characters, equations, images and drawings should NOT be put in the abstract, and avoid the use of acronyms.  As in the paper, avoid overt commercialism. 
+\textit{We propose a method for noise monitoring that can automatically classify noise 
+events, and determine the sound level contribution from different noise sources. We observe that in some noise monitoring scenarios, the main phenomena of interest are intrusive noise events, which are considerably louder than the background.
+When the noise events dominate the background level, it is possible to assign the sound level contribution at each time-period to a single event class.
+Our contributions are as follows:
+A) a formalization of two Machine Learning tasks designed to consider the sound level contribution during classification, tentatively called: Dominant Sound Classification and Dominant Sound Event Detection.
+B) an analysis of to which degree the dominant sound simplification holds in noise monitoring scenarios
+C) a demonstration of a complete system that attributes sound level contributions to noise source classes
+The method is evaluated quantitatively using representative real-world datasets.
 }
 \section{INTRODUCTION}
 \noindent
-This paper is a template to which you can refer for your paper.  The first step is to compile this document and make sure everything is working on your computer.  Your .pdf file should match what you should see in Template.pdf. 
+% Disposition: 0.5 page. Ideally fit on frontpage
+\todo[inline]{motivation, relevance, context}
 
-It is anticipated that the INTER-NOISE \YearConf  ~\CityConf ~ Proceedings will be distributed to the congress participants either on a memory stick or directly downloadable as a single (zipped or equivalent) file from the web. 
+The availability and cost of Noise Monitoring systems that can measure soundlevels
+over longer periods of time are decreasing steadily.
+Recent research has also shown that it is possible to use Machine Learning 
+to automatically classify audio clips and sound events.
+However there is still a lack of tools and methodologies that combine the results
+of high-resolution soundlevel monitoring with automated classification,
+in order to create automated noise monitoring systems that can quantify
+how different sound sources contribute to the overall noise impact.
 
-\begin{itemize}[noitemsep]
-\item 
-The purpose of these instructions is to ensure the uniformity of the publication. 
-\item
-The manuscript should be submitted as a PDF file whose font is 12-point.
-\item
-The length of a manuscript should be at most 12 pages and at least 4 pages. 
-\item
-Only manuscripts in English will be accepted for the Proceedings. 
-\item
-You must not insert any page number, header or foot note except the e-mail addresses on the first page of the manuscript.
-\item
-The file name for your paper should be of the form:  IN\_\YearConf\_XXXX.pdf, where XXXX is your abstract number. If your abstract number is shorter than 4 digits, it should be extended to be 4 digits by adding zeros before the number.  
-So, e.g., if your abstract number is 10, your paper file name should be IN\_\YearConf\_0010.pdf. If your abstract number is 240, then you paper filename should be IN\_\YearConf\_0240.pdf. 
-\end{itemize}
+% The length of a manuscript should be at most 12 pages and at least 4 pages. 
 
-\section{Manuscript Format}
+\clearpage
+\section{Background}
+% Disposition: 0.5-1 page
+
+\todo[inline]{background. Related works. Prior art. Fundamental concepts, key theory, used in methods etc.}
+
+ML task definitions. Audio Classification, Sound Event Detection
+
+Standard/practices for Noise Monitoring with sound levels, limits etc.
+
+Existing works using ML for Noise Monitoring.
+
+\clearpage
+\section{Methods}
+% Disposition: 1 page
+\todo[inline]{methods. How do we structure the experiments }
+
+\floatname{algorithm}{Task}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+TLDR: Modification on (closed-set) Audio Classification,
+where the output class shall be the one that contributes the most to the soundlevel.
+\begin{algorithm}
+\caption{Dominant Sound Classification}\label{alg:cap}
+\begin{algorithmic}
+\Require Stream of audio.
+Consisting of sound from multiple different sound sources.
+\Ensure Single class label.
+Being the class that contributed the most to the soundlevel.
+\end{algorithmic}
+\end{algorithm}
+
+TLDR: Modification on (monophonic) Sound Event Detection,
+where the output class shall be the one that contributes the most to the soundlevel.
+
+\begin{algorithm}
+\caption{Dominant Sound Event Detection}\label{alg:cap}
+\begin{algorithmic}
+\Require Stream of audio.
+Consisting of sound events from multiple different sound sources.
+\Ensure A stream of class activations over time one per point in time.
+The active class shall be the one that made the most contribution to the soundlevel.
+High resolution at output, corresponding with soundlevel measurement. For example LA_fast (125 ms) or LA_slow (1000 ms).
+\end{algorithmic}
+\end{algorithm}
+
+In addition to `{class0,class1....classN}`, also allow for two pseudo-classes: {unknown,mixture}. `unknown` means the model cannot reliably detect the class.
+`mixture` means that the dominant-source assumption is violated,
+there are multiple sources that significantly contribute to the overall noise level.
+
+\clearpage
+\section{Results}
 \noindent
-Margin settings, paragraphs, figure and table settings are explained here.  These instructions follow the paper formatting rules.  
+% Disposition: 1 page
+\todo[inline]{results. Including tables and plots}
 
-\subsection{Margin Settings}
-\begin{itemize}[noitemsep]
-\item
-The paper size is A4.
-\item
-Margin settings: Top (2 cm), Bottom (2 cm), Left (2 cm), Right (2 cm).  2 cm is approximately 0.79 in.
-\item
-The text should be justified from left to right.
-\end{itemize}
 
-\subsection{Paragraphs}
+\section{Conclusions}
+\noindent
+% Disposition. 0.25 page
+\todo[inline]{conclusions}
 
-\begin{itemize}[noitemsep]
-\item
-There should be one empty line between headings and subheadings.
-\item
-The first line of the paragraphs should be indented by 1.0 cm,  which is approximately 0.4in, unless it is immediately after a heading in which case there should be no indent. 
-\item
-Major headings shall be numerically ordered as 1., 2.,  etc. in bold font and all upper case.
-\item
-Level 2 subheading should be 2.1., 2.2.,  etc. in bold font.
-\item
-Lines should be single spaced.
-\end{itemize}
+\section*{Acknowledgements}
+\noindent
+% Disposition. 0 to 4 sentences
+\todo[inline]{acknowledgements (if any). Funding sources, advisors, etc?}
+
+
+%% ---- Instructions etc ---- TO BE DELETED %
+\clearpage
+\section{Formatting and instructions}
+\todo[inline]{DELETE WHEN NO LONGER USED}
 
 \subsection{Figures, Equations, Tables}
 \noindent
@@ -231,9 +276,9 @@ The caption for a table should be placed just above the table and the table numb
 
 \section{Referencing other work}
 \noindent
-Use a numerical referencing system, in order of first time cited.  For Latex users, please take care and consider the use of bibtex.   Either put the references in this file or use a .bib file and let Latex pull out the references that you are using.  The .bib file in this example is sample.bib.  The Latex references cited here are:  \cite{latexcompanion, knuthwebsite}.  Some additional references have been included as examples for format of manuals, webpage information, journal papers, conference papers, books and a standard \cite{Poulsen1, Ryherd2007, Tang2006, May96,  Zwicker_Fastl_2006, ANSI_S3_4}. \\
 
-Use the unsrt bibliography style file.  
+\cite{latexcompanion, knuthwebsite}
+
 
 \section{IMPORTANT Uploading INFORMATION}
    \label{important}
@@ -242,13 +287,13 @@ Here are the instructions for submitting manuscripts, with some comments on conv
 \subsection{Submission of Manuscripts}
 \noindent
 Submit your manuscript as a PDF file using the link on the INTER-NOISE \YearConf ~ website (www.internoise\YearConf.org).  See subsection \ref{important}.\ref{conversion} about checking your conversion to PDF.
-
-Before submitting the manuscript, you need to pay the registration fee and if you submit two manuscripts, you need to pay the extra nominal charge for this additional manuscript.
+The file name for your paper should be of the form:  IN\_\YearConf\_XXXX.pdf, where XXXX is your abstract number. 
 
 \subsection{Conversion to PDF}
   \label{conversion}
 \noindent
 Before submission, you need to check your PDF file carefully to be sure that PDF conversion was done properly and there is no error when the PDF file is opened. The following problems may occur.
+Compare the formatting to the InterNoise 2024 Template.PDF file.
 \begin{itemize}[noitemsep]
 \item
 Symbols are missed.
@@ -259,16 +304,8 @@ Figures are missed.
 \item
 Indentation is not correct.
 \end{itemize}
-The author is responsible for sorting out these problems and the manuscript  in the Congress Proceedings will be as it was received.
 
-\section{FINAL COMMENTS AND CONCLUSIONS}
 
-\noindent
-Please follow the instructions.  Mostly the Latex stuff will look after you, but check everything is working. Recompile this document to make sure you get the same as the Template.pdf file before you start working on your own paper.  Once you have that working copy this file into IN\_\YearConf\_XXXX.pdf, where XXXX is your ABSTRACT number with 0s added at the front to make it 4 digits long.   Then turn that file into your paper, keeping this file as a reference on formatting.  
-
-\section*{Acknowledgements}
-\noindent
-We gratefully acknowledge the authors for submitting their work to INTER-NOISE \YearConf ~ France.
 
 \bibliographystyle{unsrt}
 \bibliography{sample} 
