@@ -1,0 +1,277 @@
+% #################################################################################
+%
+% LaTeX Template LaTeX for Inter-Noise 2024
+%
+%
+% #################################################################################
+\documentclass[a4paper,12pt]{article}
+
+
+%% Pick the one corresponding to your system
+%\usepackage[latin1]{inputenc}
+%\usepackage[ansinew]{inputenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+\usepackage{geometry}
+\geometry{top=2cm,bottom=2cm,left=2.0cm,right=2.0cm}
+\pagestyle{empty}
+
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\bfseries\uppercase}{\thesection.}{1em}{}
+\titleformat{\subsection}
+{\bfseries}{\thesection.\thesubsection.}{1em}{}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\labelitemii}{\textendash}
+
+\usepackage{graphicx} % used to insert the figure
+\usepackage{multirow} % used for the table
+\usepackage{cite}
+\usepackage{breakurl}
+\usepackage{indentfirst}
+\usepackage{amsmath, amssymb, amsfonts, bm,stmaryrd}
+\usepackage{txfonts}
+\usepackage{fourier}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+
+\hyphenpenalty=10000
+\setlength{\emergencystretch}{3em}
+
+\columnsep 1cm
+\setlength{\parindent}{1.0cm}
+\setlength{\parskip}{0.0cm}
+
+\titlespacing*{\subsection}{0pt}{1.5em}{0.2em}
+\titlespacing*{\section}{0pt}{1.5em}{0.2em}
+
+
+\renewcommand\eqref[1]{Equation~\ref{#1}}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\arraystretch}{1.25}
+
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+\renewcommand{\refname}{REFERENCES} 
+\setlength{\footnotesep}{12pt} 
+%Some stuff with item spacing in lists, related to enumitem package.   See individual lists. 
+%\setlist[2]{noitemsep}
+%\setenumerate{noitemsep}
+
+% Sort out linespacing with references
+\newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
+\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+\let\oldthebibliography\thebibliography
+\renewcommand\thebibliography[1]{%
+  \oldthebibliography{#1}%
+  \setlength{\parskip}{\bibitemsep}%
+  \setlength{\itemsep}{\bibparskip}%
+}
+
+%===============================================================================
+% You should only need to change this section to create a template for a new conference
+\newcommand{\YearConf}{2024}
+\newcommand{\CityConf}{NANTES}
+\newcommand{\CityConfa}{Nantes}
+\newcommand{\DateConf}{25-28 August \YearConf}
+\newcommand{\CountryConf}{France}
+\newcommand{\LogoConf}{logo_IN24.jpg}
+\newcommand{\CopyrightConf}{Permission is granted for the reproduction of a fractional part of this paper published in the Proceedings of INTER-NOISE \YearConf ~ \underline{provided permission is obtained} from the author(s) \underline{and credit is given} to the author(s) and these proceedings.}
+%==============================================================================
+
+
+%==============================================================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}\fancyfoot{}
+\renewcommand\headrulewidth{1pt}
+\chead{Proceedings of INTER-NOISE \YearConf}
+  \fancypagestyle{firststyle}
+{   \fancyhf{}
+   \fancyfoot[C]{\scriptsize \CopyrightConf}
+   \renewcommand{\headrulewidth}{0pt} % removes horizontal header line
+}
+%==============================================================================
+\begin{document}
+\thispagestyle{firststyle}
+
+
+\begin{center}
+	\includegraphics[width=2in]{\LogoConf}
+\end{center}
+\vskip.5cm
+
+\begin{flushleft}
+\fontsize{16}{20}\selectfont\bfseries
+\color{red}(The title should be written in "Utopia" or "Minion Pro", 16 point, bold font. The first letter of the first word in the title should be capitalized)  \\
+\color{black}Instructions for preparing the manuscript of the papers for Proceedings of INTER-NOISE \YearConf ~ \CityConf
+\end{flushleft}
+\vskip1cm
+
+\renewcommand\baselinestretch{1}
+\begin{flushleft}
+
+Given name Family Name1\footnote{mail1@example.com}\\
+Institution\\
+Full address\\
+
+\vskip.5cm
+Given name Family Name2\footnote{mail2@example.com}\\
+Institution\\
+Full address\\
+
+\end{flushleft}
+\textbf{\centerline{ABSTRACT}}\\
+\textit{The manuscript of every INTER-NOISE \YearConf ~paper should be submitted as a “pdf” file. The abstract must be written in 12-point "Utopia" or "Minion Pro" and italic font and its length ought to be at least 150 words and at most 200 words. Hyperlinks, special characters, equations, images and drawings should NOT be put in the abstract, and avoid the use of acronyms.  As in the paper, avoid overt commercialism. 
+}
+\section{INTRODUCTION}
+\noindent
+This paper is a template to which you can refer for your paper.  The first step is to compile this document and make sure everything is working on your computer.  Your .pdf file should match what you should see in Template.pdf. 
+
+It is anticipated that the INTER-NOISE \YearConf  ~\CityConf ~ Proceedings will be distributed to the congress participants either on a memory stick or directly downloadable as a single (zipped or equivalent) file from the web. 
+
+\begin{itemize}[noitemsep]
+\item 
+The purpose of these instructions is to ensure the uniformity of the publication. 
+\item
+The manuscript should be submitted as a PDF file whose font is 12-point.
+\item
+The length of a manuscript should be at most 12 pages and at least 4 pages. 
+\item
+Only manuscripts in English will be accepted for the Proceedings. 
+\item
+You must not insert any page number, header or foot note except the e-mail addresses on the first page of the manuscript.
+\item
+The file name for your paper should be of the form:  IN\_\YearConf\_XXXX.pdf, where XXXX is your abstract number. If your abstract number is shorter than 4 digits, it should be extended to be 4 digits by adding zeros before the number.  
+So, e.g., if your abstract number is 10, your paper file name should be IN\_\YearConf\_0010.pdf. If your abstract number is 240, then you paper filename should be IN\_\YearConf\_0240.pdf. 
+\end{itemize}
+
+\section{Manuscript Format}
+\noindent
+Margin settings, paragraphs, figure and table settings are explained here.  These instructions follow the paper formatting rules.  
+
+\subsection{Margin Settings}
+\begin{itemize}[noitemsep]
+\item
+The paper size is A4.
+\item
+Margin settings: Top (2 cm), Bottom (2 cm), Left (2 cm), Right (2 cm).  2 cm is approximately 0.79 in.
+\item
+The text should be justified from left to right.
+\end{itemize}
+
+\subsection{Paragraphs}
+
+\begin{itemize}[noitemsep]
+\item
+There should be one empty line between headings and subheadings.
+\item
+The first line of the paragraphs should be indented by 1.0 cm,  which is approximately 0.4in, unless it is immediately after a heading in which case there should be no indent. 
+\item
+Major headings shall be numerically ordered as 1., 2.,  etc. in bold font and all upper case.
+\item
+Level 2 subheading should be 2.1., 2.2.,  etc. in bold font.
+\item
+Lines should be single spaced.
+\end{itemize}
+
+\subsection{Figures, Equations, Tables}
+\noindent
+All figures, tables, equations, photos, graphs, etc., must be shown shortly after they are mentioned, placed at the centre of a page as shown in Figure \ref{fig:1} below.
+
+The captions of figures and photos are put below the figures and photos (see Figure \ref{fig:1}).  They are centered if one line or less long, and fully justified if longer than one line.  They should be referred to in the text as Figure 1, Figure 2, etc. 
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=2in]{\LogoConf}
+  \end{center}
+  \caption{The INTER-NOISE \YearConf   ~logo.}
+  \label{fig:1}
+\end{figure}
+
+The equations should be referenced as Equation 1, Equation 2, etc. For example: the formula for estimating the mean value, is:
+
+\begin{equation}
+\bar{X} = \frac{1}{N} \sum_{i=1}^{N} X_i ,
+\label{Eq:1}
+\end{equation}
+\noindent
+where $X_i$ are the measurements, and $N$ is the number of measurements  The equation should be part of the sentence, either with a period at the end, or a comma as in Equation \ref{Eq:1} shown above where after the displayed equation, the variables are explained as part of the sentence that contains the displayed equation. 
+
+The caption for a table should be placed just above the table and the table number should be Table 1, Table 2,  etc. like Table \ref{Tab:1} below.  The caption is centered if one line long or less, and fully justified if longer than one line.  Tables should be referred to in the text as, e.g., Table \ref{Tab:1}.
+
+\begin{table}[h!]
+
+\caption{Example of values displayed in a table. The header row is bold, and the columns are not usually separated by lines.}
+\label{Tab:1}
+
+\begin{center}
+\begin{tabular}{c c c } 
+ \hline
+ \textbf{Test Number} &  \textbf{Variable 1}& \textbf{Variable 2}  \\ [0.5ex] 
+ \hline
+ 1 & 6.1 & a \\ 
+ \hline
+ 2 & 7.2 & b  \\
+ \hline
+ 3 & 3.3 & c \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+
+\end{table}
+
+
+\section{Referencing other work}
+\noindent
+Use a numerical referencing system, in order of first time cited.  For Latex users, please take care and consider the use of bibtex.   Either put the references in this file or use a .bib file and let Latex pull out the references that you are using.  The .bib file in this example is sample.bib.  The Latex references cited here are:  \cite{latexcompanion, knuthwebsite}.  Some additional references have been included as examples for format of manuals, webpage information, journal papers, conference papers, books and a standard \cite{Poulsen1, Ryherd2007, Tang2006, May96,  Zwicker_Fastl_2006, ANSI_S3_4}. \\
+
+Use the unsrt bibliography style file.  
+
+\section{IMPORTANT Uploading INFORMATION}
+   \label{important}
+\noindent
+Here are the instructions for submitting manuscripts, with some comments on conversion to PDF.
+\subsection{Submission of Manuscripts}
+\noindent
+Submit your manuscript as a PDF file using the link on the INTER-NOISE \YearConf ~ website (www.internoise\YearConf.org).  See subsection \ref{important}.\ref{conversion} about checking your conversion to PDF.
+
+Before submitting the manuscript, you need to pay the registration fee and if you submit two manuscripts, you need to pay the extra nominal charge for this additional manuscript.
+
+\subsection{Conversion to PDF}
+  \label{conversion}
+\noindent
+Before submission, you need to check your PDF file carefully to be sure that PDF conversion was done properly and there is no error when the PDF file is opened. The following problems may occur.
+\begin{itemize}[noitemsep]
+\item
+Symbols are missed.
+\item
+Symbols are converted incorrectly, especially mathematical symbols.
+\item
+Figures are missed.
+\item
+Indentation is not correct.
+\end{itemize}
+The author is responsible for sorting out these problems and the manuscript  in the Congress Proceedings will be as it was received.
+
+\section{FINAL COMMENTS AND CONCLUSIONS}
+
+\noindent
+Please follow the instructions.  Mostly the Latex stuff will look after you, but check everything is working. Recompile this document to make sure you get the same as the Template.pdf file before you start working on your own paper.  Once you have that working copy this file into IN\_\YearConf\_XXXX.pdf, where XXXX is your ABSTRACT number with 0s added at the front to make it 4 digits long.   Then turn that file into your paper, keeping this file as a reference on formatting.  
+
+\section*{Acknowledgements}
+\noindent
+We gratefully acknowledge the authors for submitting their work to INTER-NOISE \YearConf ~ France.
+
+\bibliographystyle{unsrt}
+\bibliography{sample} 
+
+\end{document}
+
