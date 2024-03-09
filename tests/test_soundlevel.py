@@ -15,6 +15,8 @@ def test_soundlevel_from_file():
     out_dir = os.path.join(here, 'out', 'test_soundlevel_from_file')
     fileutils.ensure_dir(out_dir)
     ax = df.plot(y=0)
-    ax.figure.savefig(os.path.join(out_dir, 'levels.png'))
+    figure_path = os.path.join(out_dir, 'levels.png')
+    ax.figure.savefig(figure_path)
 
-    assert False
+    assert os.path.exists(figure_path)
+    
