@@ -191,3 +191,47 @@ def compute_ln(decibels: numpy.array, n : int):
     return numpy.quantile(decibels, q)
 
 
+
+def compute_moving_ln(array, win, ln=90):
+    values = []
+    for i in range(0, (len(array)-win)):
+        start=i
+        end=i+win
+        values.append(compute_ln(array[start:end], n=ln))
+
+    arr = numpy.full_like(array, fill_value=numpy.nan)
+    arr[win:] = values
+    
+    return arr
+
+
+def compute_background(levels : pandas.Series, window : float = 5.0, ln=90):
+
+    # Leave just the timeseries in index
+    index_names = levels.index.names
+    levels = levels.copy()
+    levels.name = 'level'
+    levels = levels.to_frame().reset_index().set_index(index_names[-1])
+
+    # ensure this is a time-series with index
+    assert 'timedelta64' in str(levels.index.dtype), levels.index.dtype
+
+    # check that this is a continious series
+    avg_time_diff = (levels.index.max() - levels.index.min())/len(levels)
+    diffs = numpy.diff(levels.level)
+    window_length = math.ceil(pandas.Timedelta(seconds=window) / avg_time_diff)
+    
+    # compute background level
+    background = compute_moving_ln(levels.level, win=window_length, ln=ln)
+
+    levels['background'] = background
+
+    # compute delta
+    levels['delta'] = levels.level - levels.background
+
+    # set index back to that of the input
+    levels = levels.reset_index().set_index(index_names)
+    
+    return levels
+
+
