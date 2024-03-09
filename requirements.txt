@@ -13,3 +13,5 @@ acoustics
 soundfile
 
 structlog
+tensorflow
+scikit-learn
