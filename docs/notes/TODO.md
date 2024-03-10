@@ -10,18 +10,21 @@ Details are in the research plan.
 
 ## Single dominant assumption
 
-- Load annotations from all datasets
-- Load soundlevels from all datasets
-- Compute 
+- Merge stereo audio into single-channel
 - EDA. Durations of events
 - EDA. Co-occurence of events. Mixed class
 - Create curated combined data frames. Designed for analysis format
+- Move analysis into a .py module
+- Run analysis in CI
+- Plotting tools that combine spectrogram,soundlevel,annotations (and prediction)
 
 
 ## Soundlevel attribution
 
 - Setup basic SED pipeline
-Possible starting point https://github.com/jonnor/machinehearing/tree/master/handson/badminton
+- Estimate best-possible levels from annotations
+- Evaluation in terms of precision/recall
+- Evaluation in terms of dB error
 
 ## Paper
 

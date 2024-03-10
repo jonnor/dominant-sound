@@ -150,8 +150,6 @@ Candidates
 * CRNN like SEDNet a good baseline. https://github.com/sharathadavanne/sed-crnn
 * CRNN also described in Sound Event Detection: A Tutorial, https://arxiv.org/abs/2107.05463
 
- 
-
 
 # Open questions
 Things that need to be resolved to answer hypothesis or parts thereof.

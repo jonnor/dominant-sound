@@ -22,17 +22,13 @@ Noise Monitoring, Machine Learning, Sound Event Detection
 https://docs.google.com/document/d/1P2qKccu7TSv8tBmP852gNEoVkeueLZHOTu-1mcGc9yQ/edit
 
 We propose a method for noise monitoring that can automatically classify noise events
-and determine the soundlevel contribution from different noise sources.
-We observe that in some noise monitoring scenarios the main phenomena of interest are intrusive noise events,
-which are considerably louder than the background.
-When the noise events dominate the background level,
-it is possible to assign the soundlevel contribution at each time-period to a single event class.
+and determine the sound level contribution from different noise sources. We observe that in some noise monitoring scenarios, the main phenomena of interest are intrusive noise events, which are considerably louder than the background.
+When the noise events dominate the background level, it is possible to assign the sound level contribution at each time-period to a single event class.
 
-Our contributions are 
-A) a formalization of two Machine Learning tasks designed to consider the soundlevel contribution during classification, 
-tenatively called: Dominant Sound Classification and Dominant Sound Event Detection.
+Our contributions are
+A) a formalization of two Machine Learning tasks designed to consider the sound level contribution during classification, tenatively called: Dominant Sound Classification and Dominant Sound Event Detection.
 B) an analysis of to which degree the dominant sound simplification holds in noise monitoring scenarios
-C) a demonstration of a complete system that attributes soundlevel contributions to noise source classes
+C) a demonstration of a complete system that attributes sound level contributions to noise source classes
 
 The method is evaluated quantitatively using representative real-world datasets.
 
