@@ -156,3 +156,25 @@ Q: Is x related to the "fast" and "slow" resolutions?~~
 A: Changing time integration already influences sensitivity of (relatively abrupt) sound events.
 The same sound event will get reduced level when time integration is longer.
 
+
+
+## Notes Jon
+EDA 10.03.2024
+
+### Background dependence on window length
+
+The time window used for background "separation" has large impact on.
+For values under 10 seconds, background level varies a lot.
+For value of 60 seconds, background levels vary very little.
+
+### Event length
+Event length are generally quite short.
+
+50% below 0.30 sec
+90% below 2.00 sec
+
+
+
+
+
+
