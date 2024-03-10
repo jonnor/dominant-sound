@@ -1,5 +1,5 @@
 9.002000	11.885000	Crumpling, crinkling
-10.485000	10.961000	Female speech, woman speaking 
+10.485000	10.961000	Female speech, woman speaking
 12.416000	13.735000	Crumpling, crinkling
 12.650000	12.888000	Female speech, woman speaking
 18.208000	19.126393	Female speech, woman speaking

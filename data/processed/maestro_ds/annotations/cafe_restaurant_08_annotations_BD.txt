@@ -16,25 +16,25 @@
 32.773000	33.125000	Cough
 37.662000	50.042728	Background music
 39.333000	39.847000	Speech
-43.251000	45.875000	Hubbub
+43.251000	45.875000	Hubbub, speech noise, speech babble
 45.625000	45.875000	Cutlery, silverware
 47.435000	47.808000	Male speech, man speaking
-48.898000	49.706000	Hubbub
+48.898000	49.706000	Hubbub, speech noise, speech babble
 55.174000	55.816000	Female speech, woman speaking
 55.291000	55.346000	Clicking
-60.938000	61.366000	Hubbub
+60.938000	61.366000	Hubbub, speech noise, speech babble
 66.820000	67.090000	Speech
 66.965000	67.234000	Doorbell
 66.965000	67.200086	Clatter
 68.367000	68.634000	Slam
 68.574000	69.120000	Doorbell
 69.480000	70.031000	Speech
-69.582000	71.384000	Hubbub
+69.582000	71.384000	Hubbub, speech noise, speech babble
 70.031000	70.369000	Doorbell
 70.031000	70.369000	Slam
 70.401000	71.384000	Speech
 72.247000	72.557000	Speech
-72.371000	72.557000	Clatter - Whack, thwack
+72.371000	72.557000	Clatter
 72.626000	72.767000	Beep, bleep
 73.192000	73.461000	Beep, bleep
 73.379000	73.703000	Cash register
@@ -45,9 +45,9 @@
 78.439000	78.695000	Chink, clink
 79.026000	79.323000	Chink, clink
 85.717000	85.899000	Walk, footsteps
-86.661000	87.435000	Hubbub
+86.661000	87.435000	Hubbub, speech noise, speech babble
 86.903000	87.086000	Walk, footsteps
-87.624420	88.153000	Chink, clink 
+87.624420	88.153000	Chink, clink
 88.092000	88.229000	Walk, footsteps
 89.036000	89.354000	Dishes, pots and pans
 89.557000	90.043000	Male speech, man speaking
@@ -57,7 +57,7 @@
 92.126000	92.236000	Whack, thwack
 92.409000	92.583841	Walk, footsteps
 92.961000	93.154000	Walk, footsteps
-93.054000	93.332000	Whir - Brief tone
+93.054000	93.332000	Brief tone
 93.346000	93.525000	Other sourceless
 93.491156	93.631000	Walk, footsteps
 93.690000	99.304823	Female speech, woman speaking
@@ -75,7 +75,7 @@
 112.547000	113.793000	Female speech, woman speaking
 112.619000	113.793000	Cash register
 114.154000	114.602000	Female speech, woman speaking
-114.404000	114.676000	Slam - Cash register
+114.404000	114.676000	Cash register
 120.834000	121.128000	Laughter
 120.907000	121.054716	Clicking
 126.585000	128.366000	Crumpling, crinkling
@@ -128,17 +128,17 @@
 208.711000	208.984000	Female speech, woman speaking
 208.852000	209.028000	Chink, clink
 213.084000	213.529000	Cough
-214.825000	216.260000	Hubbub
+214.825000	216.260000	Hubbub, speech noise, speech babble
 215.649000	215.751000	Generic impact sounds
 217.361000	217.813000	Laughter
 222.029000	222.642000	Male speech, man speaking
 222.083000	222.263000	Slam
 222.347000	222.611000	Doorbell
-224.786000	225.680000	Hubbub
+224.786000	225.680000	Hubbub, speech noise, speech babble
 225.994000	226.702188	Female speech, woman speaking
-226.826000	228.386000	Hubbub
+226.826000	228.386000	Hubbub, speech noise, speech babble
 228.386000	228.504000	Whack, thwack
-228.504000	228.845000	Hubbub
+228.504000	228.845000	Hubbub, speech noise, speech babble
 229.177000	229.491000	Male speech, man speaking
 234.553000	234.978000	Male speech, man speaking
 235.745000	237.212000	Female speech, woman speaking
