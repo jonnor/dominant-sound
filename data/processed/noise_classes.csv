@@ -1,0 +1,76 @@
+original;noise
+'Male speech, man speaking';speech
+'Walk, footsteps'
+'Narration, monologue';speech
+'Laughter';speech
+'Hubbub, speech noise, speech babble';speech
+'Slap, smack'
+'Clicking'
+'Other sourceless'
+'Scrape'
+'Cough';speech
+'Female speech, woman speaking';speech
+'Clickety-clack'
+'Subway, metro, underground';rail_traffic
+'Train wheels squealing';rail_traffic
+'Rustle';geophony
+'Air brake';road_traffic
+'Beep, bleep'
+'Children shouting';speech
+'Clatter'
+'Brief tone'
+'Screech'
+'Generic impact sounds'
+'Shout';speech
+'Bass (frequency range)'
+'Whack, thwack'
+'Accelerating, revving, vrooming';road_traffic
+'Car passing by';road_traffic
+'Tire squeal';road_traffic
+'Car';road_traffic
+'Squeal'
+'Crumpling, crinkling'
+'Whir'
+'Traffic noise, roadway noise';road_traffic
+'Bicycle'
+'Bird vocalization, bird call, bird song';biophony
+'Gull, seagull';biophony
+'Bang'
+'Wind (microphone noise)';geophony
+'Hammer'
+'Background music';music
+'Child speech, kid speaking';speech
+'Speech';speech
+'Truck';road_traffic
+'Engine starting';road_traffic
+'Idling';road_traffic
+'Doorbell'
+'Slam'
+'Hubbub';speech
+'Cutlery, silverware'
+'Clatter - Whack, thwack'
+'Cash register'
+'Chink, clink'
+'Chink, clink '
+'Dishes, pots and pans'
+'Whir - Brief tone'
+'Slam - Cash register'
+'Microphone'
+'Clang'
+'Grind'
+'Car Passing by';road_traffic
+'Female speech, woman speaking ';speech
+'Chatter';speech
+'Female singing';music
+'Roll'
+'Wood'
+'Throat clearing';speech
+'Giggle';speech
+'Bird vocalisation, bird call, bird song';biophony
+'Traffic noise, road noise';road_traffic
+'Yell';speech
+'Wind noise (microphone)';geophony
+'Chirp, tweet';biophony
+'Chip, tweet';biophony
+'Ratchet, pawl'
+'Wind noise';geophony

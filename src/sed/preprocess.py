@@ -1,37 +1,4 @@
 
-def make_continious_labels(events, length, time_resolution):
-    """
-    Create a continious vector for the event labels that matches the time format of our spectrogram
-    
-    Assumes that no annotated event means nothing occurred.
-    """
-
-    freq = pandas.Timedelta(seconds=time_resolution)
-    
-    # Create empty covering entire spectrogram
-    duration = length * time_resolution
-    ix = pandas.timedelta_range(start=pandas.Timedelta(seconds=0.0),
-                    end=pandas.Timedelta(seconds=duration),
-                    freq=freq,
-                    closed='left',
-    )
-    ix.name = 'time'
-    df = pandas.DataFrame({}, index=ix)
-    assert len(df) == length, (len(df), length)
-    df["event"] = 0
-    
-    # fill in event data
-    for start, end in zip(events['start'], events['end']):
-        s = pandas.Timedelta(start, unit='s')
-        e = pandas.Timedelta(end, unit='s')
-
-        # XXX: focus just on onsets
-        e = s + pandas.Timedelta(0.100, unit='s') 
-        
-        match = df.loc[s:e]
-        df.loc[s:e, "event"] = 1
-    
-    return df
 
 # extract overlapped time-windows for spectrograms and labels
 def compute_windows(arr, frames, pad_value=0.0, overlap=0.5, step=None):
