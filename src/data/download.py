@@ -20,9 +20,9 @@ def maestro():
     # Specify and create the target directory for the dataset
     target_path = os.path.join(download_path, 'maestro_ds')
 
-    if not os.path.exists(target_path):
+    if True or not os.path.exists(target_path):
         print('Downloading "MAESTRO Real" dataset...')
-        os.makedirs(target_path)
+        #os.makedirs(target_path)
 
         # download the zip files
         urllib.request.urlretrieve(audio_zip, os.path.join(target_path, 'development_audio.zip'))
@@ -58,9 +58,9 @@ def tut():
     # Specify and create the target directory for the dataset
     target_path = os.path.join(download_path, 'tut_ds')
 
-    if not os.path.exists(target_path):
+    if True or not os.path.exists(target_path):
         print('Downloading "TUT Sound Events 2017" dataset...')
-        os.makedirs(target_path)
+        #os.makedirs(target_path)
 
         # download the zip files
         urllib.request.urlretrieve(audio_1_zip, os.path.join(target_path, 'development_audio_1.zip'))

@@ -205,7 +205,7 @@ def compute_moving_ln(array, win, ln=90):
     return arr
 
 
-def compute_background(levels : pandas.Series, window : float = 5.0, ln=90):
+def compute_background(levels : pandas.Series, window : float = 30.0, ln=90):
 
     # Leave just the timeseries in index
     index_names = levels.index.names
