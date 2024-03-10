@@ -132,11 +132,15 @@ def compute_soundlevel(audio : numpy.array, sr : int,
 
 def soundlevel_for_file(path : str,
     channels : Optional[tuple] = None,
+    mono : bool = False,
     **kwargs) -> (pandas.DataFrame, dict):
 
     load_start = time.time()
     audio, sr = soundfile.read(path, samplerate=None, always_2d=True)
     load_end = time.time()
+
+    if mono:
+        audio = numpy.mean(audio, axis=1, keepdims=True)
 
     if channels is None:
         channels = tuple(range(audio.shape[1]))

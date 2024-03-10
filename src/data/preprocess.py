@@ -19,9 +19,10 @@ def compute_soundlevels(audio_root, files, **kwargs):
         return get_audio_path(row['dataset'], row['clip'], audio_root)
 
     def get_soundlevels(audio_path) -> pandas.DataFrame:
-        # FIXME: convert audio to mono
         df, meta = soundlevel_for_file(audio_path, **kwargs)
-        df = df.rename(columns={0: 'dBA'})
+        # we assume mono here
+        assert len(df.columns) == 1, df.columns
+        df = df.rename(columns={0: 'level'})
         return df, meta
 
     out = []
@@ -51,13 +52,14 @@ def preprocess_soundlevels():
     files = files.to_frame()
 
     configurations = {
-        'LAF': dict(time='fast'),
-        'LAS': dict(time='slow'),
+        'LAF': dict(mono=True, time='fast'),
+        'LAS': dict(mono=True, time='slow'),
     }
 
     for name, config in configurations.items():
-        df = compute_soundlevels(audio_root, files)
+        df = compute_soundlevels(audio_root, files, **config)
         df['config'] = name
+        df = df.reset_index().set_index(['config', 'dataset', 'clip', 'time'])
         out_path = os.path.join(soundlevels_dir, f'{name}.parquet')
         ensure_dir_for_file(out_path)
         df.to_parquet(out_path)
