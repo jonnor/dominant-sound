@@ -16,6 +16,9 @@ def compute_mel_spectrogram(audio, sr,
         ref=0.0,
         htk=False,
         ) -> pandas.DataFrame:
+    """
+    Compute decibel-scaled mel spectrogram
+    """
 
     if n_fft is None:
         n_fft = int(hop_length * 2)
@@ -27,7 +30,7 @@ def compute_mel_spectrogram(audio, sr,
     )
     S_db = librosa.power_to_db(S, ref=ref)
 
-    timestep = pandas.Timedelta(seconds=sr/hop_length)
+    timestep = pandas.Timedelta(seconds=hop_length/sr)
 
     bands = librosa.mel_frequencies(n_mels=n_mels, fmin=fmin, fmax=fmax, htk=htk).round(0)
     times = timestep * numpy.arange(0, len(S.T))
@@ -52,9 +55,7 @@ def spectrogram_for_file(path : str,
     secs = audio.shape[0]/sr
     compute_start = time.time()
 
-    print('start')
     df = compute_mel_spectrogram(audio, sr=sr, **kwargs)
-    print('end')
 
     compute_end = time.time()
     channels = (1,)
@@ -70,3 +71,22 @@ def spectrogram_for_file(path : str,
     )
 
     return df, meta
+
+
+def apply_weigthing(spectrogram: pandas.DataFrame, frequencies = None, kind = 'A'):
+    """
+    NOTE: spectrogram should be decibel/log10 scaled. Not power or magnitude
+    """
+
+    if frequencies is None:
+        frequencies = spectrogram.columns
+
+    # compute weights
+    weighting = librosa.frequency_weighting(frequencies, kind=kind)
+
+    out = spectrogram.copy()    
+    # apply to each band
+    for w, c in zip(weighting, out.columns):
+        out[c] = out[c] + w
+
+    return out
