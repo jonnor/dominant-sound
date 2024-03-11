@@ -1,6 +1,8 @@
 
 import pandas
 
+from ..data.annotations import dense_to_events
+
 def plot_events(ax, df, start='start', end='end', color=None, annotate=None,
                 label=None, alpha=0.2, zorder=-1,
                 text_kwargs={}, **kwargs):
@@ -53,4 +55,44 @@ def legend_without_duplicate_labels(ax, loc='lower right', **kwargs):
     handles, labels = ax.get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
     ax.legend(by_label.values(), by_label.keys(), loc=loc, **kwargs)
+
+
+def plot_single_track_labels(ax, s, colors=None):
+    """
+    Plot labels on single track format
+    """
+
+    # Convert to DataFrame
+    df = s.to_frame()
+    df.columns = ['label']
+    df = df.reset_index()
+
+    # matplotlib / plot_events() does not like Timedeltas
+    df['time'] = df.time / pandas.Timedelta(seconds=1)
+
+    sections = dense_to_events(df)
+
+    color_column = None
+    if colors is not None:
+        sections['color'] = sections.label.map(colors)
+        color_column = 'color'
+    
+    #print(sections[sections['color'].isna()])
+
+    plot_events(ax, sections, color=color_column, label='label', alpha=1.0)
+    legend_without_duplicate_labels(ax)
+
+
+def plot_multitrack_labels(ax, labels : pandas.DataFrame, cmap='Purples', x_seconds=1):
+    """
+    Plot labels on multi track format
+    """
+    
+    labels = labels.copy()
+
+    # heatmap does not support Timedelta
+    labels.index = labels.index / pandas.Timedelta(seconds=x_seconds)
+
+    seaborn.heatmap(labels.T, ax=ax, annot=False, cmap=cmap)
+
 

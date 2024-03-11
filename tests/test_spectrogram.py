@@ -4,27 +4,11 @@ import os.path
 import pandas
 from matplotlib import pyplot as plt
 
-from src.features.spectrogram import compute_mel_spectrogram, spectrogram_for_file, apply_weigthing
+from src.features.spectrogram import compute_mel_spectrogram, spectrogram_for_file, apply_weigthing, plot_spectrogram
 from src.utils import fileutils
 
 here = os.path.dirname(__file__)
 
-def plot_spectrogram(ax, spectrogram : pandas.DataFrame, sr=16000):
-
-    hop = spectrogram.index.diff()[1]
-    hop_length = int((hop / pandas.Timedelta(seconds=1)) * sr)
-
-    print('hop', hop, hop_length)
-
-    import librosa.display
-
-    fmin = spectrogram.columns[0]
-    fmax = spectrogram.columns[-1]
-    n_mels = len(spectrogram.columns)
-    librosa.display.specshow(spectrogram.values.T, ax=ax,
-        fmin=fmin, fmax=fmax, y_axis='mel',
-        x_axis='time', hop_length=hop_length, sr=sr,
-    )
     
 
 def test_spectrogram_from_file():

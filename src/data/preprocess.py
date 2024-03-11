@@ -8,6 +8,7 @@ from src.utils.fileutils import get_project_root, ensure_dir_for_file
 from src.utils.dataframe import flatten_dataframes
 from src.data.annotations import load_dataset_annotations
 from src.features.soundlevel import soundlevel_for_file
+from src.features.spectrogram import spectrogram_for_file
 from src.utils.dataframe import flatten_dataframes
 from .audio import get_audio_path
 
@@ -66,8 +67,54 @@ def preprocess_soundlevels():
         log.info('preprocess-soundlevels-store', out=out_path, results=len(df), config=name)
 
 
+def compute_spectrograms(audio_root, files, **kwargs):
+
+    out = []
+    for idx, row in files.iterrows():
+
+        audio_path = get_audio_path(row['dataset'], row['clip'], audio_root)
+        ss, _ = spectrogram_for_file(audio_path, **kwargs)
+
+        log.info('compute-spectrogram', path=audio_path, results=len(ss))
+        out.append(ss)
+
+    #df = pandas.concat(out)
+    ss = pandas.Series(out, index=files.index, name='spectrograms')
+    out = flatten_dataframes(ss)
+    return out
+
+def preprocess_spectrograms():
+    """
+    Compute and store spectrograms for the datasets
+    """
+
+    project_root = get_project_root()
+    audio_root = os.path.join(project_root, 'data/raw/')
+    soundlevels_dir = os.path.join(project_root, 'data/processed/spectrograms/')
+
+    annotations = load_dataset_annotations()
+
+    files = annotations.reset_index().set_index(['dataset', 'clip']).index.unique()
+    files = files.to_frame()
+
+    configurations = {
+        'logmels-64bands-256hop': dict(hop_length=256, n_mels=64),
+    }
+
+    for name, config in configurations.items():
+        df = compute_spectrograms(audio_root, files, **config)
+
+        df['config'] = name
+        df = df.reset_index().set_index(['config', 'dataset', 'clip', 'time'])
+        out_path = os.path.join(soundlevels_dir, f'{name}.parquet')
+        ensure_dir_for_file(out_path)
+        df.to_parquet(out_path)
+        log.info('preprocess-spectrogram-store', out=out_path, results=len(df), config=name)
+
+
 def main():
-    preprocess_soundlevels()
+    preprocess_spectrograms()
+    #preprocess_soundlevels()
 
 
 if __name__ == '__main__':

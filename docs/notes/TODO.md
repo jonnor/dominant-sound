@@ -45,8 +45,6 @@ Remaining is "unknown" class. How much is it in terms of LEQ/SEL?
 
 # 3. Sound Event Detection
 
-- Function for extracting spectrogram
-- Plotting tools that combine spectrogram,soundlevel,annotations (and prediction)
 - Fixup the SED pipeline. python -m src.sed.train
 - Addd SED pipeline to CI
 - Evaluation in terms of precision/recall

@@ -33,7 +33,7 @@ def compute_mel_spectrogram(audio, sr,
     timestep = pandas.Timedelta(seconds=hop_length/sr)
 
     bands = librosa.mel_frequencies(n_mels=n_mels, fmin=fmin, fmax=fmax, htk=htk).round(0)
-    times = timestep * numpy.arange(0, len(S.T))
+    times = pandas.Series(timestep * numpy.arange(0, len(S.T)), name='time')
 
     df = pandas.DataFrame(S_db.T, columns=bands, index=times)
 
@@ -90,3 +90,18 @@ def apply_weigthing(spectrogram: pandas.DataFrame, frequencies = None, kind = 'A
         out[c] = out[c] + w
 
     return out
+
+def plot_spectrogram(ax, spectrogram : pandas.DataFrame, sr=16000):
+
+    hop = numpy.diff(spectrogram.index)[1]
+    hop_length = int((hop / pandas.Timedelta(seconds=1)) * sr)
+
+    import librosa.display
+
+    fmin = spectrogram.columns[0]
+    fmax = spectrogram.columns[-1]
+    n_mels = len(spectrogram.columns)
+    librosa.display.specshow(spectrogram.values.T, ax=ax,
+        fmin=fmin, fmax=fmax, y_axis='mel',
+        x_axis='time', hop_length=hop_length, sr=sr,
+    )

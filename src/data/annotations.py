@@ -8,6 +8,20 @@ from src.data.labels import load_labels_file
 
 project_root = get_project_root()
 
+class_color_map = {
+    'background': (0.95, 0.95, 0.95),
+    'mixed': 'black',
+    'speech': 'blue',
+    'music': 'green',
+    'rail_traffic': 'red',
+    'road_traffic': 'orange',
+    'other': 'grey',
+    'biophony': 'yellow',
+    'geophony': 'purple',
+    'unknown': 'grey',
+}
+
+
 def load_datasets():
 
     datasets = pandas.DataFrame({
@@ -17,6 +31,13 @@ def load_datasets():
     datasets = datasets.set_index('name')
 
     return datasets
+
+def load_noise_classes():
+    p = os.path.join(project_root, 'data/processed/noise_classes.csv')
+    df = pandas.read_csv(p, sep=';', quotechar="'")
+    df['noise'] = df.noise.fillna('other')
+    df = df.set_index('original')
+    return df
 
 def load_annotations(dir, index={}):
 
@@ -92,4 +113,34 @@ def make_continious_labels(events : pandas.DataFrame,
         df.loc[s:e, cls] = 1
     
     return df
+
+
+def dense_to_events(df : pandas.DataFrame,
+                    category_column='label',
+                    time_column='time',
+                   ) -> pandas.DataFrame:
+    """
+    Convert a dense time-series with categories into events with start,end
+    """
+    df = df.copy() # avoid mutating input
+    df['start'] = df[time_column]
+    df['end'] = df[time_column]
+    changes = df[category_column].ne(df[category_column].shift()).dropna()
+    label_groups = changes.cumsum()
+
+    out = df.groupby(label_groups).agg({'start':'min', 'end':'max', category_column:'first'}).reset_index(drop=True)
+
+    return out
+
+def single_track_labels(multi : pandas.DataFrame, mixed_class='mixed'):
+
+    classes_active = multi.sum(axis=1)
+    out = pandas.Series(['background']*len(multi), index=multi.index, dtype=pandas.StringDtype())
+
+    # Simple definition of mixed: anytime there is any form of overlap in the labels
+    out.loc[classes_active == 2] = 'mixed'
+    out.loc[classes_active == 1] = multi.idxmax(axis=1)
+    return out
+
+
 
