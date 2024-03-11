@@ -1,16 +1,16 @@
 22.345236	24.796441	Hubbub, speech noise, speech babble
 22.562000	39.767000	Subway, metro, underground
 22.650000	22.771000	Clicking
-34.614000	34.926000	Air brake
-35.955000	36.185000	Air brake
-36.490000	36.971000	Air brake
-37.241000	37.627000	Air brake
-38.257000	38.569000	Clatter
-38.867000	39.767000	Air brake
-52.707000	53.019000	Beep, bleep
-53.195000	53.574000	Beep, bleep
-53.696000	54.048000	Beep, bleep
-56.975000	57.453000	Clatter
+34.614000	34.926000	Air brake (rail)
+35.955000	36.185000	Air brake (rail)
+36.490000	36.971000	Air brake (rail)
+37.241000	37.627000	Air brake (rail)
+38.257000	38.569000	Clatter (rail)
+38.867000	39.767000	Air brake (rail)
+52.707000	53.019000	Beep, bleep (rail)
+53.195000	53.574000	Beep, bleep (rail)
+53.696000	54.048000	Beep, bleep (rail)
+56.975000	57.453000	Clatter (rail)
 58.496000	77.997215	Subway, metro, underground
 82.497000	82.872000	Walk, footsteps
 93.632000	93.937000	Walk, footsteps
@@ -74,10 +74,10 @@
 208.311774	234.437926	Subway, metro, underground
 208.312000	216.369602	Train wheels squealing
 224.424000	228.297000	Hubbub, speech noise, speech babble
-232.522000	233.217000	Air brake
-232.522000	233.037000	Air brake
-233.409000	234.439000	Air brake
+232.522000	233.217000	Air brake (rail)
+232.522000	233.037000	Air brake (rail)
+233.409000	234.439000	Air brake (rail)
 234.703000	236.355000	Train wheels squealing
 236.849000	240.065000	Hubbub, speech noise, speech babble
-240.065000	240.143000	Clatter
-240.373000	240.516000	Clatter
+240.065000	240.143000	Clatter (rail)
+240.373000	240.516000	Clatter (rail)

@@ -74,3 +74,7 @@ original;noise
 'Chip, tweet';biophony
 'Ratchet, pawl'
 'Wind noise';geophony
+'Air brake (rail)';rail_traffic
+'Clatter (rail)';rail_traffic
+'Rustle (walk, footsteps)'
+'Screech (walk, footsteps)'
