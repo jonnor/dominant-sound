@@ -138,7 +138,7 @@ def single_track_labels(multi : pandas.DataFrame, mixed_class='mixed'):
     out = pandas.Series(['background']*len(multi), index=multi.index, dtype=pandas.StringDtype())
 
     # Simple definition of mixed: anytime there is any form of overlap in the labels
-    out.loc[classes_active == 2] = 'mixed'
+    out.loc[classes_active >= 2] = 'mixed'
     out.loc[classes_active == 1] = multi.idxmax(axis=1)
     return out
 
