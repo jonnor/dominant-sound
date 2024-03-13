@@ -16,3 +16,9 @@ structlog
 tensorflow
 scikit-learn
 pyarrow
+librosa
+seaborn
+matplotlib
+sed_eval
+dcase_util
+scipy
