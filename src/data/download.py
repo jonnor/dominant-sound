@@ -80,9 +80,40 @@ def tut():
         print(f'Dataset downloaded - see "data/raw/tut_ds" directory')
 
 
+def bcn():
+
+    base_url = 'https://zenodo.org/records/3956503/files'
+    files = [
+        'File-1.wav',
+        'File-1_labels.txt',
+        'File-2.wav',
+        'File-2_labels.txt',
+        'File-3.wav',
+        'File-3_labels.txt',
+    ]
+
+    # Specify and create the target directory for the dataset
+    target_path = os.path.join(download_path, 'bcn')
+
+    if True or not os.path.exists(target_path):
+        print('Downloading "BCN Dataset: an Annotated Night Urban Sounds dataset"...')
+        #os.makedirs(target_path)
+
+        # download the zip files
+        for filename in files:
+            url = f'{base_url}/{filename}?download=1'
+            out_path = os.path.join(target_path, filename)
+            print(url, out_path)
+            urllib.request.urlretrieve(url, out_path)
+
+    else:
+        print(f'Dataset downloaded - see "data/raw/tut_ds" directory')
+
+
 def fetch_all():
     maestro()
     tut()
+    #bcn()
     print('Datasets downloaded: see "data/raw/..."')
 
 

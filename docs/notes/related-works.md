@@ -36,6 +36,34 @@ Road Traffic Noise RTN vs Anomalous Noise Event (ANE).
 > - nearly 80% of works
 > - and more than 60% of people talking
 
+
+On the Impact of Anomalous Noise Events on Road Traffic Noise Mapping in Urban and Suburban Environments
+F Orga, F Alías, RM Alsina-Pagès
+2018
+
+> This paper introduces an analysis methodology considering both Signal-to-Noise Ratio (SNR)
+> and duration of ANEs to evaluate their impact on the A-weighted equivalent RTN level calculation for different integration times.
+> The experiments conducted on 9 h of real-life data from the WASN-based DYNAMAP project
+> show that both individual high-impact events and aggregated medium-impact events
+> bias significantly the equivalent noise levels of the RTN map
+> making any derived study about public health impact inaccurate
+
+
+# Sound Event Detection
+
+#### Cosmopolite Sound Monitoring (CoSMo): A Study of Urban Sound Event Detection Systems Generalizing to Multiple Cities
+
+https://ieeexplore.ieee.org/abstract/document/10095833
+Tests SED on SONYC-USD and SINGA:PURA datasets.
+
+Investigates performance wrt low-high polyphony (overlapping sounds), and "near" vs "far" poximity/salience.
+
+Compares CRNN with OpenL3 and PaSST embedding classifiers.
+Says OpenL3 performs better in mismatched scenarios.
+
+https://github.com/kkoutini/PaSST
+has 0.46-0.47 mAP on AudioSet vs 0.44 for CNN14 from
+
 ### Environmental noise monitoring using source classification in sensors
 
 https://trepo.tuni.fi/bitstream/handle/10024/126273/Environmental_noise_monitoring_using_source_classification_in_sensors.pdf

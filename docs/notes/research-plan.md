@@ -59,6 +59,28 @@ Small things that would be good to figure out
 makes it easier for models to solve the Dominant Sound Classification / Sound Event Detection task.
 At least with limited data and/or model capacity.
 
+# Overall research agenda
+
+Goal: Use Machine Learning to provide useful information about noise source/cause
+
+Overall problem statement
+
+- How to use ML to automaticaly analyze the audio to extract useful information,
+and to realize practical noise monitoring systems, that can do this efficiently?
+
+Sub-questions
+
+-- How to combine noise indicators level with ML derived parameters?
+-- What are the limitations and weaknesses of current ML approaches in getting usable information?
+-- Which sub-problems are solvable with technology available today (and which are not)?
+-- How to aggregate the information to a meaningful level?
+-- How to present the data in a way that makes it useful?
+-- How to achieve positive impact using the information? Reduction in annoyance and health risks.
+
+Hypothesis. Instrusive events (high salience, high SNR) are more solvable than general case.
+Hypothesis. Single source attribution simplifies presentation of information.
+Hypothesis. ML methods that are not soundlevel aware may misclassify the relevant source.
+
 # Research methods
 
 ## How often is the single-dominant-source-at-a-time a reasonable assumption?
