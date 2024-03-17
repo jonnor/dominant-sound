@@ -175,7 +175,7 @@ def soundlevel_for_file(path : str,
     return df, meta
 
 
-def compute_leq(decibels : numpy.array):
+def compute_leq(decibels : numpy.array) -> float:
     """
     Compute Leq indicators from soundlevels
     """
@@ -183,7 +183,7 @@ def compute_leq(decibels : numpy.array):
     mean = numpy.mean(e)
     return 10*numpy.log10(mean)
 
-def compute_ln(decibels: numpy.array, n : int):
+def compute_ln(decibels: numpy.array, n : int) -> float:
     """
     Compute LN indicators from soundlevels
     """
