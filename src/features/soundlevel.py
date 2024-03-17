@@ -278,3 +278,41 @@ def compute_intermittency_ratio(levels: pandas.Series, threshold = 3.0) -> float
     return IR
 
 
+def compute_event_impacts(events : pandas.DataFrame, levels : pandas.Series):
+    """
+    Compute the impact of each sound event on the overall soundlevel
+
+    Computed by replacing the sound levels of the event with the overall Leq.
+    Positive score means the event contributed noise.
+    Negative score means was less noisy than time period. 
+
+    References
+
+    BCNDataset: Description and Analysis of an Annotated Night Urban Leisure Sound Dataset 
+    On the impact of anomalous noise events on road traffic noise mapping in urban and suburban environments
+    """
+
+    mandatory_columns = set(['start', 'end'])
+    missing_columns = mandatory_columns - set(events.columns)
+    assert missing_columns == set(), missing_columns
+
+    events = events.copy()
+    events['start'] = pandas.to_timedelta(events.start, unit='s')
+    events['end'] = pandas.to_timedelta(events.end, unit='s')
+
+    overall_leq = compute_leq(levels.values)
+
+    def level_impact(event):     
+        s = event['start']
+        e = event['end']
+        masked_levels = levels.copy()
+        masked_levels.loc[s:e] = overall_leq
+        masked_leq = compute_leq(masked_levels.values)
+
+        impact : float = overall_leq - masked_leq
+        return impact
+
+    out = events.apply(level_impact, axis=1)
+
+    return out
+
