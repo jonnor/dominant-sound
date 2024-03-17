@@ -114,7 +114,7 @@ def preprocess_spectrograms():
 
 def main():
     preprocess_spectrograms()
-    #preprocess_soundlevels()
+    preprocess_soundlevels()
 
 
 if __name__ == '__main__':

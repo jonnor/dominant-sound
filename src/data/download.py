@@ -113,7 +113,7 @@ def bcn():
 def fetch_all():
     maestro()
     tut()
-    #bcn()
+    bcn()
     print('Datasets downloaded: see "data/raw/..."')
 
 

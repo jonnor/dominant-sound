@@ -25,10 +25,11 @@ class_color_map = {
 def load_datasets():
 
     datasets = pandas.DataFrame({
-        'name': ['maestro', 'tut'],
+        'name': ['maestro', 'tut', 'bcn'],
     })
     datasets['annotations'] = datasets.name.apply(lambda name: os.path.join(project_root, 'data/processed/', f'{name}_ds', 'annotations/'))
     datasets = datasets.set_index('name')
+    datasets.loc['bcn', 'annotations'] = os.path.join(project_root, 'data/raw/bcn')
 
     return datasets
 
@@ -49,12 +50,18 @@ def load_annotations(dir, index={}):
             continue
         annotations = load_labels_file(os.path.join(dir, filename))
         
-        t = os.path.splitext(filename)[0].split('_annotations_')
-        audio_basename, annotator = t
-        
+        audio_basename = os.path.splitext(filename)[0]
+        t = audio_basename.split('_annotations_')
+        if len(t) == 2:
+            audio_basename, annotator = t
+            annotations['annotator'] = annotator
+
+        t = audio_basename.split('_labels')
+        if len(t) > 1:
+            audio_basename = t[0]
+
         annotations['index'] = annotations.index
         annotations['clip'] = audio_basename
-        annotations['annotator'] = annotator
         for k, v in index.items():
             annotations[k] = v
 
