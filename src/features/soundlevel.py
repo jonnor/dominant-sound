@@ -238,4 +238,43 @@ def compute_background(levels : pandas.Series, window : float = 30.0, ln=90):
     
     return levels
 
+def db_to_power(db):
+    return 10.0**(db/10.0)
+
+def power_to_db(p):
+    return 10.0 * numpy.log10(p)
+
+def compute_intermittency_ratio(levels: pandas.Series, threshold = 3.0) -> float:
+    """
+    Compute Intermittency Ratio (IR)
+
+    Intermittency Ratio is a measure of how much of the soundlevel comes from sound events versus non-events.
+    Thus it is a measure of "eventfulness" in a soundscape.
+    It has primarily been proposed for and tested in the context of transport noise,
+    but has also been applied to lesuire noise et.c.
+
+    IR is a value between 0(%) and 100(%).
+    Small values means that there is a low contribution from sound events.
+    Large values means there is a high contribution from sound events.
+    A value of 0.5 means that 
+
+    Reference:
+    Intermittency ratio: A metric reflecting short-term temporal variations of transportation noise exposure.
+    https://www.nature.com/articles/jes201556
+    Wunderli et al
+    Journal of Exposure Science & Environmental Epidemiology volume 26, pages 575–585 (2016)
+    """
+
+    total_leq = compute_leq(levels.values)
+
+    event_mask = levels > total_leq
+    event_levels = levels.copy()
+    event_levels[~event_mask] = -1000.0 # set background/non-event level to very small
+    event_leq = compute_leq(event_levels.values)
+
+    assert len(event_levels) == len(levels) # computations assume that the time covered is the same
+
+    IR = 100.0 * (db_to_power(event_leq) / db_to_power(total_leq))
+    return IR
+
 

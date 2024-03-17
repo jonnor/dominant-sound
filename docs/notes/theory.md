@@ -117,7 +117,8 @@ Journal of Exposure Science & Environmental Epidemiology volume 26, pages 575–
 > On the basis of practical experience on transportation noise situations,
 > C might not be smaller than 0 and not larger than about 10 dB. For low values of C
 > ...
-> To be able for IR to distinguish between situations with different degrees of intermittency, the criterion for setting C was a preferably uniform spread of IR across the range of exposure situations as they occur in the real world.
+> To be able for IR to distinguish between situations with different degrees of intermittency,
+> the criterion for setting C was a preferably uniform spread of IR across the range of exposure situations as they occur in the real world.
 > The balance between these extreme cases was investigated by numerical simulations of various traffic situations and resulted in C=3 dB.
 
 > Air and railway traffic generally exhibit a high IR,
