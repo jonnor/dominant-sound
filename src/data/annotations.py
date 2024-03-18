@@ -25,10 +25,11 @@ class_color_map = {
 def load_datasets():
 
     datasets = pandas.DataFrame({
-        'name': ['maestro', 'tut'],
+        'name': ['maestro', 'tut', 'bcn'],
     })
     datasets['annotations'] = datasets.name.apply(lambda name: os.path.join(project_root, 'data/processed/', f'{name}_ds', 'annotations/'))
     datasets = datasets.set_index('name')
+    datasets.loc['bcn', 'annotations'] = os.path.join(project_root, 'data/raw/bcn')
 
     return datasets
 
@@ -49,12 +50,18 @@ def load_annotations(dir, index={}):
             continue
         annotations = load_labels_file(os.path.join(dir, filename))
         
-        t = os.path.splitext(filename)[0].split('_annotations_')
-        audio_basename, annotator = t
-        
+        audio_basename = os.path.splitext(filename)[0]
+        t = audio_basename.split('_annotations_')
+        if len(t) == 2:
+            audio_basename, annotator = t
+            annotations['annotator'] = annotator
+
+        t = audio_basename.split('_labels')
+        if len(t) > 1:
+            audio_basename = t[0]
+
         annotations['index'] = annotations.index
         annotations['clip'] = audio_basename
-        annotations['annotator'] = annotator
         for k, v in index.items():
             annotations[k] = v
 
@@ -143,4 +150,27 @@ def single_track_labels(multi : pandas.DataFrame, mixed_class='mixed'):
     return out
 
 
+def clip_events(events,
+    start_column='start',
+    end_column='end',
+    start=None,
+    end=None):
+
+    """
+    Adjust events such that no event has start time before @start
+    and no event has end time after @end
+    """
+    
+    def clip_event(e): 
+        if start is not None:
+            if e[start_column] < start: 
+                e[start_column] = start
+        if end is not None:
+            if e[end_column] > end: 
+                e[end_column] = end
+        return e
+                
+    events = events.apply(clip_event, axis=1)
+    
+    return events
 

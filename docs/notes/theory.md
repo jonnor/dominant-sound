@@ -93,6 +93,51 @@ On the impact of anomalous noise events on road traffic noise mapping in urban a
 
 ? This could be extended to entire classes of events?
 
+
+## Traffic Noise Index
+Langdon FJ, Scholes W.
+The traffic noise index: a method of controlling noise nuisance.
+Architects' J 1968; 147: 20.
+https://files.eric.ed.gov/fulltext/ED035210.pdf
+
+## Noise Pollution Level
+Robinson DW. The concept of noise pollution level.
+J Occup Environ Med 1971;
+
+
+## Common Noise Index
+Ribeiro C, Anselme C, Mietlicki F, Vincent B, Da Silva R, Gaudibert P (eds.)
+At the heart of Harmonica project: the Common Noise Index (CNI)
+6a Giornata di Studio sull’Acustica Ambientale 2013
+https://www.bruitparif.fr/pages/En-tete/300%20Publications/680%20Articles%20scientifiques/2013%20-%20At%20the%20heart%20of%20Harmonica%20project%20%20-%20Genova.pdf
+
+Proposed 5 different models by combining acoustic metrics.
+Tested how these prediced noise annoyance levels.
+Chose P2 as the Common Noise Index (CNI).
+Consisting of a linear model of LA90, LA90-LA10, NEL55
+NEL55 = Number of hourly events that break the 55 dB(A) mark
+
+
+## Notice-events
+De Coensel B, Botteldooren D, De Muer T, Berglund B, Nilsson ME, Lercher P.
+A model for the perception of environmental sound based on notice-events.
+J Acoustic Soc Am 2009; 126: 656–665.
+https://www.academia.edu/download/49889749/A_model_for_the_perception_of_environmen20161026-29154-wb90de.pdf
+
+## Fluctuation and emergence
+Bockstael A, De Coensel B, Lercher P, Botteldooren D editors.
+Influence of temporal structure of the sonic environment on annoyance
+10th International Congress on Noise as a Public Health Problem (ICBEN) 2011. London, UK
+
+## Summaries of acoustical indicators that go beyond continious sound level
+
+I-INCE Publication Number: 2015-1
+SUPPLEMENTAL METRICS FOR DAY/NIGHT AVERAGE SOUND LEVEL AND DAY/EVENING/NIGHT AVERAGE SOUND LEVEL
+Final Report of the I-INCE Technical Study Group on Metrics for Environmental Noise Assessment and Control (TSG 9)
+2015
+
+
+
 ## Intermittency ratio
 Intermittency ratio: A metric reflecting short-term temporal variations of transportation noise exposure.
 https://www.nature.com/articles/jes201556
@@ -117,7 +162,8 @@ Journal of Exposure Science & Environmental Epidemiology volume 26, pages 575–
 > On the basis of practical experience on transportation noise situations,
 > C might not be smaller than 0 and not larger than about 10 dB. For low values of C
 > ...
-> To be able for IR to distinguish between situations with different degrees of intermittency, the criterion for setting C was a preferably uniform spread of IR across the range of exposure situations as they occur in the real world.
+> To be able for IR to distinguish between situations with different degrees of intermittency,
+> the criterion for setting C was a preferably uniform spread of IR across the range of exposure situations as they occur in the real world.
 > The balance between these extreme cases was investigated by numerical simulations of various traffic situations and resulted in C=3 dB.
 
 > Air and railway traffic generally exhibit a high IR,

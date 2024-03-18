@@ -79,3 +79,17 @@ original;noise
 'Beep, bleep (rail)';rail_traffic
 'Rustle (walk, footsteps)'
 'Screech (walk, footsteps)'
+peop;speech
+rtn;road_traffic
+brak;road_traffic
+door;
+rare;
+horn;road_traffic
+busd;road_traffic
+coug;speech
+blin;
+bkmu;music
+musi;music
+troll;
+sire;road_traffic
+whtl;speech

@@ -175,7 +175,7 @@ def soundlevel_for_file(path : str,
     return df, meta
 
 
-def compute_leq(decibels : numpy.array):
+def compute_leq(decibels : numpy.array) -> float:
     """
     Compute Leq indicators from soundlevels
     """
@@ -183,7 +183,7 @@ def compute_leq(decibels : numpy.array):
     mean = numpy.mean(e)
     return 10*numpy.log10(mean)
 
-def compute_ln(decibels: numpy.array, n : int):
+def compute_ln(decibels: numpy.array, n : int) -> float:
     """
     Compute LN indicators from soundlevels
     """
@@ -238,4 +238,81 @@ def compute_background(levels : pandas.Series, window : float = 30.0, ln=90):
     
     return levels
 
+def db_to_power(db):
+    return 10.0**(db/10.0)
+
+def power_to_db(p):
+    return 10.0 * numpy.log10(p)
+
+def compute_intermittency_ratio(levels: pandas.Series, threshold = 3.0) -> float:
+    """
+    Compute Intermittency Ratio (IR)
+
+    Intermittency Ratio is a measure of how much of the soundlevel comes from sound events versus non-events.
+    Thus it is a measure of "eventfulness" in a soundscape.
+    It has primarily been proposed for and tested in the context of transport noise,
+    but has also been applied to lesuire noise et.c.
+
+    IR is a value between 0(%) and 100(%).
+    Small values means that there is a low contribution from sound events.
+    Large values means there is a high contribution from sound events.
+    A value of 0.5 means that 
+
+    Reference:
+    Intermittency ratio: A metric reflecting short-term temporal variations of transportation noise exposure.
+    https://www.nature.com/articles/jes201556
+    Wunderli et al
+    Journal of Exposure Science & Environmental Epidemiology volume 26, pages 575–585 (2016)
+    """
+
+    total_leq = compute_leq(levels.values)
+
+    event_mask = levels > total_leq
+    event_levels = levels.copy()
+    event_levels[~event_mask] = -1000.0 # set background/non-event level to very small
+    event_leq = compute_leq(event_levels.values)
+
+    assert len(event_levels) == len(levels) # computations assume that the time covered is the same
+
+    IR = 100.0 * (db_to_power(event_leq) / db_to_power(total_leq))
+    return IR
+
+
+def compute_event_impacts(events : pandas.DataFrame, levels : pandas.Series):
+    """
+    Compute the impact of each sound event on the overall soundlevel
+
+    Computed by replacing the sound levels of the event with the overall Leq.
+    Positive score means the event contributed noise.
+    Negative score means was less noisy than time period. 
+
+    References
+
+    BCNDataset: Description and Analysis of an Annotated Night Urban Leisure Sound Dataset 
+    On the impact of anomalous noise events on road traffic noise mapping in urban and suburban environments
+    """
+
+    mandatory_columns = set(['start', 'end'])
+    missing_columns = mandatory_columns - set(events.columns)
+    assert missing_columns == set(), missing_columns
+
+    events = events.copy()
+    events['start'] = pandas.to_timedelta(events.start, unit='s')
+    events['end'] = pandas.to_timedelta(events.end, unit='s')
+
+    overall_leq = compute_leq(levels.values)
+
+    def level_impact(event):     
+        s = event['start']
+        e = event['end']
+        masked_levels = levels.copy()
+        masked_levels.loc[s:e] = overall_leq
+        masked_leq = compute_leq(masked_levels.values)
+
+        impact : float = overall_leq - masked_leq
+        return impact
+
+    out = events.apply(level_impact, axis=1)
+
+    return out
 

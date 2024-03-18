@@ -57,7 +57,7 @@ def legend_without_duplicate_labels(ax, loc='lower right', **kwargs):
     ax.legend(by_label.values(), by_label.keys(), loc=loc, **kwargs)
 
 
-def plot_single_track_labels(ax, s, colors=None):
+def plot_single_track_labels(ax, s, colors=None, alpha=1.0):
     """
     Plot labels on single track format
     """
@@ -79,7 +79,7 @@ def plot_single_track_labels(ax, s, colors=None):
     
     #print(sections[sections['color'].isna()])
 
-    plot_events(ax, sections, color=color_column, label='label', alpha=1.0)
+    plot_events(ax, sections, color=color_column, label='label', alpha=alpha)
     legend_without_duplicate_labels(ax)
 
 

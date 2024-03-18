@@ -74,6 +74,7 @@ def compute_spectrograms(audio_root, files, **kwargs):
 
         audio_path = get_audio_path(row['dataset'], row['clip'], audio_root)
         ss, _ = spectrogram_for_file(audio_path, **kwargs)
+        ss.columns = [ str(c) for c in ss.columns ]
 
         log.info('compute-spectrogram', path=audio_path, results=len(ss))
         out.append(ss)
@@ -114,7 +115,7 @@ def preprocess_spectrograms():
 
 def main():
     preprocess_spectrograms()
-    #preprocess_soundlevels()
+    preprocess_soundlevels()
 
 
 if __name__ == '__main__':
