@@ -150,4 +150,27 @@ def single_track_labels(multi : pandas.DataFrame, mixed_class='mixed'):
     return out
 
 
+def clip_events(events,
+    start_column='start',
+    end_column='end',
+    start=None,
+    end=None):
+
+    """
+    Adjust events such that no event has start time before @start
+    and no event has end time after @end
+    """
+    
+    def clip_event(e): 
+        if start is not None:
+            if e[start_column] < start: 
+                e[start_column] = start
+        if end is not None:
+            if e[end_column] > end: 
+                e[end_column] = end
+        return e
+                
+    events = events.apply(clip_event, axis=1)
+    
+    return events
 

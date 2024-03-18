@@ -28,10 +28,7 @@ Time-period.
 #### Noise-level attribution
 How much of the overall soundlevel/noise level.
 
-- Implement Intermittency Ratio metric.
 - Implement SNR event metric. Compute for all labeled events
-- Implement LAeq impact metric. Compute for all labeled events.
-!! confounder, only computed for some events
 - Check out BCN Dataset.
 Identify how much overlapping events there are.
 Compute the LAeq impact. Try to apply the single dominant assumption.
