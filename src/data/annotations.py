@@ -1,5 +1,5 @@
-
 import os
+import math
 
 import pandas
 
@@ -139,13 +139,24 @@ def dense_to_events(df : pandas.DataFrame,
 
     return out
 
+
+def make_multitrack_labels(df, classes=None, time_resolution=0.100):
+    last = df['end'].max()
+    out = make_continious_labels(df, length=math.ceil(last/time_resolution),
+                                 time_resolution=time_resolution,
+                                 class_column='noise_class',
+                                 classes=classes)
+    
+    return out
+
+
 def single_track_labels(multi : pandas.DataFrame, mixed_class='mixed'):
 
     classes_active = multi.sum(axis=1)
     out = pandas.Series(['background']*len(multi), index=multi.index, dtype=pandas.StringDtype())
 
     # Simple definition of mixed: anytime there is any form of overlap in the labels
-    out.loc[classes_active >= 2] = 'mixed'
+    out.loc[classes_active >= 2] = mixed_class
     out.loc[classes_active == 1] = multi.idxmax(axis=1)
     return out
 
