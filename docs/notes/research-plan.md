@@ -221,6 +221,48 @@ Each activation of a source has a short (soundlevel) sequence associated with it
 Assuming that LAF/LAS captures well enough.
 
 
+# Notes
+
+Considering the BCN dataset
+Impact of each sound event on Leq beem to be very small?
+Most events, even with delta over +5 dB have estimated impact on 1 minute Leq under 0.01
+!? is this even correct. TODO: add some unit test?
+Depends probably a lot on duration of event. And loudness.
+
+Understanding the events.
+Maybe plot event soundlevels from many events, on top of eachother.
+Using grey before+after to indicate relation to background/other sounds?
+Have plot_clip_sections starting point for this
+
+## Event co-occurrence
+
+Event co-occurence
+How often does it happen based on the annotations?
+If using an analysis window approach, depends on window length
+For a typical audio classifier model, would be around 1 second
+
+Multiple possible defintions
+
+- Events of any class.
+- Events from different coarse classes
+- Events from different fine grained classes
+
+On BCN dataset seems to be around 8% of the time for 1 second windows on the original classes
+1846 out of 21832 seconds. Using non-overlapping windows.
+
+This could be enough for a test set?
+For example for detecting "mixed".
+Or checking that loudest is being returned.
+Comparing own approaches to pretrained etc
+
+There are 3 files.
+Could use them as train/test using leave-one-out cross-validation?
+
+How much is going in terms of sound/noise level on in these events?
+A bit more than for non annotated.
+
+Verified visually that the picked out events do have the correct labels categories.
+none/single/multiple
 
 
 # Ideas

@@ -29,24 +29,14 @@ Time-period.
 #### Noise-level attribution
 How much of the overall soundlevel/noise level can we account for?
 
-- Show dB impact for our +5dB event periods. Plot delta (max) vs impact, for all events?
-- Fix aggregatation of impact per-class, per N minutes.
-? Sum only the +0 dB cases. Use decibel summation?
-? Direct calculation. Try to do replacements of all events in class
 - Plot aggregated impact over entire clips
 - Investigate overall impact. Check if the explanations make sense
 - Try to compute SPL using the sensitivity values given
-- Plot impact in high resolution timeline
 
 #### Open questions
 
-- EDA. How much of the audio is annotated?
-Remaining is "unknown" class. How much is it in terms of LEQ/SEL?
-- EDA. Co-occurence of events. Mixed class
-
 #### Misc
 
-- Extract sparse events (start, end) from delta soundlevels, based on thresholding
 - Move analysis into a .py module
 - Run analysis in CI
 
@@ -57,7 +47,11 @@ Remaining is "unknown" class. How much is it in terms of LEQ/SEL?
 How much of the events can we detect automatically?
 Can we get high performance on the most noticable/salient events?
 
-- Check if we can get away with 1 second window. Potentially more frequent hop, ex 100ms
+- Check if we can get away with 1 second window.
+Seems OK. There is some mixed sounds in such a small period, but not that much. Approx 8% on BCN.
+If we can correctly 
+Use masking of the times to estimate how much each contributes?
+
 - Fixup the SED pipeline. python -m src.sed.train
 - Add SED pipeline to CI
 - Evaluation in terms of precision/recall
