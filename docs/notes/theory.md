@@ -84,7 +84,8 @@ Could maybe try to mask also surrounding (labled) events? To better estimate the
 
 Impact is relative to the 5 min of 𝐿𝐴𝑒𝑞 measured surrounding the event.
 To obtain the final impact value, the 𝐿𝐴𝑒𝑞 of the signal is obtained.
-Then, the labeled event is removed and replaced by an interpolated value of the background noise to maintain a continuous energy of the signal. Finally, the impact is measured as the subtraction between the initial 𝐿𝐴𝑒𝑞 and the 𝐿𝐴𝑒𝑞 without the labeled event.
+Then, the labeled event is removed and replaced by an interpolated value of the background noise to maintain a continuous energy of the signal.
+Finally, the impact is measured as the subtraction between the initial 𝐿𝐴𝑒𝑞 and the 𝐿𝐴𝑒𝑞 without the labeled event.
 
 Described in
 BCNDataset: Description and Analysis of an Annotated Night Urban Leisure Sound Dataset 

@@ -278,19 +278,23 @@ def compute_intermittency_ratio(levels: pandas.Series, threshold = 3.0) -> float
     return IR
 
 
-def compute_event_impacts(events : pandas.DataFrame, levels : pandas.Series):
+def compute_event_impacts(events : pandas.DataFrame, levels : pandas.Series, window = '5min'):
     """
-    Compute the impact of each sound event on the overall soundlevel
+    Compute the impact of each sound event on the overall soundlevel (Leq)
+
+    NOTE: levels must have values for time both before and after the events.
 
     Computed by replacing the sound levels of the event with the overall Leq.
-    Positive score means the event contributed noise.
-    Negative score means was less noisy than time period. 
+    Positive score means the event contributed noise above the average.
+    Negative score means was less noisy than average for surrounding time period. 
 
     References
 
     BCNDataset: Description and Analysis of an Annotated Night Urban Leisure Sound Dataset 
     On the impact of anomalous noise events on road traffic noise mapping in urban and suburban environments
     """
+    
+    window = pandas.Timedelta(window)
 
     mandatory_columns = set(['start', 'end'])
     missing_columns = mandatory_columns - set(events.columns)
@@ -300,16 +304,27 @@ def compute_event_impacts(events : pandas.DataFrame, levels : pandas.Series):
     events['start'] = pandas.to_timedelta(events.start, unit='s')
     events['end'] = pandas.to_timedelta(events.end, unit='s')
 
-    overall_leq = compute_leq(levels.values)
-
     def level_impact(event):     
-        s = event['start']
-        e = event['end']
+        event_start = event['start']
+        event_end = event['end']
+        event_center = (event_end + event_start)/2.0
+
+        # compute Leq of the surrounding area
+        surrounding_start = event_center - (window/2.0)
+        surrounding_end = event_center + (window/2.0)
+        surrounding_levels = levels.loc[surrounding_start:surrounding_end]
+        surrounding_duration = surrounding_levels.index.max() - surrounding_levels.index.min()
+        if surrounding_duration < (window/2.0):
+            print('Warning: Insufficient levels data surrounding event', event.name, surrounding_duration)
+        surrounding_leq = compute_leq(levels.values)
+
+        # compute Leq with the event maked out
         masked_levels = levels.copy()
-        masked_levels.loc[s:e] = overall_leq
+        masked_levels.loc[event_start:event_end] = surrounding_leq
         masked_leq = compute_leq(masked_levels.values)
 
-        impact : float = overall_leq - masked_leq
+        # impact of the event is the difference
+        impact : float = surrounding_leq - masked_leq
         return impact
 
     out = events.apply(level_impact, axis=1)

@@ -150,7 +150,7 @@ def make_multitrack_labels(df, classes=None, time_resolution=0.100):
     return out
 
 
-def single_track_labels(multi : pandas.DataFrame, mixed_class='mixed'):
+def single_track_labels(multi : pandas.DataFrame, mixed_class='mixed') -> pandas.Series:
 
     classes_active = multi.sum(axis=1)
     out = pandas.Series(['background']*len(multi), index=multi.index, dtype=pandas.StringDtype())

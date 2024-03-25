@@ -11,6 +11,7 @@ Details are in the research plan.
 
 # Checkpoints
 
+**CHECKPOINT**
 - Are we able to answer our questions (well enough) with current data?
 Assume yes for now. Revisit in March 24.
 - ?
@@ -28,14 +29,14 @@ Time-period.
 #### Noise-level attribution
 How much of the overall soundlevel/noise level can we account for?
 
-- BCN Dataset. How much overlapping events are there? Mixed ratio
-- Plot impact in high resolution timeline
+- Show dB impact for our +5dB event periods. Plot delta (max) vs impact, for all events?
 - Fix aggregatation of impact per-class, per N minutes.
 ? Sum only the +0 dB cases. Use decibel summation?
 ? Direct calculation. Try to do replacements of all events in class
 - Plot aggregated impact over entire clips
-- Investigate overall impact. Check if the explanations
+- Investigate overall impact. Check if the explanations make sense
 - Try to compute SPL using the sensitivity values given
+- Plot impact in high resolution timeline
 
 #### Open questions
 

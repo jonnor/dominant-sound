@@ -222,7 +222,43 @@ Assuming that LAF/LAS captures well enough.
 
 
 
+
 # Ideas
+
+## How well can pre-trained models classify the dominant sound source?
+
+Synthesize mixtures.
+Consisting of
+1) background noise
+2) event A
+3) event B
+
+Difference between levels of event A and B are varied. From for example -12 dB(A) + 12 dB(A)
+Check which class the output is. Check if the louder sound is the one picked.
+
+Also vary the difference between levels and background levels?
+Event levels being +0 dB to +20 dB LAeq.
+
+Do this for a large set of event classes.
+See if there are certain events classes or pairs where misclassifications are common.
+
+Background should be? White noise? Babble noise? Or real soundscapes (that are relatively constant)?
+
+For each analysis window.
+Of ~1 second, as is common with pretrained models.
+
+Pretrain model examples. YAMNet, PANNs, OpenL3, PaSST. Trained on AudioSet.
+
+Research question: Can pre-trained models be used to classify (dominant) noise source?
+Hypothesis.
+No, not as-is. There will be types of sound where class probability is not connected to loudness.
+As-is do not have a way to separate just background or mixed scenarios.
+Can it be retrofitted based on the class probabilities? Or basic pre-filtering on the soundlevels?
+
+Try to pre-filter the audio/spectrograms with A weighting. See if this improves performance
+Try to train with targets that are the dominant sound.
+
+
 
 ## Synthetic datasets
 
