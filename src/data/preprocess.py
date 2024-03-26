@@ -170,6 +170,7 @@ def preprocess_embeddings():
 
     configurations = {
         'yamnet-1': dict(model='yamnet'),
+        #'panns-1': dict(model='panns'),
     }
 
     for name, config in configurations.items():
@@ -182,7 +183,7 @@ def preprocess_embeddings():
             # TODO: support other models
             if config['model'] == 'yamnet':
                 compute_store_yamnet(audio_path, row['dataset'], row['clip'], embedding_path=out_path)
-            if config['model'] == 'panns':
+            elif config['model'] == 'panns':
                 compute_store_panns(audio_path, row['dataset'], row['clip'], embedding_path=out_path)
             else:
                 raise ValueError("Unsupported model")
