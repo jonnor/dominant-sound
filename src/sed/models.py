@@ -5,6 +5,7 @@ def build_sednet(input_shape,
     rnn_units=(32, 32),
     dense_units=(32,),
     n_classes=1,
+    out_activation='sigmoid',
     dropout=0.5
     ):
     """
@@ -45,7 +46,7 @@ def build_sednet(input_shape,
         spec_x = Dropout(dropout)(spec_x)
 
     spec_x = TimeDistributed(Dense(n_classes))(spec_x)
-    out = Activation('sigmoid', name='strong_out')(spec_x)
+    out = Activation(out_activation, name='strong_out')(spec_x)
     
     model = Model(inputs=spec_start, outputs=out)
     
@@ -58,6 +59,7 @@ def build_sedgru(input_shape,
     rnn_units=(32, 32),
     dense_units=(32,),
     n_classes=1,
+    out_activation='sigmoid',
     dropout=0.5,
     ):
     """
@@ -85,7 +87,7 @@ def build_sedgru(input_shape,
         spec_x = Dropout(dropout)(spec_x)
 
     spec_x = TimeDistributed(Dense(n_classes))(spec_x)
-    out = Activation('sigmoid', name='strong_out')(spec_x)
+    out = Activation(out_activation, name='strong_out')(spec_x)
     
     model = Model(inputs=spec_start, outputs=out)
     

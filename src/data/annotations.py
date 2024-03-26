@@ -102,12 +102,12 @@ def make_continious_labels(events : pandas.DataFrame,
     # Create empty covering entire spectrogram
     duration = length * time_resolution
     ix = pandas.timedelta_range(start=pandas.Timedelta(seconds=0.0),
-                    end=pandas.Timedelta(seconds=duration),
                     freq=freq,
+                    periods=length+1,
                     closed='left',
     )
     ix.name = 'time'
-    df = pandas.DataFrame({}, columns=classes, index=ix)
+    df = pandas.DataFrame({}, columns=classes, index=ix, dtype=int)
     assert len(df) == length, (len(df), length)
     df = df.fillna(0)
     

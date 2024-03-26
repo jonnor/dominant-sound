@@ -1,7 +1,14 @@
 
+import pandas
+import numpy
 
 # extract overlapped time-windows for spectrograms and labels
-def compute_windows(arr, frames, pad_value=0.0, overlap=0.5, step=None):
+def compute_windows(arr : numpy.array, frames : int,
+        pad_value=0.0,
+        overlap=0.5,
+        step=None,
+        ):
+
     if step is None:
         step = int(frames * (1-overlap))
         

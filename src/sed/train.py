@@ -1,11 +1,17 @@
 
 from src.utils.fileutils import get_project_root
-from src.data.annotations import load_noise_classes, load_dataset_annotations, count_events_in_period
+from src.data.annotations import \
+    load_noise_classes, load_dataset_annotations,\
+    count_events_in_period, make_multitrack_labels, make_continious_labels
+from src.sed.preprocess import compute_windows
 
 import os
+import math
 
+import numpy
 import pandas
 import tensorflow.keras
+import keras
 
 def weighted_binary_crossentropy(zero_weight, one_weight):
     """
@@ -35,13 +41,13 @@ def compute_class_weights(y_train):
     return w
 
 
-def build_model(input_shape, dropout=0.5, lr=0.01, class_weights=None, name='sedgru'):
+def build_model(input_shape, dropout=0.5, lr=0.01, class_weights=None, name='sedgru', n_classes=1):
 
     from .models import build_sedgru, build_sednet
     
     # Model
     if name == 'sednet':
-        model = build_sednet(input_shape, n_classes=1,
+        model = build_sednet(input_shape, n_classes=n_classes,
                          filters=10,
                          cnn_pooling=[2, 2, 2],
                          rnn_units=[5, 5],
@@ -49,10 +55,10 @@ def build_model(input_shape, dropout=0.5, lr=0.01, class_weights=None, name='sed
                          dropout=dropout,
                         )
     elif name == 'sedgru':
-        model = build_sedgru(input_shape, n_classes=1,
-                             reduction_units=(8,),
-                             rnn_units=[5, 5],
-                             dense_units=[16],
+        model = build_sedgru(input_shape, n_classes=n_classes,
+                             reduction_units=(32,),
+                             rnn_units=[16, 16],
+                             dense_units=[32],
                              dropout=dropout)
     else:
         raise ValueError('')
@@ -78,7 +84,6 @@ def plot_history(history):
     from matplotlib import pyplot as plt
     
     fig, axs = plt.subplots(ncols=2, figsize=(10, 4))
-    history = pandas.DataFrame(hist.history)
     history.index.name = 'epoch'
     history.plot(ax=axs[0], y=['loss', 'val_loss'])
     history.plot(ax=axs[1], y=['pr_auc', 'val_pr_auc'])
@@ -88,6 +93,7 @@ def plot_history(history):
     axs[0].axhline(0.10, ls='--', color='black', alpha=0.5)
     axs[0].set_ylim(0, 1.0)
 
+    return fig
 
 # How often are events within N seconds of eachother. Inside the same N second window
 def count_events_in_window(annotations : pandas.DataFrame,
@@ -175,13 +181,10 @@ def train_eval_windows(windows, target='label', group='clip'):
     )
 
     results = pandas.DataFrame.from_records(results)
-    print(results.columns)
-
-    print(results)
 
     return results
 
-def load_data():
+def load_data_windowed():
 
     soundlevels_config = 'LAF'
     embeddings_config = 'yamnet-1'
@@ -195,7 +198,6 @@ def load_data():
     annotations = load_dataset_annotations().sort_index(level=(0, 1))
     annotations['noise_class'] = annotations.annotation.map(classes.noise.to_dict()).fillna('unknown')
     #print(annotations.head(3))
-
 
     # Create analysis windows
     window = pandas.Timedelta(seconds=0.96) # to match YAMNet size
@@ -219,55 +221,148 @@ def load_data():
     assert len(merged) == len(labeled), (len(merged), len(labeled))
 
     return merged
+
+
+def load_data_tracks():
    
+    soundlevels_config = 'LAF'
+    embeddings_config = 'yamnet-1'
+    dataset = 'bcn'
+    class_column = 'noise_class'
 
-def main():
-    # FIXME: support data specified on input
+    project_root = get_project_root()
 
-    windows = load_data().reset_index()
+    # Load annotations
+    classes = load_noise_classes()
+    annotations = load_dataset_annotations().loc[dataset].sort_index(level=(0, 1))
+    annotations['noise_class'] = annotations.annotation.map(classes.noise.to_dict()).fillna('unknown')
+    #print(annotations.head(3))
 
-    label_counts = windows['label'].value_counts(dropna=False)
-    print(label_counts)
+    # Load preprocessed data    
+    embeddings_path = os.path.join(project_root, f'data/processed/embeddings/{embeddings_config}.parquet/')
+    embeddings = pandas.read_parquet(embeddings_path).loc[dataset].sort_index(level=(0, 1))
+    embeddings = embeddings.reset_index()
+    embeddings['time'] = pandas.to_timedelta(embeddings['time'], unit='seconds')
+    embeddings = embeddings.set_index(['clip', 'time']).drop(columns=['index'])
 
-    train_eval_windows(windows)
+    return embeddings, annotations
 
 
-    return
+def prepare_tracks(features, annotations,
+        target_column='noise_class',
+        window_length = 100,
+        ):
 
-    model = build_model(input_shape=(window_length, 32))
+    # Create label tracks
+    classes = sorted(annotations[target_column].unique())
 
-    epochs = 400
-    batch_size = 8*64
+    # Chop data into analysis windows
+    feature_windows = []
+    label_windows = []
+    clip_windows = []
+    window_indexes = []
 
-    # Compute the spectral background across entire clip
-    # Used for spectral subtraction, a type of preprocessing/normalization technique that is often useful
-    Xm = numpy.expand_dims(numpy.mean(numpy.concatenate([s.T for s in dataset.spectrogram]), axis=0), -1)
+    for clip_idx, feat in features.groupby('clip'):
+        ann = annotations.loc[clip_idx]
+        track = make_continious_labels(ann, length=len(feat),
+            time_resolution=0.48,
+            class_column=target_column,
+            classes=classes,
+        )
+        assert len(track) == len(feat)
 
-    class_weights = compute_class_weights(train[1])
-    #class_weights = None # disable class weights
-    print('Class weights', class_weights)
+        f = compute_windows(feat.values.T, frames=window_length)
+        l = compute_windows(track.values.T, frames=window_length)
+        assert len(f) == len(l)
+        assert f.index.all() == l.index.all()
+
+        print('w', clip_idx, track.shape, feat.shape)
+
+        window_indexes += list(f.index)
+        feature_windows += list(f.values)
+        label_windows += list(l.values)
+        clip_windows += ([ clip_idx ] * len(f))
+
+    windows = pandas.DataFrame({
+        'features': feature_windows,
+        'labels': label_windows,
+        'clip': clip_windows,
+        'window': window_indexes,
+    }).set_index(['clip', 'window'])
+
+    return windows
+
+def train_evaluate_tracks(windows, model,
+        epochs = 100,
+        batch_size = 8*64,
+        ):
+
+    X = numpy.stack([ w.T for w in windows['features']])
+    Y = numpy.stack([ w.T for w in windows['labels']])
 
     # make sure to stop when model does not improve anymore / starts overfitting
-    early_stop = tensorflow.keras.callbacks.EarlyStopping(monitor='val_loss', patience=50)
+    #early_stop = tensorflow.keras.callbacks.EarlyStopping(monitor='val_loss', patience=50)
 
     from tqdm.keras import TqdmCallback
     progress_bar = TqdmCallback()
+    tensorboard = keras.callbacks.TensorBoard(log_dir="logs")
+
+    print('set', X.shape, Y.shape)
+    print('Training start\n\n')
 
     # TODO: add support for Tensorboard
-    hist = model.fit(x=train[0], y=train[1],
-        validation_data=val,
+    hist = model.fit(x=X, y=Y,
+        #validation_data=val,
+        validation_split=0.25,
         epochs=epochs,
         batch_size=batch_size,
         verbose=False, # using progress bar callback instead
         callbacks=[
             progress_bar,
-            #lr_callback,
             #early_stop,
+            tensorboard,
         ],
 
     )
 
-    plot_history(hist)    
+    history = pandas.DataFrame(hist.history)
+    fig = plot_history(history)
+    fig.savefig('history.png')
+
+
+def main():
+    # FIXME: support data specified on input
+
+    if False:
+
+        windows = load_data_windowed().reset_index()
+
+        label_counts = windows['label'].value_counts(dropna=False)
+        print(label_counts)
+
+        train_eval_windows(windows)
+
+        return
+
+    feature_size = 1024
+    hop_duration = 0.48
+    window_duration = 5.0
+    window_length = math.ceil(window_duration / hop_duration)
+
+    # Load data
+    embeddings, annotations = load_data_tracks()
+
+    assert embeddings.shape[1] == feature_size, embeddings.shape 
+
+    model = build_model(input_shape=(window_length, feature_size), n_classes=4, lr=0.001, dropout=0.0)
+    model.summary()
+
+    windows = prepare_tracks(embeddings, annotations, window_length=window_length)
+    print('windows', windows.shape)
+
+    results = train_evaluate_tracks(windows, model)
+    
+
 
 if __name__ == '__main__':
     main()
