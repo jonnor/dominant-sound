@@ -56,9 +56,9 @@ def build_model(input_shape, dropout=0.5, lr=0.01, class_weights=None, name='sed
                         )
     elif name == 'sedgru':
         model = build_sedgru(input_shape, n_classes=n_classes,
-                             reduction_units=(32,),
-                             rnn_units=[16, 16],
-                             dense_units=[32],
+                             reduction_units=(16, 8),
+                             rnn_units=[8, 8],
+                             dense_units=[16, 8],
                              dropout=dropout)
     else:
         raise ValueError('')
@@ -251,6 +251,7 @@ def load_data_tracks():
 def prepare_tracks(features, annotations,
         target_column='noise_class',
         window_length = 100,
+        overlap = 0.0,
         ):
 
     # Create label tracks
@@ -263,6 +264,7 @@ def prepare_tracks(features, annotations,
     window_indexes = []
 
     for clip_idx, feat in features.groupby('clip'):
+        feat = feat.droplevel(0)
         ann = annotations.loc[clip_idx]
         track = make_continious_labels(ann, length=len(feat),
             time_resolution=0.48,
@@ -270,13 +272,18 @@ def prepare_tracks(features, annotations,
             classes=classes,
         )
         assert len(track) == len(feat)
+        assert track.index.all() == feat.index.all()
+        #print(feat.head())
+        #print(track.head())
+        class_activity = track.mean(axis=0)
+        print(class_activity)
 
-        f = compute_windows(feat.values.T, frames=window_length)
-        l = compute_windows(track.values.T, frames=window_length)
+        f = compute_windows(feat.values.T, frames=window_length, overlap=overlap)
+        l = compute_windows(track.values.T, frames=window_length, overlap=overlap)
         assert len(f) == len(l)
         assert f.index.all() == l.index.all()
 
-        print('w', clip_idx, track.shape, feat.shape)
+        #print('w', clip_idx, track.shape, feat.shape)
 
         window_indexes += list(f.index)
         feature_windows += list(f.values)
@@ -293,7 +300,7 @@ def prepare_tracks(features, annotations,
     return windows
 
 def train_evaluate_tracks(windows, model,
-        epochs = 100,
+        epochs = 500,
         batch_size = 8*64,
         ):
 
@@ -352,9 +359,21 @@ def main():
     # Load data
     embeddings, annotations = load_data_tracks()
 
+    annotations['duration'] = annotations['end'] - annotations['start']
+
+    # TEMP: limit to medium to long events
+    annotations = annotations[annotations.duration > 1.0]
+
+    # TEMP: limit to certain classes
+    annotations = annotations[annotations.noise_class.isin(['road_traffic'])]
+
+    class_durations = annotations.groupby('noise_class').duration.sum()
+    print('class durations', class_durations)
+
     assert embeddings.shape[1] == feature_size, embeddings.shape 
 
-    model = build_model(input_shape=(window_length, feature_size), n_classes=4, lr=0.001, dropout=0.0)
+    n_classes = len(class_durations.index)
+    model = build_model(input_shape=(window_length, feature_size), n_classes=n_classes, lr=0.001, dropout=0.25)
     model.summary()
 
     windows = prepare_tracks(embeddings, annotations, window_length=window_length)

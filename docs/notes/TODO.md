@@ -57,7 +57,7 @@ Use masking of the times to estimate how much each contributes?
 - Implement output of AudioSet scores from YAMNet and PANNs
 - Plot stock YAMNet and PANNs results vs annotations
 
-- Setup SED pipeline with CRNN and RNN on embeddings
+- Setup spectrogram CRNN/RNN
 - Add SED pipeline to CI
 - Evaluation in terms of precision/recall
 - Evaluation in terms of dB error
