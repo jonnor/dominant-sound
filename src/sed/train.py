@@ -114,12 +114,57 @@ def annotation_to_windows(annotations,
     return out
 
 
+def label_windows(windows):
 
-def main():
-    # FIXME: support data specified on input
+    df = windows.copy()
+
+    co_occuring = df.apply(lambda s: s>0.0).sum(axis=1) > 1.0
+    has_annotation = df.apply(lambda s: s>0.0).sum(axis=1) > 0.0
+    df.loc[(~co_occuring & has_annotation), 'annotations'] = 'single'
+    df.loc[co_occuring, 'annotations'] = 'multiple'
+    df.loc[df['annotations'].isna(), 'annotations'] = 'none'
+
+    # label single events based the one present
+    df.loc[df['annotations'] == 'single', 'label'] = df.idxmax(axis=1, numeric_only=True)
+    df.loc[df['annotations'] == 'none', 'label'] = 'none'
+    df.loc[df['annotations'] == 'multiple', 'label'] = 'multiple'
+
+    assert len(df) == len(windows)
+    return df
+
+def train_eval_windows(windows, target='label', group='clip'):
+
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.model_selection import cross_val_score, GroupShuffleSplit
+
+    estimator = LogisticRegression(max_iter=1000)
+
+    features = [ c for c in windows.columns if c.startswith('emb.e') ]
+    assert len(features) >= 1, features
+    X = windows[features]
+    Y = windows[target]
+    groups = windows[group]
+
+    with_na_label = Y[Y.isna()]
+    assert len(with_na_label) == 0, with_na_label
+
+    n_classes = Y.nunique()
+    assert n_classes >= 1, n_classes 
+    assert len(X) == len(Y)
+
+    splitter = GroupShuffleSplit(test_size=1, n_splits=3)
+    scores = cross_val_score(estimator, X=X, y=Y,
+        groups=groups, cv=splitter,
+        error_score='raise', scoring='f1_macro', verbose=2)
+
+    print(scores)
+
+def load_data():
 
     soundlevels_config = 'LAF'
     embeddings_config = 'yamnet-1'
+    dataset = 'bcn'
+    class_column = 'noise_class'
 
     project_root = get_project_root()
 
@@ -127,25 +172,43 @@ def main():
     classes = load_noise_classes()
     annotations = load_dataset_annotations().sort_index(level=(0, 1))
     annotations['noise_class'] = annotations.annotation.map(classes.noise.to_dict()).fillna('unknown')
-    print(annotations.head(3))
+    #print(annotations.head(3))
 
-    files = annotations.reset_index().set_index(['dataset', 'clip']).index.unique()
-    files = files.to_frame()
-    print(files.head())
 
+    # Create analysis windows
     window = pandas.Timedelta(seconds=0.96) # to match YAMNet size
-    windows = annotation_to_windows(annotations, window=window, class_column='noise_class')
-    print(windows)
+    windows = annotation_to_windows(annotations, window=window, class_column=class_column)
+    labeled = label_windows(windows)
+    labeled = labeled.loc[dataset]
+    #print(labeled.head())
 
     # Load preprocessed data
     soundlevel_path = os.path.join(project_root, f'data/processed/soundlevels/{soundlevels_config}.parquet')
-    soundlevels = pandas.read_parquet(soundlevel_path).droplevel(0).sort_index(level=(0, 1))
+    soundlevels = pandas.read_parquet(soundlevel_path).droplevel(0).loc[dataset].sort_index(level=(0, 1))
     
     embeddings_path = os.path.join(project_root, f'data/processed/embeddings/{embeddings_config}.parquet/')
-    embeddings = pandas.read_parquet(embeddings_path).sort_index(level=(0, 1, 2))
+    embeddings = pandas.read_parquet(embeddings_path).loc[dataset].sort_index(level=(0, 1))
+    embeddings = embeddings.reset_index()
+    embeddings['time'] = pandas.to_timedelta(embeddings['time'], unit='seconds')
+    embeddings = embeddings.set_index(['clip', 'time'])
 
-    print(embeddings.shape)
-    print(embeddings.head(10))
+    # attach embeddings to windows
+    merged = pandas.merge(labeled, embeddings.add_prefix('emb.'), right_index=True, left_index=True)
+    assert len(merged) == len(labeled), (len(merged), len(labeled))
+
+    return merged
+   
+
+def main():
+    # FIXME: support data specified on input
+
+    windows = load_data().reset_index()
+
+    label_counts = windows['label'].value_counts(dropna=False)
+    print(label_counts)
+
+    train_eval_windows(windows)
+
 
     return
 
