@@ -135,9 +135,20 @@ def label_windows(windows):
 def train_eval_windows(windows, target='label', group='clip'):
 
     from sklearn.linear_model import LogisticRegression
-    from sklearn.model_selection import cross_val_score, GroupShuffleSplit
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.decomposition import PCA
+    from sklearn.pipeline import make_pipeline
 
-    estimator = LogisticRegression(max_iter=1000)
+    from sklearn.model_selection import cross_validate, GroupShuffleSplit
+
+
+    estimator = make_pipeline(
+        #PCA(n_components=100),
+        LogisticRegression(max_iter=1000),
+        #KNeighborsClassifier(n_neighbors=10),
+        #RandomForestClassifier(n_estimators=100, max_depth=10),
+    )
 
     features = [ c for c in windows.columns if c.startswith('emb.e') ]
     assert len(features) >= 1, features
@@ -153,11 +164,22 @@ def train_eval_windows(windows, target='label', group='clip'):
     assert len(X) == len(Y)
 
     splitter = GroupShuffleSplit(test_size=1, n_splits=3)
-    scores = cross_val_score(estimator, X=X, y=Y,
-        groups=groups, cv=splitter,
-        error_score='raise', scoring='f1_macro', verbose=2)
+    results = cross_validate(estimator, X=X, y=Y,
+        groups=groups,
+        cv=splitter,
+        error_score='raise',
+        scoring='f1_macro',
+        verbose=2,
+        #return_estimator=True,
+        return_train_score=True,
+    )
 
-    print(scores)
+    results = pandas.DataFrame.from_records(results)
+    print(results.columns)
+
+    print(results)
+
+    return results
 
 def load_data():
 
