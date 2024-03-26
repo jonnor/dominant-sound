@@ -33,6 +33,10 @@ from pathlib import Path
 from panns_inference.pytorch_utils import move_data_to_device
 from panns_inference.config import labels, classes_num
 
+def create_folder(fd):
+    if not os.path.exists(fd):
+        os.makedirs(fd)
+
 class Cnn14_DecisionLevelMax(nn.Module):
     def __init__(self, sample_rate, window_size, hop_size, mel_bins, fmin, 
         fmax, classes_num, interpolate_mode='nearest', interpolate_ratio=32):
@@ -135,8 +139,9 @@ class Cnn14_DecisionLevelMax(nn.Module):
 
         # MODIFIED. The framewise_embedding 
         output_dict = {
-            'framewise_embedding': x,
+            'segmentwise_embedding': x,
             'framewise_output': framewise_output,
+            'segmentwise_output': segmentwise_output,
             'clipwise_output': clipwise_output,
         }
 
@@ -154,7 +159,6 @@ class SoundEventDetection(object):
         """
         if not checkpoint_path:
             checkpoint_path='{}/panns_data/Cnn14_DecisionLevelMax.pth'.format(str(Path.home()))
-        print('Checkpoint path: {}'.format(checkpoint_path))
 
         if not os.path.exists(checkpoint_path) or os.path.getsize(checkpoint_path) < 3e8:
             create_folder(os.path.dirname(checkpoint_path))
@@ -172,7 +176,8 @@ class SoundEventDetection(object):
         if model is None:
             self.model = Cnn14_DecisionLevelMax(sample_rate=32000, window_size=1024, 
                 hop_size=320, mel_bins=64, fmin=50, fmax=14000, 
-                classes_num=self.classes_num, interpolate_mode=interpolate_mode, interpolate_ratio)
+                classes_num=self.classes_num, interpolate_mode=interpolate_mode,
+                interpolate_ratio=interpolate_ratio)
         else:
             self.model = model
         
@@ -182,10 +187,9 @@ class SoundEventDetection(object):
         # Parallel
         if 'cuda' in str(self.device):
             self.model.to(self.device)
-            print('GPU number: {}'.format(torch.cuda.device_count()))
             self.model = torch.nn.DataParallel(self.model)
         else:
-            print('Using CPU.')
+            pass
 
     def inference(self, audio, output='framewise_output'):
         audio = move_data_to_device(audio, self.device)
@@ -200,8 +204,4 @@ class SoundEventDetection(object):
         framewise_output = output_dict[output].data.cpu().numpy()
 
         return framewise_output
-
-    # MODIFIED: this method is new
-    def embed(self, audio):
-        return self.inference(audio, output='framewise_embedding')
 

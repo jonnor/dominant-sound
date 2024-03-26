@@ -9,7 +9,7 @@ from src.utils.dataframe import flatten_dataframes
 from src.data.annotations import load_dataset_annotations
 from src.features.soundlevel import soundlevel_for_file
 from src.features.spectrogram import spectrogram_for_file
-from src.features import yamnet_embeddings
+from src.features import yamnet_embeddings, panns_embed
 from src.utils.dataframe import flatten_dataframes
 from .audio import get_audio_path
 
@@ -134,6 +134,26 @@ def compute_store_yamnet(audio_path, dataset, clip, embedding_path=None):
             embedding.to_parquet(embedding_chunk_path)
 
 
+def compute_store_panns(audio_path, dataset, clip, embedding_path=None):
+    
+    generator = panns_embed.process_audio_file(audio_path)
+    for i, chunk in enumerate(generator):
+        scores, embedding = chunk
+        scores['dataset'] = dataset
+        scores['clip'] = clip
+        scores = scores.reset_index().set_index(['dataset', 'clip', 'time'])
+        # TODO: support storing scores
+    
+        embedding['dataset'] = dataset
+        embedding['clip'] = clip
+        embedding = embedding.reset_index().set_index(['dataset', 'clip', 'time'])
+        embedding_chunk_path = os.path.join(embedding_path, f'dataset={dataset}-clip={clip}-chunk={i}.part')        
+
+        if embedding_path is not None:
+            ensure_dir(embedding_path)        
+            embedding.to_parquet(embedding_chunk_path)
+
+
 def preprocess_embeddings():
     """
     Compute and store embeddings for the datasets
@@ -162,6 +182,8 @@ def preprocess_embeddings():
             # TODO: support other models
             if config['model'] == 'yamnet':
                 compute_store_yamnet(audio_path, row['dataset'], row['clip'], embedding_path=out_path)
+            if config['model'] == 'panns':
+                compute_store_panns(audio_path, row['dataset'], row['clip'], embedding_path=out_path)
             else:
                 raise ValueError("Unsupported model")
 
