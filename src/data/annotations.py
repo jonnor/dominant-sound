@@ -122,6 +122,46 @@ def make_continious_labels(events : pandas.DataFrame,
     return df
 
 
+
+def count_events_in_period(events : pandas.DataFrame,
+                           time_resolution : float,
+                           class_column='annotation',
+                           classes : list[str] = None,
+                           duration = None,
+                          ) -> pandas.DataFrame:
+    """
+    Create a dense vector of event counts from sparse event labels
+    """
+
+    freq = pandas.Timedelta(seconds=time_resolution)
+
+    # Determine classes
+    if classes is None:
+        classes = events[class_column].unique()
+
+    if duration is None:
+        duration = events['end'].max()
+    
+    # Create empty
+    ix = pandas.timedelta_range(start=pandas.Timedelta(seconds=0.0),
+                    end=pandas.Timedelta(seconds=duration),
+                    freq=freq,
+                    closed='left',
+    )
+    ix.name = 'time'
+    df = pandas.DataFrame({}, columns=classes, index=ix, dtype=int)
+    #assert len(df) == length, (len(df), length)
+    df = df.fillna(0)
+    
+    # fill in event data
+    for cls, start, end in zip(events[class_column], events['start'], events['end']):
+        s = pandas.Timedelta(start, unit='s')
+        e = pandas.Timedelta(end, unit='s')
+        df.loc[s:e, cls] += 1
+    
+    return df
+
+
 def dense_to_events(df : pandas.DataFrame,
                     category_column='label',
                     time_column='time',

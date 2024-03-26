@@ -1,4 +1,10 @@
 
+from src.utils.fileutils import get_project_root
+from src.data.annotations import load_noise_classes, load_dataset_annotations, count_events_in_period
+
+import os
+
+import pandas
 import tensorflow.keras
 
 def weighted_binary_crossentropy(zero_weight, one_weight):
@@ -83,8 +89,65 @@ def plot_history(history):
     axs[0].set_ylim(0, 1.0)
 
 
+# How often are events within N seconds of eachother. Inside the same N second window
+def count_events_in_window(annotations : pandas.DataFrame,
+        window='1s',
+        time_resolution = 0.050,
+        column='noise_class',
+        ) -> pandas.DataFrame:
+
+    e = annotations.copy()
+    e['same_class'] = 'event'
+    e['event_name'] = e.index
+    multi = count_events_in_period(e, class_column=column, time_resolution=time_resolution)
+    counts = multi.groupby(pandas.Grouper(freq=window)).mean()
+
+    return counts
+
+def annotation_to_windows(annotations,
+        window : pandas.Timedelta,
+        class_column='annotation'):
+
+    by_clip = annotations.groupby(['dataset', 'clip'])
+    out = by_clip.apply(count_events_in_window, window=window, column=class_column)
+
+    return out
+
+
+
 def main():
     # FIXME: support data specified on input
+
+    soundlevels_config = 'LAF'
+    embeddings_config = 'yamnet-1'
+
+    project_root = get_project_root()
+
+    # Load annotations
+    classes = load_noise_classes()
+    annotations = load_dataset_annotations().sort_index(level=(0, 1))
+    annotations['noise_class'] = annotations.annotation.map(classes.noise.to_dict()).fillna('unknown')
+    print(annotations.head(3))
+
+    files = annotations.reset_index().set_index(['dataset', 'clip']).index.unique()
+    files = files.to_frame()
+    print(files.head())
+
+    window = pandas.Timedelta(seconds=0.96) # to match YAMNet size
+    windows = annotation_to_windows(annotations, window=window, class_column='noise_class')
+    print(windows)
+
+    # Load preprocessed data
+    soundlevel_path = os.path.join(project_root, f'data/processed/soundlevels/{soundlevels_config}.parquet')
+    soundlevels = pandas.read_parquet(soundlevel_path).droplevel(0).sort_index(level=(0, 1))
+    
+    embeddings_path = os.path.join(project_root, f'data/processed/embeddings/{embeddings_config}.parquet/')
+    embeddings = pandas.read_parquet(embeddings_path).sort_index(level=(0, 1, 2))
+
+    print(embeddings.shape)
+    print(embeddings.head(10))
+
+    return
 
     model = build_model(input_shape=(window_length, 32))
 
