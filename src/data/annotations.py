@@ -140,11 +140,11 @@ def dense_to_events(df : pandas.DataFrame,
     return out
 
 
-def make_multitrack_labels(df, classes=None, time_resolution=0.100):
+def make_multitrack_labels(df, class_column='noise_class', classes=None, time_resolution=0.100):
     last = df['end'].max()
     out = make_continious_labels(df, length=math.ceil(last/time_resolution),
                                  time_resolution=time_resolution,
-                                 class_column='noise_class',
+                                 class_column=class_column,
                                  classes=classes)
     
     return out
