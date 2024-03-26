@@ -4,11 +4,12 @@ import os
 import pandas
 import structlog
 
-from src.utils.fileutils import get_project_root, ensure_dir_for_file
+from src.utils.fileutils import get_project_root, ensure_dir_for_file, ensure_dir
 from src.utils.dataframe import flatten_dataframes
 from src.data.annotations import load_dataset_annotations
 from src.features.soundlevel import soundlevel_for_file
 from src.features.spectrogram import spectrogram_for_file
+from src.features import yamnet_embeddings
 from src.utils.dataframe import flatten_dataframes
 from .audio import get_audio_path
 
@@ -113,7 +114,62 @@ def preprocess_spectrograms():
         log.info('preprocess-spectrogram-store', out=out_path, results=len(df), config=name)
 
 
+def compute_store_yamnet(audio_path, dataset, clip, embedding_path=None):
+    
+    generator = yamnet_embeddings.process_audio_file(audio_path)
+    for i, chunk in enumerate(generator):
+        scores, embedding, _ = chunk
+        scores['dataset'] = dataset
+        scores['clip'] = clip
+        scores = scores.reset_index().set_index(['dataset', 'clip', 'time'])
+        # TODO: support storing scores
+    
+        embedding['dataset'] = dataset
+        embedding['clip'] = clip
+        embedding = embedding.reset_index().set_index(['dataset', 'clip', 'time'])
+        embedding_chunk_path = os.path.join(embedding_path, f'dataset={dataset}-clip={clip}-chunk={i}.part')        
+
+        if embedding_path is not None:
+            ensure_dir(embedding_path)        
+            embedding.to_parquet(embedding_chunk_path)
+
+
+def preprocess_embeddings():
+    """
+    Compute and store embeddings for the datasets
+    """
+
+    project_root = get_project_root()
+    audio_root = os.path.join(project_root, 'data/raw/')
+    out_dir = os.path.join(project_root, 'data/processed/embeddings/')
+
+    annotations = load_dataset_annotations()
+
+    files = annotations.reset_index().set_index(['dataset', 'clip']).index.unique()
+    files = files.to_frame()
+
+    configurations = {
+        'yamnet-1': dict(model='yamnet'),
+    }
+
+    for name, config in configurations.items():
+        out_path = os.path.join(out_dir, f'{name}.parquet')
+        ensure_dir_for_file(out_path)
+
+        for idx, row in files.iterrows():
+            audio_path = get_audio_path(row['dataset'], row['clip'], audio_root)
+
+            # TODO: support other models
+            if config['model'] == 'yamnet':
+                compute_store_yamnet(audio_path, row['dataset'], row['clip'], embedding_path=out_path)
+            else:
+                raise ValueError("Unsupported model")
+
+        log.info('preprocess-spectrogram-store', out=out_path, config=name)
+
+
 def main():
+    preprocess_embeddings()
     preprocess_spectrograms()
     preprocess_soundlevels()
 
