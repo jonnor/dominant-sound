@@ -12,7 +12,30 @@ import structlog
 
 log = structlog.get_logger()
 
-def process_audio(yamnet_model, audio, sr):
+def audio_chunks_from_file(path, sr, chunk=600.0, start=0.0):
+    """
+    Generator that yields audio chunks from file
+    """
+
+    audio_load_duration = 0.0
+    embed_duration = 0.0
+
+    # do the processing in chunks, to keep memory usage down
+    clip_duration = librosa.get_duration(path=path)
+    position = start
+    remaining = clip_duration
+    while remaining > 0.0:
+        audio_load_start = time.time()
+        audio, sr = librosa.load(path, sr=sr, offset=position, duration=min(chunk, remaining))
+        audio_load_duration += (time.time() - audio_load_start)
+        stats = dict(load_duration=audio_load_duration, audio_seconds=float(position))
+
+        chunk_duration = len(audio)/sr
+        position += chunk_duration
+        remaining = clip_duration - position
+        yield audio, stats
+
+def process_audio(yamnet_model, audio, audio_time, sr=16000):
 
     # generate embeddings
     embed_start = time.time()
@@ -33,15 +56,16 @@ def process_audio(yamnet_model, audio, sr):
     # Convert to nice dataframes
     # FIXME: use proper class identifiers
     sc = pandas.DataFrame(scores, columns=[f'c{i}' for i in range(scores.shape[1])])
-    sc['time'] = numpy.arange(0, len(sc)) * hop_duration
+    sc['time'] = audio_time + numpy.arange(0, len(sc)) * hop_duration
     del scores # free memory
 
     emb = pandas.DataFrame(embeddings, columns=[f'e{i}' for i in range(embeddings.shape[1])])
-    emb['time'] = numpy.arange(0, len(emb)) * hop_duration
+    emb['time'] = audio_time + numpy.arange(0, len(emb)) * hop_duration
+    print(emb['time'].head(10))
     del embeddings # free memory
 
     spec = pandas.DataFrame(spectrogram, columns=[f's{i}' for i in range(spectrogram.shape[1]) ])
-    spec['time'] = numpy.arange(0, len(spec)) * frame_duration
+    spec['time'] = audio_time + numpy.arange(0, len(spec)) * frame_duration
     del spectrogram # free memory
 
     return sc, emb, spec
@@ -67,29 +91,27 @@ def process_audio_file(path,
     embed_duration = 0.0
 
     # do the processing in chunks, to keep memory usage down
-    clip_duration = librosa.get_duration(path=path)
-    position = start
-    remaining = clip_duration
-    while remaining > 0.0:
-        audio_load_start = time.time()
-        audio, sr = librosa.load(path, sr=sr, offset=position, duration=min(chunk, remaining))
-        audio_load_duration += (time.time() - audio_load_start)
-        chunk_duration = len(audio)/sr
-        position += chunk_duration
-        remaining = clip_duration - position
-        log.info("embed-audio-chunk", offset=position, returned=chunk_duration, remaining=remaining)
+
+    audio_generator = audio_chunks_from_file(path, sr=sr, chunk=chunk, start=start)
+    for audio, audio_stats in audio_generator:
 
         embed_start = time.time()
-        sc, emb, spec = process_audio(yamnet_model, audio, sr)
+        sc, emb, spec = process_audio(yamnet_model, audio, audio_time=audio_stats['audio_seconds'])
         embed_duration += (time.time() - embed_start)
+
+        log.info("embed-audio-chunk",
+            #offset=position,
+            returned=len(audio)/sr,
+        )
 
         yield sc, emb, spec
 
     # diagnostics
     model_load_duration = model_load_end-model_load_start
+    audio_load_duration = audio_stats['load_duration']
 
     stats = dict(
-        audio_length=len(audio)/sr,
+        audio_length=audio_stats['audio_seconds'],
         model_load=round(model_load_duration, 3),
         audio_load=round(audio_load_duration, 3),
         #save=round(save_duration, 3),
@@ -104,5 +126,3 @@ def process_audio_file(path,
     return stats
 
 
-if __name__ == '__main__':
-    main()

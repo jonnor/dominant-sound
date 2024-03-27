@@ -102,12 +102,12 @@ def make_continious_labels(events : pandas.DataFrame,
     # Create empty covering entire spectrogram
     duration = length * time_resolution
     ix = pandas.timedelta_range(start=pandas.Timedelta(seconds=0.0),
-                    end=pandas.Timedelta(seconds=duration),
                     freq=freq,
+                    periods=length+1,
                     closed='left',
     )
     ix.name = 'time'
-    df = pandas.DataFrame({}, columns=classes, index=ix)
+    df = pandas.DataFrame({}, columns=classes, index=ix, dtype=int)
     assert len(df) == length, (len(df), length)
     df = df.fillna(0)
     
@@ -118,6 +118,46 @@ def make_continious_labels(events : pandas.DataFrame,
        
         match = df.loc[s:e]
         df.loc[s:e, cls] = 1
+    
+    return df
+
+
+
+def count_events_in_period(events : pandas.DataFrame,
+                           time_resolution : float,
+                           class_column='annotation',
+                           classes : list[str] = None,
+                           duration = None,
+                          ) -> pandas.DataFrame:
+    """
+    Create a dense vector of event counts from sparse event labels
+    """
+
+    freq = pandas.Timedelta(seconds=time_resolution)
+
+    # Determine classes
+    if classes is None:
+        classes = events[class_column].unique()
+
+    if duration is None:
+        duration = events['end'].max()
+    
+    # Create empty
+    ix = pandas.timedelta_range(start=pandas.Timedelta(seconds=0.0),
+                    end=pandas.Timedelta(seconds=duration),
+                    freq=freq,
+                    closed='left',
+    )
+    ix.name = 'time'
+    df = pandas.DataFrame({}, columns=classes, index=ix, dtype=int)
+    #assert len(df) == length, (len(df), length)
+    df = df.fillna(0)
+    
+    # fill in event data
+    for cls, start, end in zip(events[class_column], events['start'], events['end']):
+        s = pandas.Timedelta(start, unit='s')
+        e = pandas.Timedelta(end, unit='s')
+        df.loc[s:e, cls] += 1
     
     return df
 
@@ -140,11 +180,11 @@ def dense_to_events(df : pandas.DataFrame,
     return out
 
 
-def make_multitrack_labels(df, classes=None, time_resolution=0.100):
+def make_multitrack_labels(df, class_column='noise_class', classes=None, time_resolution=0.100):
     last = df['end'].max()
     out = make_continious_labels(df, length=math.ceil(last/time_resolution),
                                  time_resolution=time_resolution,
-                                 class_column='noise_class',
+                                 class_column=class_column,
                                  classes=classes)
     
     return out

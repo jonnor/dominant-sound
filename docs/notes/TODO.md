@@ -52,8 +52,12 @@ Seems OK. There is some mixed sounds in such a small period, but not that much. 
 If we can correctly 
 Use masking of the times to estimate how much each contributes?
 
-- Add feature extractors with pretrained AudioSet type models. YAMNet/PANNs, PaSST ?
-- Fixup the SED pipeline. python -m src.sed.train
+- Verify time-stamps for embeddings on YAMNet
+- Fix time-stamps on PANNs embeddings
+- Implement output of AudioSet scores from YAMNet and PANNs
+- Plot stock YAMNet and PANNs results vs annotations
+
+- Setup spectrogram CRNN/RNN
 - Add SED pipeline to CI
 - Evaluation in terms of precision/recall
 - Evaluation in terms of dB error
