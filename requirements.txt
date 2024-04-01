@@ -14,6 +14,7 @@ soundfile
 
 structlog
 tensorflow
+tensorflow_hub
 scikit-learn
 pyarrow
 librosa
