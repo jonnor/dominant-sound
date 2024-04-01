@@ -33,24 +33,19 @@ def compute_mel_spectrogram(audio, sr,
     timestep = pandas.Timedelta(seconds=hop_length/sr)
 
     bands = librosa.mel_frequencies(n_mels=n_mels, fmin=fmin, fmax=fmax, htk=htk).round(0)
-    times = pandas.Series(timestep * numpy.arange(0, len(S.T)), name='time')
+    times = pandas.Series(timestep * numpy.arange(0, len(S_db.T)), name='time')
 
     df = pandas.DataFrame(S_db.T, columns=bands, index=times)
 
     return df
 
 def spectrogram_for_file(path : str,
-    mono : bool = True,
+    sr : int = 16000,
     **kwargs) -> (pandas.DataFrame, dict):
 
-    assert mono == True, "only mono supported"
-
     load_start = time.time()
-    audio, sr = soundfile.read(path, samplerate=None, always_2d=True)
+    audio, sr = librosa.load(path, sr=sr)
     load_end = time.time()
-
-    if mono:
-        audio = numpy.mean(audio, axis=1, keepdims=False)
 
     secs = audio.shape[0]/sr
     compute_start = time.time()
@@ -63,7 +58,6 @@ def spectrogram_for_file(path : str,
     time_ratio = input_seconds / ( compute_end - load_start )
 
     meta = dict(
-        #channels=channels,
         duration=secs,
         load_time=numpy.round(load_end-load_start, 4),
         compute_time=numpy.round(compute_end-compute_start, 4),

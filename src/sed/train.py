@@ -252,6 +252,7 @@ def prepare_tracks(features, annotations,
         target_column='noise_class',
         window_length = 100,
         overlap = 0.0,
+        hop_duration = 0.48,
         ):
 
     # Create label tracks
@@ -267,7 +268,7 @@ def prepare_tracks(features, annotations,
         feat = feat.droplevel(0)
         ann = annotations.loc[clip_idx]
         track = make_continious_labels(ann, length=len(feat),
-            time_resolution=0.48,
+            time_resolution=hop_duration,
             class_column=target_column,
             classes=classes,
         )
@@ -276,7 +277,7 @@ def prepare_tracks(features, annotations,
         #print(feat.head())
         #print(track.head())
         class_activity = track.mean(axis=0)
-        print(class_activity)
+        #print(class_activity)
 
         f = compute_windows(feat.values.T, frames=window_length, overlap=overlap)
         l = compute_windows(track.values.T, frames=window_length, overlap=overlap)
@@ -285,7 +286,7 @@ def prepare_tracks(features, annotations,
 
         #print('w', clip_idx, track.shape, feat.shape)
 
-        window_indexes += list(f.index)
+        window_indexes += [ track.index[i] for i in f.index ]
         feature_windows += list(f.values)
         label_windows += list(l.values)
         clip_windows += ([ clip_idx ] * len(f))
@@ -296,6 +297,11 @@ def prepare_tracks(features, annotations,
         'clip': clip_windows,
         'window': window_indexes,
     }).set_index(['clip', 'window'])
+
+
+    # Include class info as high level columns. For diagnostics
+    class_activations = pandas.DataFrame(numpy.stack(windows.labels).sum(axis=2) / window_length, columns=classes, index=windows.index)
+    windows = pandas.merge(windows, class_activations, left_index=True, right_index=True)
 
     return windows
 
