@@ -95,19 +95,22 @@ def bcn():
     # Specify and create the target directory for the dataset
     target_path = os.path.join(download_path, 'bcn')
 
+    if not os.path.exists(target_path):
+        os.mkdir(target_path)
+
     if True or not os.path.exists(target_path):
         print('Downloading "BCN Dataset: an Annotated Night Urban Sounds dataset"...')
-        #os.makedirs(target_path)
+        # os.makedirs(target_path)
 
         # download the zip files
         for filename in files:
-            url = f'{base_url}/{filename}?download=1'
+            url = f'{base_url}/{filename}'
             out_path = os.path.join(target_path, filename)
             print(url, out_path)
             urllib.request.urlretrieve(url, out_path)
 
     else:
-        print(f'Dataset downloaded - see "data/raw/tut_ds" directory')
+        print(f'Dataset downloaded - see "data/raw/bcn" directory')
 
 
 def fetch_all():
