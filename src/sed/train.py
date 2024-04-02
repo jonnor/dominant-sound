@@ -50,6 +50,7 @@ def build_model(input_shape, dropout=0.5, lr=0.01, class_weights=None, name='sed
         model = build_sednet(input_shape, n_classes=n_classes,
                          filters=10,
                          cnn_pooling=[2, 2, 2],
+                         cnn_temporal_pooling=2,
                          rnn_units=[5, 5],
                          dense_units=[16],
                          dropout=dropout,
@@ -227,6 +228,7 @@ def load_data_tracks():
    
     soundlevels_config = 'LAF'
     embeddings_config = 'yamnet-1'
+    spectrogram_config = 'logmels-32bands-1024hop'
     dataset = 'bcn'
     class_column = 'noise_class'
 
@@ -245,12 +247,24 @@ def load_data_tracks():
     embeddings['time'] = pandas.to_timedelta(embeddings['time'], unit='seconds')
     embeddings = embeddings.set_index(['clip', 'time']).drop(columns=['index'])
 
-    return embeddings, annotations
+
+    # Load preprocessed data    
+    spectrograms_path = os.path.join(project_root, f'data/processed/spectrograms/{spectrogram_config}.parquet')
+    spectrograms = pandas.read_parquet(spectrograms_path).droplevel(0)
+    print(spectrograms)
+    spectrograms = spectrograms.loc[dataset].sort_index(level=(0, 1))
+    #embeddings = embeddings.reset_index()
+    #embeddings['time'] = pandas.to_timedelta(embeddings['time'], unit='seconds')
+    #embeddings = embeddings.set_index(['clip', 'time']).drop(columns=['index'])
+
+
+    return embeddings, spectrograms, annotations
 
 
 def prepare_tracks(features, annotations,
-        target_column='noise_class',
         window_length = 100,
+        downsample_ratio = 1,
+        target_column='noise_class',
         overlap = 0.0,
         hop_duration = 0.48,
         ):
@@ -264,29 +278,31 @@ def prepare_tracks(features, annotations,
     clip_windows = []
     window_indexes = []
 
+    input_length = (downsample_ratio * window_length)
+
     for clip_idx, feat in features.groupby('clip'):
         feat = feat.droplevel(0)
         ann = annotations.loc[clip_idx]
-        track = make_continious_labels(ann, length=len(feat),
+        track = make_continious_labels(ann, length=int(len(feat)/downsample_ratio),
             time_resolution=hop_duration,
             class_column=target_column,
             classes=classes,
         )
-        assert len(track) == len(feat)
-        assert track.index.all() == feat.index.all()
+        #assert len(track) == len(feat), (len(track), len(feat))
+        #assert track.index.all() == feat.index.all()
         #print(feat.head())
         #print(track.head())
         class_activity = track.mean(axis=0)
         #print(class_activity)
 
-        f = compute_windows(feat.values.T, frames=window_length, overlap=overlap)
+        f = compute_windows(feat.values.T, frames=input_length, overlap=overlap)
         l = compute_windows(track.values.T, frames=window_length, overlap=overlap)
         assert len(f) == len(l)
         assert f.index.all() == l.index.all()
 
         #print('w', clip_idx, track.shape, feat.shape)
 
-        window_indexes += [ track.index[i] for i in f.index ]
+        window_indexes += [ track.index[i] for i in l.index ]
         feature_windows += list(f.values)
         label_windows += list(l.values)
         clip_windows += ([ clip_idx ] * len(f))
@@ -357,13 +373,17 @@ def main():
 
         return
 
-    feature_size = 1024
-    hop_duration = 0.48
-    window_duration = 5.0
+    feature_size = 32
+    downsample_ratio = 8
+    hop_duration = 0.064*downsample_ratio
+    window_duration = 10.0
     window_length = math.ceil(window_duration / hop_duration)
+    input_length = downsample_ratio * window_length
+
+    print('ww', window_length, input_length)
 
     # Load data
-    embeddings, annotations = load_data_tracks()
+    embeddings, spectrograms, annotations = load_data_tracks()
 
     annotations['duration'] = annotations['end'] - annotations['start']
 
@@ -376,13 +396,21 @@ def main():
     class_durations = annotations.groupby('noise_class').duration.sum()
     print('class durations', class_durations)
 
-    assert embeddings.shape[1] == feature_size, embeddings.shape 
+    #assert embeddings.shape[1] == feature_size, embeddings.shape 
 
     n_classes = len(class_durations.index)
-    model = build_model(input_shape=(window_length, feature_size), n_classes=n_classes, lr=0.001, dropout=0.25)
+    model = build_model(input_shape=(input_length, feature_size),
+        n_classes=n_classes,
+        lr=0.01, dropout=0.00,
+        name='sednet')
     model.summary()
 
-    windows = prepare_tracks(embeddings, annotations, window_length=window_length)
+    f = spectrograms
+    windows = prepare_tracks(f, annotations,
+        window_length=window_length,
+        downsample_ratio=downsample_ratio,
+        hop_duration=hop_duration,
+    )
     print('windows', windows.shape)
 
     results = train_evaluate_tracks(windows, model)

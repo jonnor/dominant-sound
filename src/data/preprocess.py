@@ -100,7 +100,8 @@ def preprocess_spectrograms():
     files = files.to_frame()
 
     configurations = {
-        'logmels-64bands-256hop': dict(hop_length=256, n_mels=64),
+        #'logmels-64bands-256hop': dict(hop_length=256, n_mels=64),
+        'logmels-32bands-1024hop': dict(hop_length=1024, n_mels=32),
     }
 
     for name, config in configurations.items():

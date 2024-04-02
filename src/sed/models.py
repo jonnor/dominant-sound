@@ -4,6 +4,7 @@ def build_sednet(input_shape,
     cnn_pooling=(5, 2, 2),
     rnn_units=(32, 32),
     dense_units=(32,),
+    cnn_temporal_pooling=1,
     n_classes=1,
     out_activation='sigmoid',
     dropout=0.5
@@ -24,15 +25,19 @@ def build_sednet(input_shape,
     cnn_shape = (input_shape[-2], input_shape[-1], 1)
     spec_x = Reshape(cnn_shape)(spec_start)
 
+    downsample = cnn_temporal_pooling ** len(cnn_pooling)
+    out_length = int(input_shape[-2] / downsample)
+    print('sednet', input_shape[-2], downsample, out_length)
+
     # Convolutional layers
     for i, pool in enumerate(cnn_pooling):
         spec_x = Conv2D(filters=filters, kernel_size=(3, 3), padding='same')(spec_x)
         spec_x = BatchNormalization(axis=1)(spec_x)
         spec_x = Activation('relu')(spec_x)
-        spec_x = MaxPooling2D(pool_size=(1, pool))(spec_x)
+        spec_x = MaxPooling2D(pool_size=(cnn_temporal_pooling, pool))(spec_x)
         spec_x = Dropout(dropout)(spec_x)
     spec_x = Permute((2, 1, 3))(spec_x)
-    spec_x = Reshape((input_shape[-2], -1))(spec_x)
+    spec_x = Reshape((out_length, -1))(spec_x)
 
     # Recurrent layers
     for units in rnn_units:
