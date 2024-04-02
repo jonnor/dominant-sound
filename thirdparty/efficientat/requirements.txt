@@ -1,0 +1,7 @@
+librosa
+numpy
+scikit_learn
+torch
+torchaudio
+torchvision
+pandas

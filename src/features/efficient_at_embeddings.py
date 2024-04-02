@@ -4,7 +4,8 @@ import numpy
 from src.utils.fileutils import get_project_root, ensure_dir
 from src.data.audio import get_audio_path
 from src.data.annotations import load_dataset_annotations
-from src.efficientat.windowed_inference import EATagger
+
+from thirdparty.efficientat.windowed_inference import EATagger
 
 
 def process_audio(audio_path: str,
@@ -72,4 +73,11 @@ def process_datasets(eat_model_id: str = 'mn10_as_hop_5'):
 
 
 if __name__ == "__main__":
-    process_datasets()
+    # for testing purposes
+    model = EATagger(model_name='mn10_as_hop_5', device='cpu')
+    scores, feats = process_audio(audio_path='../../thirdparty/efficientat/resources/metro_station-paris.wav',
+                                  win_size=1.0, hop_length=1.0, model=model)
+    print(scores)
+    print(feats)
+
+    # process_datasets()
